@@ -15,7 +15,7 @@ html {
 
 html,
 body {
-  overflow: hidden;
+  font-family: "PP Nune Montreal", sans-serif;
 }
 
 .webgl {
@@ -39,7 +39,7 @@ header {
 header a {
   text-decoration: none;
   font-family: "PP Nune Montreal", sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   font-size: 1.5rem;
   text-transform: uppercase;
   color: black;
@@ -51,34 +51,114 @@ header a {
   height: 100vh;
   position: relative;
   font-family: "PP Nune Montreal", sans-serif;
+  font-weight: 300;
   color: #37393f;
   padding-left: 10%;
   padding-right: 10%;
 }
 
-.section .mail_wrapper {
-  width: 25%;
+.section .scroll_wrapper {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  font-weight: 300;
+  border: 1px solid black;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 80%;
+  border-radius: 50%;
+}
+
+.section .mail_wrapper {
+  width: 20%;
+  position: absolute;
   top: 20%;
   left: 8%;
   display: flex;
   justify-content: space-between;
 }
 
+.section .services_wrapper {
+  position: absolute;
+  right: 8%;
+  bottom: 10%;
+
+  text-transform: uppercase;
+}
+
+.services_wrapper .service_text {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
 .section .hero_wrapper {
   width: 100%;
-  font-weight: 300;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
 }
+
 .hero_wrapper h1 {
-  font-size: 6rem;
+  font-size: 6.5rem;
   font-weight: 300;
 }
+
+.creative {
+  font-family: "Branch", sans-serif;
+}
+
+.hero_wrapper p {
+  font-size: 1.3rem;
+}
+
+.section .about_wrapper {
+  width: 60%;
+  position: absolute;
+  top: 15%;
+  left: 8%;
+}
+
+.about_content h2 {
+  font-size: 5rem;
+  font-weight: 300;
+}
+
+.about_content p {
+  font-size: 1.8rem;
+  line-height: 1.3;
+}
+
+.about_sub__content {
+  position: absolute;
+  width: 30%;
+  right: 8%;
+  bottom: 10%;
+}
+
+.section .more_section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.more_section h2 {
+  font-size: 4rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.more_section p {
+  font-size: 1.5rem;
+  margin-top: 8px;
+}
+
 @media only screen and (max-width: 990px) and (min-width: 600px) {
   .hero_wrapper h1 {
     font-size: 7rem;
@@ -89,6 +169,13 @@ header a {
   }
   .section .mail_wrapper {
     width: 40%;
+  }
+  .section .scroll_wrapper {
+    top: 90%;
+  }
+  .about_sub__content {
+    width: 50%;
+    bottom: 15%;
   }
 }
 
@@ -103,15 +190,23 @@ header a {
   .section .mail_wrapper {
     width: 80%;
   }
-}
-.creative {
-  font-family: "Branch";
-}
-
-.hero_wrapper p {
-  font-size: 1.3rem;
-}
-
-section:nth-child(odd) {
-  justify-content: flex-end;
+  .section .services_wrapper {
+    bottom: 2%;
+    right: 2%;
+  }
+  .section .about_wrapper {
+    width: 80%;
+  }
+  .about_content h2 {
+    font-size: 3.5rem;
+  }
+  .about_content p {
+    font-size: 1.2rem;
+  }
+  .about_sub__content {
+    width: 90%;
+    right: 2%;
+    bottom: 5%;
+    font-size: 0.8rem;
+  }
 }

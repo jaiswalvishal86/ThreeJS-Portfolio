@@ -46,25 +46,35 @@ const material = new THREE.MeshToonMaterial({
 
 //Meshes
 const objectDistance = 4;
-const mesh1 = new THREE.Mesh(new THREE.TorusGeometry(1, 0.4, 16, 60), material);
-
-const mesh2 = new THREE.Mesh(new THREE.ConeGeometry(1, 2, 32), material);
-
-const mesh3 = new THREE.Mesh(
-  new THREE.TorusKnotGeometry(0.8, 0.35, 100, 16),
+const mesh1 = new THREE.Mesh(
+  new THREE.TorusGeometry(0.8, 0.3, 16, 30),
   material
 );
 
+const mesh2 = new THREE.Mesh(new THREE.ConeGeometry(0.6, 1, 32), material);
+
+// const mesh3 = new THREE.Mesh(
+//   new THREE.TorusKnotGeometry(0.8, 0.35, 100, 16),
+//   material
+// );
+
 mesh1.position.y = -objectDistance * 0;
 mesh2.position.y = -objectDistance * 1;
-mesh3.position.y = -objectDistance * 2;
+// mesh3.position.y = -objectDistance * 2;
 
 mesh1.position.x = 0;
-mesh2.position.x = -2;
-mesh3.position.x = 2;
-scene.add(mesh1, mesh2, mesh3);
+mesh2.position.x = 2;
+if (window.innerWidth < 990) {
+  mesh2.position.x = 0.8;
+}
+if (window.innerWidth < 600) {
+  mesh2.position.x = 0.4;
+  mesh2.position.y = -objectDistance * 1.1;
+}
+// mesh3.position.x = 2;
+scene.add(mesh1, mesh2);
 
-const sectionMeshes = [mesh1, mesh2, mesh3];
+const sectionMeshes = [mesh1, mesh2];
 
 /**
  * Particles
@@ -169,9 +179,9 @@ window.addEventListener("scroll", () => {
     gsap.to(sectionMeshes[currentSection].rotation, {
       duration: 1.5,
       ease: "power2.inOut",
-      x: "+=6",
-      y: "+=3",
-      z: "+=1.5",
+      x: "+=4",
+      y: "+=2",
+      z: "+=1",
     });
   }
 });
