@@ -34,6 +34,18 @@ const scene = new THREE.Scene();
 /**
  * Texture Loader
  */
+const loader = new THREE.TextureLoader();
+const cubeMaterials = [
+  new THREE.MeshBasicMaterial({
+    map: loader.load("assets/material_1.png"),
+  }), //right side
+  new THREE.MeshBasicMaterial({ map: loader.load("assets/material_2.png") }), //left side
+  new THREE.MeshBasicMaterial({ map: loader.load("assets/material_3.png") }), //top side
+  new THREE.MeshBasicMaterial({ map: loader.load("assets/material_4.png") }), //bottom side
+  new THREE.MeshBasicMaterial({ map: loader.load("assets/material_5.png") }), //front side
+  new THREE.MeshBasicMaterial({ map: loader.load("assets/material_6.png") }), //back side
+];
+
 const textureLoader = new THREE.TextureLoader();
 const gradientTexture = textureLoader.load("textures/gradients/5.jpg");
 gradientTexture.magFilter = THREE.NearestFilter;
@@ -47,8 +59,8 @@ const material = new THREE.MeshToonMaterial({
 //Meshes
 const objectDistance = 4;
 const mesh1 = new THREE.Mesh(
-  new THREE.TorusGeometry(0.8, 0.3, 16, 30),
-  material
+  new THREE.BoxGeometry(1.3, 1.3, 1.3),
+  cubeMaterials
 );
 
 const mesh2 = new THREE.Mesh(new THREE.ConeGeometry(0.6, 1, 32), material);
@@ -111,9 +123,9 @@ scene.add(particles);
 /**
  * Directional Light
  */
-const directionalLight = new THREE.DirectionalLight("#ffffff", 1);
-directionalLight.position.set(0, 1, 0);
-scene.add(directionalLight);
+// const directionalLight = new THREE.DirectionalLight("#ffffff", 1);
+// directionalLight.position.set(0, 1, 0);
+// scene.add(directionalLight);
 
 /**
  * Sizes

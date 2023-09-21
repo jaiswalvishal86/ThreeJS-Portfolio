@@ -10,7 +10,7 @@
 }
 
 html {
-  background-color: #fafafa;
+  background-color: #effcea;
 }
 
 html,
@@ -106,6 +106,8 @@ header a {
 .hero_wrapper h1 {
   font-size: 6.5rem;
   font-weight: 300;
+  mix-blend-mode: difference;
+  color: #effcea;
 }
 
 .creative {
