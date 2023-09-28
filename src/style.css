@@ -10,7 +10,7 @@
 }
 
 html {
-  background-color: #effcea;
+  background-color: #fafafa;
 }
 
 html,
@@ -108,14 +108,18 @@ header a {
   font-weight: 300;
   mix-blend-mode: difference;
   color: #effcea;
+  /* text-transform: uppercase; */
 }
 
 .creative {
-  font-family: "Branch", sans-serif;
+  font-style: italic;
+  font-weight: 300;
 }
 
 .hero_wrapper p {
   font-size: 1.3rem;
+  color: #effcea;
+  mix-blend-mode: difference;
 }
 
 .section .about_wrapper {
@@ -183,7 +187,7 @@ header a {
 
 @media only screen and (max-width: 599px) and (min-width: 280px) {
   .hero_wrapper h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     line-height: 1.2;
   }
   .hero_wrapper p {
