@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import * as dat from "lil-gui";
 import gsap from "gsap";
+import vertex from "./shaders/test/vertex.glsl";
+import fragment from "./shaders/test/fragment.glsl";
 
 THREE.ColorManagement.enabled = false;
 
@@ -35,16 +37,24 @@ const scene = new THREE.Scene();
  * Texture Loader
  */
 const loader = new THREE.TextureLoader();
-const cubeMaterials = [
-  new THREE.MeshBasicMaterial({
-    map: loader.load("assets/material_1.png"),
-  }), //right side
-  new THREE.MeshBasicMaterial({ map: loader.load("assets/material_2.png") }), //left side
-  new THREE.MeshBasicMaterial({ map: loader.load("assets/material_3.png") }), //top side
-  new THREE.MeshBasicMaterial({ map: loader.load("assets/material_4.png") }), //bottom side
-  new THREE.MeshBasicMaterial({ map: loader.load("assets/material_5.png") }), //front side
-  new THREE.MeshBasicMaterial({ map: loader.load("assets/material_6.png") }), //back side
-];
+const imageTexture = loader.load("../assets/terrain.jpeg");
+
+/**
+ * Materials
+ */
+const shaderMaterial = new THREE.RawShaderMaterial({
+  vertexShader: vertex,
+  fragmentShader: fragment,
+  transparent: true,
+  uniforms: {
+    uFrequency: {
+      value: new THREE.Vector2(5, 5),
+    },
+    uTime: { value: 0 },
+    uTexture: { value: imageTexture },
+    uColor: { value: new THREE.Color("orange") },
+  },
+});
 
 const textureLoader = new THREE.TextureLoader();
 const gradientTexture = textureLoader.load("textures/gradients/5.jpg");
@@ -53,15 +63,24 @@ gradientTexture.magFilter = THREE.NearestFilter;
 const material = new THREE.MeshToonMaterial({
   color: 0xfbc8e1,
   gradientMap: gradientTexture,
-  wireframe: true,
+  // wireframe: true,
 });
+
+//Geometry
+const planeGeometry = new THREE.PlaneGeometry(1.5, 2, 256, 256);
+
+const count = planeGeometry.attributes.position.count;
+const randoms = new Float32Array(count);
+
+for (let i = 0; i < count; i++) {
+  randoms[i] = Math.random();
+}
+
+planeGeometry.setAttribute("aRandom", new THREE.BufferAttribute(randoms, 1));
 
 //Meshes
 const objectDistance = 4;
-const mesh1 = new THREE.Mesh(
-  new THREE.BoxGeometry(1.3, 1.3, 1.3),
-  cubeMaterials
-);
+const mesh1 = new THREE.Mesh(planeGeometry, shaderMaterial);
 
 const mesh2 = new THREE.Mesh(new THREE.ConeGeometry(0.6, 1, 32), material);
 
@@ -178,25 +197,25 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 /**
  * Scroll Y
  */
-let scrollY = window.scrollY;
-let currentSection = 0;
+// let scrollY = window.scrollY;
+// let currentSection = 0;
 
-window.addEventListener("scroll", () => {
-  scrollY = window.scrollY;
-  const newSection = Math.round(scrollY / sizes.height);
+// window.addEventListener("scroll", () => {
+//   scrollY = window.scrollY;
+//   const newSection = Math.round(scrollY / sizes.height);
 
-  if (newSection != currentSection) {
-    currentSection = newSection;
+//   if (newSection != currentSection) {
+//     currentSection = newSection;
 
-    gsap.to(sectionMeshes[currentSection].rotation, {
-      duration: 1.5,
-      ease: "power2.inOut",
-      x: "+=4",
-      y: "+=2",
-      z: "+=1",
-    });
-  }
-});
+//     gsap.to(sectionMeshes[currentSection].rotation, {
+//       duration: 1.5,
+//       ease: "power2.inOut",
+//       x: "+=4",
+//       y: "+=2",
+//       z: "+=1",
+//     });
+//   }
+// });
 
 /**
  * Cursor
@@ -221,6 +240,9 @@ const tick = () => {
   const deltaTime = elapsedTime - previousTime;
   previousTime = elapsedTime;
 
+  //Update materials
+  shaderMaterial.uniforms.uTime.value = elapsedTime;
+
   //Animate Camera
   camera.position.y = (-scrollY / sizes.height) * objectDistance;
 
@@ -232,10 +254,10 @@ const tick = () => {
     (parallexY - cameraGroup.position.y) * 5 * deltaTime;
 
   //Animate
-  for (const mesh of sectionMeshes) {
-    mesh.rotation.x += deltaTime * 0.4;
-    mesh.rotation.y += deltaTime * 0.35;
-  }
+  // for (const mesh of sectionMeshes) {
+  //   mesh.rotation.x += deltaTime * 0.4;
+  //   mesh.rotation.y += deltaTime * 0.35;
+  // }
 
   // Render
   renderer.render(scene, camera);

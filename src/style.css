@@ -10,7 +10,7 @@
 }
 
 html {
-  background-color: #fafafa;
+  background-color: #ffffff;
 }
 
 html,
@@ -85,7 +85,6 @@ header a {
   position: absolute;
   right: 8%;
   bottom: 10%;
-
   text-transform: uppercase;
 }
 
@@ -104,11 +103,11 @@ header a {
 }
 
 .hero_wrapper h1 {
-  font-size: 6.5rem;
-  font-weight: 300;
+  font-size: 7rem;
+  font-weight: 400;
   mix-blend-mode: difference;
-  color: #effcea;
-  /* text-transform: uppercase; */
+  color: #ffffff;
+  text-transform: uppercase;
 }
 
 .creative {
@@ -167,7 +166,7 @@ header a {
 
 @media only screen and (max-width: 990px) and (min-width: 600px) {
   .hero_wrapper h1 {
-    font-size: 7rem;
+    font-size: 6rem;
     line-height: 1.1;
   }
   .hero_wrapper p {
@@ -187,7 +186,7 @@ header a {
 
 @media only screen and (max-width: 599px) and (min-width: 280px) {
   .hero_wrapper h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     line-height: 1.2;
   }
   .hero_wrapper p {
