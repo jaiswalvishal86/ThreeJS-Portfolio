@@ -37,7 +37,7 @@ const scene = new THREE.Scene();
  * Texture Loader
  */
 const loader = new THREE.TextureLoader();
-const imageTexture = loader.load("../assets/terrain.jpeg");
+const imageTexture = loader.load("../assets/tree.jpg");
 
 /**
  * Materials
@@ -67,7 +67,7 @@ const material = new THREE.MeshToonMaterial({
 });
 
 //Geometry
-const planeGeometry = new THREE.PlaneGeometry(1.5, 2, 256, 256);
+const planeGeometry = new THREE.PlaneGeometry(4, 3, 256, 256);
 
 const count = planeGeometry.attributes.position.count;
 const randoms = new Float32Array(count);
