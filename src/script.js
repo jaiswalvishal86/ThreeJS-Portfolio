@@ -3,6 +3,8 @@ import * as dat from "lil-gui";
 import gsap from "gsap";
 import vertex from "./shaders/test/vertex.glsl";
 import fragment from "./shaders/test/fragment.glsl";
+import waterVertex from "./shaders/water/waterVertex.glsl";
+import waterFragment from "./shaders/water/waterFragment.glsl";
 
 THREE.ColorManagement.enabled = false;
 
@@ -32,17 +34,40 @@ const scene = new THREE.Scene();
 /**
  * Objects
  */
+const debugObject = {};
 
 /**
  * Texture Loader
  */
 const loader = new THREE.TextureLoader();
-const imageTexture = loader.load("../assets/tree.jpg");
+const imageTexture = loader.load("../assets/plant.png");
+
+/**
+ * Debug Colors
+ */
+debugObject.depthColor = "#f0f0f0";
+debugObject.surfaceColor = "#fafafa";
 
 /**
  * Materials
  */
-const shaderMaterial = new THREE.RawShaderMaterial({
+const waterMaterial = new THREE.ShaderMaterial({
+  vertexShader: waterVertex,
+  fragmentShader: waterFragment,
+  uniforms: {
+    uTime: { value: 0 },
+
+    uBigWavesElevation: { value: 0.2 },
+    uBigWavesFrequency: { value: new THREE.Vector2(4, 1.5) },
+    uBigWavesSpeed: { value: 0.5 },
+
+    uDepthColor: { value: new THREE.Color(debugObject.depthColor) },
+    uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor) },
+    uColorOffset: { value: 0.08 },
+    uColorMultiplier: { value: 5 },
+  },
+});
+const treeShaderMaterial = new THREE.RawShaderMaterial({
   vertexShader: vertex,
   fragmentShader: fragment,
   transparent: true,
@@ -67,30 +92,43 @@ const material = new THREE.MeshToonMaterial({
 });
 
 //Geometry
-const planeGeometry = new THREE.PlaneGeometry(4, 3, 256, 256);
+const treePlaneGeometry = new THREE.PlaneGeometry(3, 2.5, 128, 128);
+const waterPlaneGeometry = new THREE.PlaneGeometry(
+  window.innerWidth,
+  3,
+  256,
+  256
+);
 
-const count = planeGeometry.attributes.position.count;
+const count = treePlaneGeometry.attributes.position.count;
 const randoms = new Float32Array(count);
 
 for (let i = 0; i < count; i++) {
   randoms[i] = Math.random();
 }
 
-planeGeometry.setAttribute("aRandom", new THREE.BufferAttribute(randoms, 1));
+treePlaneGeometry.setAttribute(
+  "aRandom",
+  new THREE.BufferAttribute(randoms, 1)
+);
 
 //Meshes
 const objectDistance = 4;
-const mesh1 = new THREE.Mesh(planeGeometry, shaderMaterial);
+const mesh1 = new THREE.Mesh(treePlaneGeometry, treeShaderMaterial);
 
 const mesh2 = new THREE.Mesh(new THREE.ConeGeometry(0.6, 1, 32), material);
+
+const mesh3 = new THREE.Mesh(waterPlaneGeometry, waterMaterial);
 
 // const mesh3 = new THREE.Mesh(
 //   new THREE.TorusKnotGeometry(0.8, 0.35, 100, 16),
 //   material
 // );
 
-mesh1.position.y = -objectDistance * 0;
+mesh1.position.y = -objectDistance * 0.07;
 mesh2.position.y = -objectDistance * 1;
+mesh3.position.y = -objectDistance * 0.4;
+mesh3.rotation.x = -Math.PI * 0.5;
 // mesh3.position.y = -objectDistance * 2;
 
 mesh1.position.x = 0;
@@ -103,7 +141,7 @@ if (window.innerWidth < 600) {
   mesh2.position.y = -objectDistance * 1.1;
 }
 // mesh3.position.x = 2;
-scene.add(mesh1, mesh2);
+scene.add(mesh1, mesh2, mesh3);
 
 const sectionMeshes = [mesh1, mesh2];
 
@@ -111,33 +149,33 @@ const sectionMeshes = [mesh1, mesh2];
  * Particles
  */
 //Geometry
-let particlesCount = 300;
-const postions = new Float32Array(particlesCount * 3);
+// let particlesCount = 300;
+// const postions = new Float32Array(particlesCount * 3);
 
-for (let i = 0; i < particlesCount; i++) {
-  postions[i * 3 + 0] = (Math.random() - 0.5) * 10;
-  postions[i * 3 + 1] =
-    objectDistance * 0.5 -
-    Math.random() * objectDistance * sectionMeshes.length;
-  postions[i * 3 + 2] = (Math.random() - 0.5) * 10;
-}
+// for (let i = 0; i < particlesCount; i++) {
+//   postions[i * 3 + 0] = (Math.random() - 0.5) * 10;
+//   postions[i * 3 + 1] =
+//     objectDistance * 0.5 -
+//     Math.random() * objectDistance * sectionMeshes.length;
+//   postions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+// }
 
-const particlesGeometry = new THREE.BufferGeometry();
-particlesGeometry.setAttribute(
-  "position",
-  new THREE.BufferAttribute(postions, 3)
-);
+// const particlesGeometry = new THREE.BufferGeometry();
+// particlesGeometry.setAttribute(
+//   "position",
+//   new THREE.BufferAttribute(postions, 3)
+// );
 
-//Material
-const partilesMatrial = new THREE.PointsMaterial({
-  color: parameters.materialColor,
-  sizeAttenuation: true,
-  size: 0.03,
-});
+// //Material
+// const partilesMatrial = new THREE.PointsMaterial({
+//   color: parameters.materialColor,
+//   sizeAttenuation: true,
+//   size: 0.03,
+// });
 
-//Points
-const particles = new THREE.Points(particlesGeometry, partilesMatrial);
-scene.add(particles);
+// //Points
+// const particles = new THREE.Points(particlesGeometry, partilesMatrial);
+// scene.add(particles);
 
 /**
  * Directional Light
@@ -224,10 +262,10 @@ const cursor = {};
 cursor.x = 0;
 cursor.y = 0;
 
-window.addEventListener("mousemove", (e) => {
-  cursor.x = e.clientX / sizes.width - 0.5;
-  cursor.y = e.clientY / sizes.height - 0.5;
-});
+// window.addEventListener("mousemove", (e) => {
+//   cursor.x = e.clientX / sizes.width - 0.5;
+//   cursor.y = e.clientY / sizes.height - 0.5;
+// });
 
 /**
  * Animate
@@ -241,7 +279,8 @@ const tick = () => {
   previousTime = elapsedTime;
 
   //Update materials
-  shaderMaterial.uniforms.uTime.value = elapsedTime;
+  treeShaderMaterial.uniforms.uTime.value = elapsedTime;
+  waterMaterial.uniforms.uTime.value = elapsedTime;
 
   //Animate Camera
   camera.position.y = (-scrollY / sizes.height) * objectDistance;
