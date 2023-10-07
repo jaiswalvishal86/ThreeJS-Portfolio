@@ -143,7 +143,7 @@ if (window.innerWidth < 600) {
 // mesh3.position.x = 2;
 scene.add(mesh1, mesh2, mesh3);
 
-const sectionMeshes = [mesh1, mesh2];
+// const sectionMeshes = [mesh1, mesh2];
 
 /**
  * Particles
@@ -180,7 +180,7 @@ const sectionMeshes = [mesh1, mesh2];
 /**
  * Directional Light
  */
-// const directionalLight = new THREE.DirectionalLight("#ffffff", 1);
+// const directionalLight = new THREE.DirectionalLight("#7e7e8f", 1);
 // directionalLight.position.set(0, 1, 0);
 // scene.add(directionalLight);
 
@@ -283,7 +283,7 @@ const tick = () => {
   waterMaterial.uniforms.uTime.value = elapsedTime;
 
   //Animate Camera
-  camera.position.y = (-scrollY / sizes.height) * objectDistance;
+  camera.position.y = -scrollY / sizes.height;
 
   const parallexX = cursor.x * 0.5;
   const parallexY = -cursor.y * 0.5;

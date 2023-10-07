@@ -58,6 +58,37 @@ header a {
   padding-right: 10%;
 }
 
+.section_wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.section_wrapper .hero_container {
+  position: relative;
+  overflow: visible;
+  margin-bottom: -100vh;
+  z-index: 1;
+}
+
+.spacer {
+  height: 100vh;
+}
+
+.section.is-hero {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.section.is-about {
+  z-index: 2;
+  background-color: azure;
+}
+.section.coming-soon {
+  z-index: 2;
+  background-color: rgb(251, 251, 240);
+}
+
 .section .scroll_wrapper {
   width: 4rem;
   height: 4rem;
@@ -104,10 +135,9 @@ header a {
 }
 
 .hero_wrapper h1 {
-  font-size: 7rem;
+  font-size: 8vw;
   font-weight: 400;
-  mix-blend-mode: difference;
-  color: #ffffff;
+  color: #5d5d6d;
   text-transform: uppercase;
 }
 
@@ -117,8 +147,8 @@ header a {
 }
 
 .hero_wrapper p {
-  font-size: 1.3rem;
-  color: #ededed;
+  font-size: 1.6vw;
+  color: #747479;
   mix-blend-mode: difference;
 }
 
