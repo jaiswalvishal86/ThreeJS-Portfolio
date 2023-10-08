@@ -95,9 +95,9 @@ const material = new THREE.MeshToonMaterial({
 const treePlaneGeometry = new THREE.PlaneGeometry(3, 2.5, 128, 128);
 const waterPlaneGeometry = new THREE.PlaneGeometry(
   window.innerWidth,
-  3,
-  256,
-  256
+  4,
+  512,
+  512
 );
 
 const count = treePlaneGeometry.attributes.position.count;
@@ -116,7 +116,7 @@ treePlaneGeometry.setAttribute(
 const objectDistance = 4;
 const mesh1 = new THREE.Mesh(treePlaneGeometry, treeShaderMaterial);
 
-const mesh2 = new THREE.Mesh(new THREE.ConeGeometry(0.6, 1, 32), material);
+// const mesh2 = new THREE.Mesh(new THREE.ConeGeometry(0.6, 1, 32), material);
 
 const mesh3 = new THREE.Mesh(waterPlaneGeometry, waterMaterial);
 
@@ -126,22 +126,22 @@ const mesh3 = new THREE.Mesh(waterPlaneGeometry, waterMaterial);
 // );
 
 mesh1.position.y = -objectDistance * 0.07;
-mesh2.position.y = -objectDistance * 1;
+// mesh2.position.y = -objectDistance * 1;
 mesh3.position.y = -objectDistance * 0.4;
 mesh3.rotation.x = -Math.PI * 0.5;
 // mesh3.position.y = -objectDistance * 2;
 
 mesh1.position.x = 0;
-mesh2.position.x = 2;
-if (window.innerWidth < 990) {
-  mesh2.position.x = 0.8;
-}
-if (window.innerWidth < 600) {
-  mesh2.position.x = 0.4;
-  mesh2.position.y = -objectDistance * 1.1;
-}
+// mesh2.position.x = 2;
+// if (window.innerWidth < 990) {
+//   mesh2.position.x = 0.8;
+// }
+// if (window.innerWidth < 600) {
+//   mesh2.position.x = 0.4;
+//   mesh2.position.y = -objectDistance * 1.1;
+// }
 // mesh3.position.x = 2;
-scene.add(mesh1, mesh2, mesh3);
+scene.add(mesh1, mesh3);
 
 // const sectionMeshes = [mesh1, mesh2];
 
@@ -191,6 +191,17 @@ const sizes = {
   width: window.innerWidth,
   height: window.innerHeight,
 };
+
+function resizeCanvas() {
+  if (
+    canvas.width != canvas.clientWidth ||
+    canvas.height != canvas.clientHeight
+  ) {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+}
 
 window.addEventListener("resize", () => {
   // Update sizes
@@ -262,10 +273,10 @@ const cursor = {};
 cursor.x = 0;
 cursor.y = 0;
 
-// window.addEventListener("mousemove", (e) => {
-//   cursor.x = e.clientX / sizes.width - 0.5;
-//   cursor.y = e.clientY / sizes.height - 0.5;
-// });
+window.addEventListener("mousemove", (e) => {
+  cursor.x = e.clientX / sizes.width - 0.5;
+  cursor.y = e.clientY / sizes.height - 0.5;
+});
 
 /**
  * Animate
@@ -299,7 +310,7 @@ const tick = () => {
   // }
 
   // Render
-  renderer.render(scene, camera);
+  renderer.render(scene, camera, resizeCanvas);
 
   // Call tick again on the next frame
   window.requestAnimationFrame(tick);
