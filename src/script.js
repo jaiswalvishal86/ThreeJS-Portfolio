@@ -96,8 +96,8 @@ const treePlaneGeometry = new THREE.PlaneGeometry(3, 2.5, 128, 128);
 const waterPlaneGeometry = new THREE.PlaneGeometry(
   window.innerWidth,
   4,
-  512,
-  512
+  200,
+  200
 );
 
 const count = treePlaneGeometry.attributes.position.count;
@@ -191,17 +191,6 @@ const sizes = {
   width: window.innerWidth,
   height: window.innerHeight,
 };
-
-function resizeCanvas() {
-  if (
-    canvas.width != canvas.clientWidth ||
-    canvas.height != canvas.clientHeight
-  ) {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-    gl.viewport(0, 0, canvas.width, canvas.height);
-  }
-}
 
 window.addEventListener("resize", () => {
   // Update sizes
@@ -310,7 +299,7 @@ const tick = () => {
   // }
 
   // Render
-  renderer.render(scene, camera, resizeCanvas);
+  renderer.render(scene, camera);
 
   // Call tick again on the next frame
   window.requestAnimationFrame(tick);
