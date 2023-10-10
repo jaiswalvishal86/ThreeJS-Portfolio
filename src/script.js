@@ -5,6 +5,20 @@ import vertex from "./shaders/test/vertex.glsl";
 import fragment from "./shaders/test/fragment.glsl";
 import waterVertex from "./shaders/water/waterVertex.glsl";
 import waterFragment from "./shaders/water/waterFragment.glsl";
+import Lenis from "@studio-freight/lenis";
+
+const lenis = new Lenis();
+
+lenis.on("scroll", (e) => {
+  // console.log(e);
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
 
 THREE.ColorManagement.enabled = false;
 
