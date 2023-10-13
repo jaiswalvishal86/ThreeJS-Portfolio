@@ -6,6 +6,46 @@ import fragment from "./shaders/test/fragment.glsl";
 import waterVertex from "./shaders/water/waterVertex.glsl";
 import waterFragment from "./shaders/water/waterFragment.glsl";
 import Lenis from "@studio-freight/lenis";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+const container = document.querySelector(".gallery-wrapper");
+const rows = document.querySelectorAll(".row");
+
+gsap.registerPlugin(ScrollTrigger);
+
+const timeline = gsap.timeline();
+
+rows.forEach((row, index) => {
+  const direction = index % 2 === 0 ? 1 : -1;
+  timeline
+    .to(row, {
+      x: `${index * -20 * direction}%`, // Adjust the value as needed
+      duration: 1,
+      scrollTrigger: {
+        trigger: container,
+        start: "top bottom",
+        end: "+=200%",
+        scrub: 1, // Enables smooth scrolling effect
+        // pin: true, // Pins the row during the animation
+        anticipatePin: 1, // Improves the scrolling anticipation
+      },
+    })
+    .to(
+      rows[0],
+      {
+        x: "-20%",
+        duration: 1,
+        scrollTrigger: {
+          trigger: container,
+          start: "top bottom",
+          end: "+=200%",
+          scrub: 1, // Enables smooth scrolling effect
+          // pin: true, // Pins the row during the animation
+          anticipatePin: 1, // Improves the scrolling anticipation
+        },
+      },
+      "<"
+    );
+});
 
 const lenis = new Lenis();
 
