@@ -9,10 +9,50 @@ import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 const container = document.querySelector(".gallery-wrapper");
 const rows = document.querySelectorAll(".row");
+const aboutSection = document.getElementById("about-section");
+
+const loaderElement = document.querySelector(".loader-overlay");
+const loadingBarElement = document.querySelector(".loading-bar");
+
+const loadingManager = new THREE.LoadingManager(
+  () => {
+    gsap.delayedCall(0.5, () => {
+      gsap.fromTo(
+        loaderElement,
+        { yPercent: "0" },
+        { duration: 1, yPercent: "-100", ease: "power4.inOut" }
+      );
+      loadingBarElement.classList.add(".ended");
+      loadingBarElement.style.transform = "";
+    });
+  },
+  (itemUrl, itemLoaded, itemTotal) => {
+    const progressRatio = itemLoaded / itemTotal;
+    loadingBarElement.style.transform = `scaleX(${progressRatio})`;
+  }
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
 const timeline = gsap.timeline();
+
+timeline.fromTo(
+  aboutSection,
+  {
+    scaleX: 0.9,
+    borderRadius: "80",
+  },
+  {
+    scaleX: 1,
+    borderRadius: "8",
+    scrollTrigger: {
+      trigger: aboutSection,
+      start: "top+20% bottom",
+      end: "bottom bottom",
+      scrub: 1, // Enables smooth scrolling effect
+    },
+  }
+);
 
 rows.forEach((row, index) => {
   const direction = index % 2 === 0 ? 1 : -1;
@@ -47,7 +87,7 @@ rows.forEach((row, index) => {
     );
 });
 
-const lenis = new Lenis();
+const lenis = new Lenis({ lerp: 0.1, duration: 1 });
 
 lenis.on("scroll", (e) => {
   // console.log(e);
@@ -71,11 +111,6 @@ const parameters = {
   materialColor: "#d9d9d9",
 };
 
-// gui.addColor(parameters, "materialColor").onChange(() => {
-//   material.color.set(parameters.materialColor);
-//   partilesMatrial.color.set(parameters.materialColor);
-// });
-
 /**
  * Base
  */
@@ -93,14 +128,14 @@ const debugObject = {};
 /**
  * Texture Loader
  */
-const loader = new THREE.TextureLoader();
-const imageTexture = loader.load("../assets/plant.png");
+const loader = new THREE.TextureLoader(loadingManager);
+const imageTexture = loader.load("../assets/greenPlant.png");
 
 /**
  * Debug Colors
  */
-debugObject.depthColor = "#f0f0f0";
-debugObject.surfaceColor = "#fafafa";
+debugObject.depthColor = "#E6EFF2";
+debugObject.surfaceColor = "#EEF4F6";
 
 /**
  * Materials
@@ -135,7 +170,7 @@ const treeShaderMaterial = new THREE.RawShaderMaterial({
   },
 });
 
-const textureLoader = new THREE.TextureLoader();
+const textureLoader = new THREE.TextureLoader(loadingManager);
 const gradientTexture = textureLoader.load("textures/gradients/5.jpg");
 gradientTexture.magFilter = THREE.NearestFilter;
 
@@ -146,7 +181,7 @@ const material = new THREE.MeshToonMaterial({
 });
 
 //Geometry
-const treePlaneGeometry = new THREE.PlaneGeometry(3, 2.5, 128, 128);
+const treePlaneGeometry = new THREE.PlaneGeometry(2.5, 2.5, 128, 128);
 const waterPlaneGeometry = new THREE.PlaneGeometry(
   window.innerWidth,
   4,
@@ -179,13 +214,12 @@ const mesh3 = new THREE.Mesh(waterPlaneGeometry, waterMaterial);
 //   material
 // );
 
-mesh1.position.y = -objectDistance * 0.07;
+mesh1.position.y = -objectDistance * 0.1;
 // mesh2.position.y = -objectDistance * 1;
 mesh3.position.y = -objectDistance * 0.4;
 mesh3.rotation.x = -Math.PI * 0.5;
 // mesh3.position.y = -objectDistance * 2;
 
-mesh1.position.x = 0;
 // mesh2.position.x = 2;
 // if (window.innerWidth < 990) {
 //   mesh2.position.x = 0.8;

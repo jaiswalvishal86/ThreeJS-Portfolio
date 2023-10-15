@@ -38,6 +38,7 @@ header {
   width: 90%;
   display: flex;
   justify-content: space-between;
+  mix-blend-mode: difference;
   align-items: center;
   margin: 1rem auto;
 }
@@ -45,10 +46,36 @@ header a {
   text-decoration: none;
   font-family: "PP Nune Montreal", sans-serif;
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 0.9;
   /* text-transform: uppercase; */
-  color: black;
+  color: white;
+}
+
+.loader-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  z-index: 10;
+}
+
+.loading-bar {
+  width: 50%;
+  transform: scaleX(0);
+  transform-origin: top center;
+  height: 2px;
+  background: #3f788a;
+  transition: transform 0.5s;
+  will-change: transform;
+}
+
+.loading-bar.ended {
+  transform-origin: top center;
+  transition: transform 1.5s ease-in-out;
 }
 
 .menu {
@@ -62,6 +89,7 @@ header a {
   width: 100%;
   height: 100%;
   min-width: 24px;
+  color: black;
 }
 
 .section {
@@ -101,10 +129,8 @@ header a {
 .section.is-about {
   z-index: 2;
   background-color: #fafafa;
-}
-.section.coming-soon {
-  z-index: 2;
-  background-color: #fafafa;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
 }
 
 .section .scroll_wrapper {
@@ -125,6 +151,7 @@ header a {
 .section .mail_wrapper {
   width: 20%;
   position: absolute;
+  color: #518a9b;
   top: 20%;
   left: 8%;
   display: flex;
@@ -136,6 +163,7 @@ header a {
   right: 8%;
   bottom: 15%;
   text-transform: uppercase;
+  color: #518a9b;
 }
 
 .services_wrapper .service_text {
@@ -153,33 +181,36 @@ header a {
 }
 
 .hero_wrapper h1 {
-  font-size: 7.5vw;
-  font-weight: 400;
-  color: #19263a;
+  font-size: 8vw;
+  font-weight: 300;
+  color: #3f788a;
   text-transform: uppercase;
+  letter-spacing: -4px;
 }
 
 .creative {
   font-style: italic;
   font-weight: 300;
+  color: #3f788a;
 }
 
 .hero_wrapper p {
   font-size: 1.6vw;
-  color: #747479;
+  color: #7d8d92;
   mix-blend-mode: difference;
 }
 
 .section .about_wrapper {
   width: 50%;
   position: absolute;
-  top: 15%;
+  top: 10%;
   left: 8%;
 }
 
 .about_content h2 {
   font-size: 5rem;
   font-weight: 300;
+  color: #518a9b;
 }
 
 .about_content p {
@@ -230,14 +261,13 @@ header a {
 }
 
 .gallery-section {
-  height: 200vh;
+  height: 100vh;
   position: relative;
 }
 
 .gallery {
   height: 100vh;
-  position: sticky;
-  top: 0;
+
   overflow: hidden;
   background: #fafafa;
 }
@@ -288,10 +318,6 @@ header a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.spacer {
-  height: 100vh;
 }
 
 @media only screen and (max-width: 990px) and (min-width: 600px) {

@@ -13,12 +13,19 @@
       <a class="menu" href="/">
         <div class="hamburger">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z"></path>
+            <path
+              d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z"
+              fill="#ffffff"
+            ></path>
           </svg>
         </div>
         Menu</a
       >
     </header>
+    <div class="loader-overlay">
+      <div class="loading-bar"></div>
+    </div>
+
     <div class="section_wrapper">
       <div class="hero_container">
         <section class="section is-hero">
@@ -27,7 +34,7 @@
             <div class="mail">jaiswalvishal86@gmail.com</div>
           </div>
           <div class="hero_wrapper">
-            <h1><span class="creative">Creative</span> Experiences</h1>
+            <h1><span class="creative">Creative</span> Designer & Developer</h1>
             <p>
               made with keen eye on design, allowing your brand to grow beyond.
             </p>
@@ -42,7 +49,7 @@
         <div class="spacer"></div>
       </div>
 
-      <section class="section is-about">
+      <section id="about-section" class="section is-about">
         <div class="about_wrapper">
           <div class="about_content">
             <!-- <img alt="icon" src="/static/assets/icon.svg" /> -->
@@ -102,15 +109,11 @@
         <div class="gallery">
           <div class="gallery-wrapper">
             <div class="row">
-              <div class="gallery-img__container">
-                <img alt="project image" src="/assets/building.jpg" />
-              </div>
-
-              <div class="gallery-img__container">
-                <img alt="project image" src="/assets/vishal.jpeg" />
-              </div>
-              <div class="gallery-img__container">
-                <img alt="project image" src="/assets/creative.jpeg" />
+              <div class="hero_wrapper">
+                <h1>
+                  made with keen eye on design, allowing your brand to grow
+                  beyond.
+                </h1>
               </div>
             </div>
             <div class="row">
@@ -127,14 +130,11 @@
             </div>
 
             <div class="row">
-              <div class="gallery-img__container">
-                <img alt="project image" src="/assets/building.jpg" />
-              </div>
-              <div class="gallery-img__container">
-                <img alt="project image" src="/assets/creative.jpeg" />
-              </div>
-              <div class="gallery-img__container">
-                <img alt="project image" src="/assets/vishal.jpeg" />
+              <div class="hero_wrapper">
+                <h1>
+                  made with keen eye on design, allowing your brand to grow
+                  beyond.
+                </h1>
               </div>
             </div>
 
@@ -152,6 +152,25 @@
           </div>
         </div>
       </div>
+      <section class="section is-about">
+        <div class="about_wrapper">
+          <div class="about_content">
+            <!-- <img alt="icon" src="/static/assets/icon.svg" /> -->
+            <h2>About <span class="creative">myself</span></h2>
+            <p>
+              Welcome to my creative design portfolio, where innovation meets
+              imagination! As a passionate creative designer, I thrive on
+              pushing boundaries and crafting visual experiences that leave a
+              lasting impression.
+            </p>
+          </div>
+        </div>
+        <div class="about_sub__content">
+          I believe that design has the power to inspire, inform, and influence.
+          If you're looking for a creative partner who can transform your ideas
+          into compelling visual stories, I invite you to get in touch.
+        </div>
+      </section>
     </div>
     <script type="module" src="./script.js"></script>
   </body>
