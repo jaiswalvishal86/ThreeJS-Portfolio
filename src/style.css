@@ -346,11 +346,6 @@ header a {
   align-items: flex-start;
 }
 
-.work-container:medium {
-  padding-right: 4em;
-  padding-left: 4em;
-}
-
 .work-slider {
   display: flex;
   align-items: center;
@@ -377,17 +372,6 @@ header a {
   flex-basis: auto;
   color: hsla(0, 0%, 100%, 1);
   text-align: center;
-}
-
-.work-slider--slide:medium {
-  width: 48%;
-  margin-right: 2em;
-}
-
-.work-slider--slide:tiny {
-  width: 90%;
-  max-height: 130vw;
-  margin-right: 3em;
 }
 
 .work-image {
@@ -421,10 +405,6 @@ header a {
   background-color: hsla(0, 0%, 0%, 0.09);
 }
 
-.progress:medium {
-  margin-top: 30px;
-}
-
 .progress-fill {
   position: relative;
   width: 0%;
@@ -453,6 +433,18 @@ header a {
   .vignette {
     height: 500px;
     width: 350px;
+  }
+  .work-container {
+    padding-right: 4em;
+    padding-left: 4em;
+  }
+
+  .work-slider--slide {
+    width: 48%;
+    margin-right: 2em;
+  }
+  .progress {
+    margin-top: 30px;
   }
 }
 
@@ -490,5 +482,10 @@ header a {
   .vignette {
     height: 350px;
     width: 250px;
+  }
+  .work-slider--slide {
+    width: 90%;
+    max-height: 130vw;
+    margin-right: 3em;
   }
 }
