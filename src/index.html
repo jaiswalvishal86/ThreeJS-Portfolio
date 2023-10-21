@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio - Vishal Jaiswal</title>
     <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
+    />
   </head>
   <body>
     <canvas class="webgl"></canvas>
@@ -68,7 +72,7 @@
           into compelling visual stories, I invite you to get in touch.
         </div>
       </section>
-      <section class="work-section">
+      <!-- <section class="work-section">
         <div class="work">
           <div class="image-container">
             <img alt="project image" src="/assets/building.jpg" />
@@ -85,26 +89,73 @@
             <img alt="project image" src="/assets/terrain.jpeg" />
           </div>
         </div>
-      </section>
-      <section class="section is-about">
-        <div class="about_wrapper">
-          <div class="about_content">
-            <!-- <img alt="icon" src="/static/assets/icon.svg" /> -->
-            <h2>About <span class="creative">myself</span></h2>
-            <p>
-              Welcome to my creative design portfolio, where innovation meets
-              imagination! As a passionate creative designer, I thrive on
-              pushing boundaries and crafting visual experiences that leave a
-              lasting impression.
-            </p>
+      </section> -->
+      <div class="work-section">
+        <div class="work-container">
+          <div class="work-slider">
+            <div class="work-slider_slide">
+              <img
+                class="work-image"
+                alt="project image"
+                src="/assets/building.jpg"
+              />
+              <p>Indigo</p>
+            </div>
+            <div class="work-slider_slide">
+              <img
+                class="work-image"
+                alt="project image"
+                src="/assets/creative.jpeg"
+              />
+              <p>Creative</p>
+            </div>
+            <div class="work-slider_slide">
+              <img
+                class="work-image"
+                alt="project image"
+                src="/assets/terrain.jpeg"
+              />
+              <p>Terrain</p>
+            </div>
+            <div class="work-slider_slide">
+              <img
+                class="work-image"
+                alt="project image"
+                src="/assets/tree.jpg"
+              />
+              <p>Tree</p>
+            </div>
+            <div class="work-slider_slide">
+              <img
+                class="work-image"
+                alt="project image"
+                src="/assets/creative.jpeg"
+              />
+              <p>Creative</p>
+            </div>
+            <div class="work-slider_slide">
+              <img
+                class="work-image"
+                alt="project image"
+                src="/assets/building.jpg"
+              />
+              <p>Building</p>
+            </div>
+            <div class="work-slider_slide">
+              <img
+                class="work-image"
+                alt="project image"
+                src="/assets/tree.jpg"
+              />
+              <p>Tree</p>
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress-fill"></div>
           </div>
         </div>
-        <div class="about_sub__content">
-          I believe that design has the power to inspire, inform, and influence.
-          If you're looking for a creative partner who can transform your ideas
-          into compelling visual stories, I invite you to get in touch.
-        </div>
-      </section>
+      </div>
+
       <div class="gallery-section">
         <div class="gallery">
           <div class="gallery-wrapper">
@@ -152,26 +203,13 @@
           </div>
         </div>
       </div>
-      <section class="section is-about">
-        <div class="about_wrapper">
-          <div class="about_content">
-            <!-- <img alt="icon" src="/static/assets/icon.svg" /> -->
-            <h2>About <span class="creative">myself</span></h2>
-            <p>
-              Welcome to my creative design portfolio, where innovation meets
-              imagination! As a passionate creative designer, I thrive on
-              pushing boundaries and crafting visual experiences that leave a
-              lasting impression.
-            </p>
-          </div>
-        </div>
-        <div class="about_sub__content">
-          I believe that design has the power to inspire, inform, and influence.
-          If you're looking for a creative partner who can transform your ideas
-          into compelling visual stories, I invite you to get in touch.
-        </div>
-      </section>
     </div>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script type="module" src="./script.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

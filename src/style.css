@@ -183,7 +183,7 @@ header a {
 .hero_wrapper h1 {
   font-size: 8vw;
   font-weight: 300;
-  color: #3f788a;
+  color: #1c6b83;
   text-transform: uppercase;
   letter-spacing: -4px;
 }
@@ -191,12 +191,12 @@ header a {
 .creative {
   font-style: italic;
   font-weight: 300;
-  color: #3f788a;
+  color: #1c6b83;
 }
 
 .hero_wrapper p {
   font-size: 1.6vw;
-  color: #7d8d92;
+  color: #585b5c;
   mix-blend-mode: difference;
 }
 
@@ -318,6 +318,118 @@ header a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.flickity-viewport {
+  width: 100%;
+  overflow: visible !important;
+}
+.flickity-button {
+  display: none;
+}
+
+.work-section {
+  overflow: hidden;
+  background-color: #fafafa;
+}
+
+.work-container {
+  display: flex;
+  /* width: 100%; */
+  max-width: 100em;
+  min-height: 100vh;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0em 6em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.work-container:medium {
+  padding-right: 4em;
+  padding-left: 4em;
+}
+
+.work-slider {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.work-slider_slide {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: 42%;
+  height: 80vh;
+  max-height: 80vw;
+  margin-right: 1.5em;
+  padding-top: 2em;
+  padding-right: 2em;
+  padding-bottom: 2em;
+  padding-left: 2em;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  color: hsla(0, 0%, 100%, 1);
+  text-align: center;
+}
+
+.work-slider--slide:medium {
+  width: 48%;
+  margin-right: 2em;
+}
+
+.work-slider--slide:tiny {
+  width: 90%;
+  max-height: 130vw;
+  margin-right: 3em;
+}
+
+.work-image {
+  width: 200%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  right: auto;
+  bottom: 0%;
+  z-index: 1;
+}
+.work-slider_slide p {
+  position: relative;
+  font-size: 4rem;
+  text-transform: uppercase;
+  font-style: italic;
+  z-index: 2;
+}
+
+.progress {
+  position: relative;
+  overflow: hidden;
+  width: 80%;
+  height: 1.5px;
+  margin-top: 2.5em;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: hsla(0, 0%, 0%, 0.09);
+}
+
+.progress:medium {
+  margin-top: 30px;
+}
+
+.progress-fill {
+  position: relative;
+  width: 0%;
+  height: 100%;
+  background-color: hsla(0, 0%, 0%, 1);
 }
 
 @media only screen and (max-width: 990px) and (min-width: 600px) {

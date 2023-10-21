@@ -87,6 +87,50 @@ rows.forEach((row, index) => {
     );
 });
 
+let mainCarousel = ".work-slider";
+let mainSlides = ".work-slider_slide";
+let parallaxPercentage = 49;
+
+let flkty = new Flickity(mainCarousel, {
+  contain: true,
+  freeScroll: true,
+  percentPosition: true,
+  pageDots: false,
+  cellSelector: mainSlides,
+  cellAlign: "left",
+  resize: true,
+  selectedAttraction: 0.01,
+  dragThreshold: 1,
+  freeScrollFriction: 0.05,
+});
+
+flkty.on("scroll", function (progress) {
+  setImagePositions();
+  $(".progress-fill").css("width", `${progress * 100}%`);
+});
+
+function setImagePositions() {
+  $(mainSlides).each(function (index) {
+    let targetElement = $(this);
+    let elementOffset =
+      targetElement.offset().left +
+      targetElement.width() -
+      $(mainCarousel).offset().left;
+    let parentWidth = $(mainCarousel).width() + targetElement.width();
+    let myProgress = elementOffset / parentWidth;
+    let slideProgress = parallaxPercentage * myProgress;
+    if (slideProgress > parallaxPercentage) {
+      slideProgress = parallaxPercentage;
+    } else if (slideProgress < 0) {
+      slideProgress = 0;
+    }
+    targetElement
+      .find(".work-image")
+      .css("transform", `translateX(-${slideProgress}%)`);
+  });
+}
+setImagePositions();
+
 const lenis = new Lenis({ lerp: 0.1, duration: 1 });
 
 lenis.on("scroll", (e) => {
