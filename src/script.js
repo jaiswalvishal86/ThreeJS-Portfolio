@@ -40,7 +40,7 @@ timeline.fromTo(
   aboutSection,
   {
     scaleX: 0.9,
-    borderRadius: "80",
+    borderRadius: "32",
   },
   {
     scaleX: 1,
