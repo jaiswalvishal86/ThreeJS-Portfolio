@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import * as dat from "lil-gui";
+// import * as dat from "lil-gui";
 import gsap from "gsap";
 import vertex from "./shaders/test/vertex.glsl";
 import fragment from "./shaders/test/fragment.glsl";
@@ -200,7 +200,7 @@ const waterMaterial = new THREE.ShaderMaterial({
     uColorMultiplier: { value: 5 },
   },
 });
-const treeShaderMaterial = new THREE.RawShaderMaterial({
+const treeShaderMaterial = new THREE.ShaderMaterial({
   vertexShader: vertex,
   fragmentShader: fragment,
   transparent: true,
@@ -209,8 +209,13 @@ const treeShaderMaterial = new THREE.RawShaderMaterial({
       value: new THREE.Vector2(5, 5),
     },
     uTime: { value: 0 },
+    uMouse: { value: new THREE.Vector2() },
     uTexture: { value: imageTexture },
     uColor: { value: new THREE.Color("orange") },
+    uResolution: { value: new THREE.Vector2() },
+    uDisplace: { value: 1 },
+    uSpread: { value: 10 },
+    uNoise: { value: 10 },
   },
 });
 
@@ -225,7 +230,7 @@ const material = new THREE.MeshToonMaterial({
 });
 
 //Geometry
-const treePlaneGeometry = new THREE.PlaneGeometry(2.5, 2.5, 128, 128);
+const treePlaneGeometry = new THREE.PlaneGeometry(10, 5, 1000, 1000);
 const waterPlaneGeometry = new THREE.PlaneGeometry(
   window.innerWidth,
   4,
@@ -273,7 +278,7 @@ mesh3.rotation.x = -Math.PI * 0.5;
 //   mesh2.position.y = -objectDistance * 1.1;
 // }
 // mesh3.position.x = 2;
-scene.add(mesh1, mesh3);
+scene.add(mesh1);
 
 // const sectionMeshes = [mesh1, mesh2];
 
@@ -390,13 +395,16 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 /**
  * Cursor
  */
-const cursor = {};
-cursor.x = 0;
-cursor.y = 0;
+// const cursor = {};
+// cursor.x = 0;
+// cursor.y = 0;
+const cursor = new THREE.Vector2();
 
 window.addEventListener("mousemove", (e) => {
   cursor.x = e.clientX / sizes.width - 0.5;
   cursor.y = e.clientY / sizes.height - 0.5;
+
+  treeShaderMaterial.uniforms.uMouse.value = cursor;
 });
 
 /**
@@ -412,17 +420,15 @@ const tick = () => {
 
   //Update materials
   treeShaderMaterial.uniforms.uTime.value = elapsedTime;
-  waterMaterial.uniforms.uTime.value = elapsedTime;
+  // waterMaterial.uniforms.uTime.value = elapsedTime;
 
   //Animate Camera
   camera.position.y = -scrollY / sizes.height;
 
   const parallexX = cursor.x * 0.5;
   const parallexY = -cursor.y * 0.5;
-  cameraGroup.position.x +=
-    (parallexX - cameraGroup.position.x) * 5 * deltaTime;
-  cameraGroup.position.y +=
-    (parallexY - cameraGroup.position.y) * 5 * deltaTime;
+  cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
+  cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
 
   //Animate
   // for (const mesh of sectionMeshes) {
