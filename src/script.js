@@ -173,7 +173,7 @@ const debugObject = {};
  * Texture Loader
  */
 const loader = new THREE.TextureLoader(loadingManager);
-const imageTexture = loader.load("../assets/greenPlant.png");
+const imageTexture = loader.load("../assets/tree-black.png");
 
 /**
  * Debug Colors
@@ -215,7 +215,7 @@ const treeShaderMaterial = new THREE.ShaderMaterial({
     uResolution: { value: new THREE.Vector2() },
     uDisplace: { value: 1 },
     uSpread: { value: 10 },
-    uNoise: { value: 10 },
+    uNoise: { value: 8 },
   },
 });
 
@@ -230,7 +230,7 @@ const material = new THREE.MeshToonMaterial({
 });
 
 //Geometry
-const treePlaneGeometry = new THREE.PlaneGeometry(10, 5, 1000, 1000);
+const treePlaneGeometry = new THREE.PlaneGeometry(10, 6, 500, 500);
 const waterPlaneGeometry = new THREE.PlaneGeometry(
   window.innerWidth,
   4,
@@ -425,8 +425,8 @@ const tick = () => {
   //Animate Camera
   camera.position.y = -scrollY / sizes.height;
 
-  const parallexX = cursor.x * 0.5;
-  const parallexY = -cursor.y * 0.5;
+  const parallexX = cursor.x;
+  const parallexY = -cursor.y;
   cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
   cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
 
