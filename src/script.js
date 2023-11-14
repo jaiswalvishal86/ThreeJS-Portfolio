@@ -10,7 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const container = document.querySelector(".gallery-wrapper");
 const rows = document.querySelectorAll(".row");
 const aboutSection = document.getElementById("about-section");
-
+const text = document.getElementById("text");
 const loaderElement = document.querySelector(".loader-overlay");
 const loadingBarElement = document.querySelector(".loading-bar");
 
@@ -19,8 +19,25 @@ const loadingManager = new THREE.LoadingManager(
     gsap.delayedCall(0.5, () => {
       gsap.fromTo(
         loaderElement,
-        { yPercent: "0" },
-        { duration: 1, yPercent: "-100", ease: "power4.inOut" }
+        { xPercent: 0 },
+        {
+          duration: 1,
+          xPercent: -100,
+          ease: "power4.inOut",
+        }
+      );
+      gsap.fromTo(
+        splitHeroHeading.chars,
+        {
+          xPercent: 20,
+          opacity: 0,
+        },
+        {
+          xPercent: 0,
+          opacity: 1,
+          stagger: 0.05,
+        },
+        "<+0.1"
       );
       loadingBarElement.classList.add(".ended");
       loadingBarElement.style.transform = "";
@@ -35,24 +52,86 @@ const loadingManager = new THREE.LoadingManager(
 gsap.registerPlugin(ScrollTrigger);
 
 const timeline = gsap.timeline();
+const splitText = new SplitType("#text");
+const splitSubText = new SplitType("#subText");
+const splitHeading = new SplitType("#heading");
+const splitHeroHeading = new SplitType("#hero-heading");
 
-timeline.fromTo(
-  aboutSection,
-  {
-    scaleX: 0.9,
-    borderRadius: "32",
-  },
-  {
-    scaleX: 1,
-    borderRadius: "8",
-    scrollTrigger: {
-      trigger: aboutSection,
-      start: "top+20% bottom",
-      end: "bottom bottom",
-      scrub: 1, // Enables smooth scrolling effect
+timeline
+  .fromTo(
+    aboutSection,
+    {
+      scaleX: 0.9,
+      borderRadius: "32",
     },
-  }
-);
+    {
+      scaleX: 1,
+      borderRadius: "8",
+      scrollTrigger: {
+        trigger: aboutSection,
+        start: "top+20% bottom",
+        end: "bottom bottom",
+        scrub: true, // Enables smooth scrolling effect
+      },
+    }
+  )
+  .fromTo(
+    splitText.chars,
+    {
+      opacity: 0,
+      xPercent: -20,
+    },
+    {
+      opacity: 1,
+      xPercent: 0,
+      stagger: 0.5,
+      ease: "power4.easeInOut",
+      scrollTrigger: {
+        trigger: text,
+        scrub: true,
+        start: "0px bottom",
+        end: "bottom+=200px bottom",
+      },
+    }
+  )
+  .fromTo(
+    splitSubText.chars,
+    {
+      opacity: 0,
+      xPercent: -20,
+    },
+    {
+      opacity: 1,
+      xPercent: 0,
+      stagger: 0.5,
+      ease: "power4.easeInOut",
+      scrollTrigger: {
+        trigger: text,
+        scrub: true,
+        start: "0px bottom",
+        end: "bottom+=400px bottom",
+      },
+    }
+  )
+  .fromTo(
+    splitHeading.chars,
+    {
+      opacity: 0,
+      xPercent: -20,
+    },
+    {
+      opacity: 1,
+      xPercent: 0,
+      stagger: 0.5,
+      ease: "power4.easeInOut",
+      scrollTrigger: {
+        trigger: text,
+        scrub: true,
+        start: "0px bottom",
+        end: "bottom+=100px bottom",
+      },
+    }
+  );
 
 rows.forEach((row, index) => {
   const direction = index % 2 === 0 ? 1 : -1;
@@ -131,7 +210,7 @@ function setImagePositions() {
 }
 setImagePositions();
 
-const lenis = new Lenis({ lerp: 0.1, duration: 1 });
+const lenis = new Lenis({ lerp: 1, duration: 1 });
 
 lenis.on("scroll", (e) => {
   // console.log(e);
