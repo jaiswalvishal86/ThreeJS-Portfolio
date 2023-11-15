@@ -67,10 +67,11 @@ header a {
   width: 50%;
   transform: scaleX(0);
   transform-origin: top center;
-  height: 2px;
-  background: #3f788a;
+  height: 3px;
+  background: #000000;
   transition: transform 0.5s;
   will-change: transform;
+  border-radius: 4px;
 }
 
 .loading-bar.ended {
@@ -420,7 +421,7 @@ h2 {
   position: relative;
   width: 0%;
   height: 100%;
-  background-color: #1c6b83;
+  background-color: #000000;
 }
 
 @media only screen and (max-width: 990px) and (min-width: 600px) {

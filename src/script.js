@@ -16,29 +16,54 @@ const loadingBarElement = document.querySelector(".loading-bar");
 
 const loadingManager = new THREE.LoadingManager(
   () => {
-    gsap.delayedCall(0.5, () => {
-      gsap.fromTo(
-        loaderElement,
-        { xPercent: 0 },
-        {
-          duration: 1,
-          xPercent: -100,
-          ease: "power4.inOut",
-        }
-      );
-      gsap.fromTo(
-        splitHeroHeading.chars,
-        {
-          xPercent: 20,
-          opacity: 0,
-        },
-        {
-          xPercent: 0,
-          opacity: 1,
-          stagger: 0.05,
-        },
-        "<+0.1"
-      );
+    gsap.delayedCall(0.6, () => {
+      timeline
+        .fromTo(
+          loaderElement,
+          { xPercent: 0 },
+          {
+            duration: 1,
+            xPercent: 100,
+            ease: "power2.inOut",
+          }
+        )
+        .from(
+          splitHeroHeading.chars,
+          {
+            xPercent: -10,
+            opacity: 0,
+            stagger: 0.05,
+          },
+          "<+0.1"
+        )
+        .from(
+          splitHeroPara.chars,
+          {
+            xPercent: -10,
+            opacity: 0,
+            stagger: 0.03,
+          },
+          "<+0.1"
+        )
+        .from(
+          ".service_text",
+          {
+            xPercent: -10,
+            opacity: 0,
+            stagger: 0.2,
+          },
+          "<+0.3"
+        )
+        .from(
+          ".mail",
+          {
+            xPercent: -10,
+            opacity: 0,
+            stagger: 0.2,
+          },
+          "<+0.1"
+        );
+
       loadingBarElement.classList.add(".ended");
       loadingBarElement.style.transform = "";
     });
@@ -56,6 +81,7 @@ const splitText = new SplitType("#text");
 const splitSubText = new SplitType("#subText");
 const splitHeading = new SplitType("#heading");
 const splitHeroHeading = new SplitType("#hero-heading");
+const splitHeroPara = new SplitType("#hero-para");
 
 timeline
   .fromTo(
@@ -75,17 +101,14 @@ timeline
       },
     }
   )
-  .fromTo(
-    splitText.chars,
+  .from(
+    splitText.lines,
+
     {
       opacity: 0,
-      xPercent: -20,
-    },
-    {
-      opacity: 1,
-      xPercent: 0,
-      stagger: 0.5,
-      ease: "power4.easeInOut",
+      xPercent: -10,
+      stagger: 0.1,
+      ease: "power3.Out",
       scrollTrigger: {
         trigger: text,
         scrub: true,
@@ -94,27 +117,20 @@ timeline
       },
     }
   )
-  .fromTo(
-    splitSubText.chars,
-    {
-      opacity: 0,
-      xPercent: -20,
+  .from(splitSubText.lines, {
+    opacity: 0,
+    xPercent: -10,
+    stagger: 0.1,
+    ease: "power3.Out",
+    scrollTrigger: {
+      trigger: text,
+      scrub: true,
+      start: "0px bottom",
+      end: "bottom+=400px bottom",
     },
-    {
-      opacity: 1,
-      xPercent: 0,
-      stagger: 0.5,
-      ease: "power4.easeInOut",
-      scrollTrigger: {
-        trigger: text,
-        scrub: true,
-        start: "0px bottom",
-        end: "bottom+=400px bottom",
-      },
-    }
-  )
+  })
   .fromTo(
-    splitHeading.chars,
+    splitHeading.words,
     {
       opacity: 0,
       xPercent: -20,
@@ -252,7 +268,7 @@ const debugObject = {};
  * Texture Loader
  */
 const loader = new THREE.TextureLoader(loadingManager);
-const imageTexture = loader.load("../assets/tree-black.png");
+const imageTexture = loader.load("../assets/leaf.jpg");
 
 /**
  * Debug Colors
@@ -502,12 +518,12 @@ const tick = () => {
   // waterMaterial.uniforms.uTime.value = elapsedTime;
 
   //Animate Camera
-  camera.position.y = -scrollY / sizes.height;
+  // camera.position.y = -scrollY / sizes.height;
 
-  const parallexX = cursor.x;
-  const parallexY = -cursor.y;
-  cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
-  cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
+  // const parallexX = cursor.x;
+  // const parallexY = -cursor.y;
+  // cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
+  // cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
 
   //Animate
   // for (const mesh of sectionMeshes) {
