@@ -20,28 +20,90 @@ const loadingManager = new THREE.LoadingManager(
       timeline
         .fromTo(
           loaderElement,
-          { xPercent: 0 },
+          { yPercent: 0 },
           {
             duration: 1,
-            xPercent: 100,
-            ease: "power2.inOut",
+            yPercent: -100,
+            ease: "power4.easeInOut",
           }
         )
-        .from(
-          splitHeroHeading.chars,
+        .fromTo(
+          mesh1.position,
           {
-            xPercent: -10,
-            opacity: 0,
-            stagger: 0.05,
+            y: 0,
+          },
+          {
+            y: 1,
+            duration: 0.8,
+            ease: "power4.easeInOut",
+          },
+          "<"
+        )
+        .fromTo(
+          ".hero_container",
+          {
+            // x: -1,
+            yPercent: 20,
+            // z: -1,
+          },
+          {
+            // x: 1,
+            yPercent: 0,
+            // z: 1,
+            duration: 1,
+            ease: "power4.easeInOut",
           },
           "<+0.1"
         )
-        .from(
-          splitHeroPara.chars,
+        .fromTo(
+          splitHeroHeading.chars,
+          { yPercent: 100 },
           {
-            xPercent: -10,
-            opacity: 0,
-            stagger: 0.03,
+            yPercent: 0,
+            ease: "sine.easeOut",
+            stagger: { from: "center", amount: 0.6, ease: "power1.out" },
+            onComplete: () => {
+              gsap.to(splitHeroHeading.chars, {
+                yPercent: -100,
+                stagger: { from: "center", amount: 0.5, ease: "power4.easeIn" },
+                scrollTrigger: {
+                  trigger: ".hero_container",
+                  start: "top, top",
+                  end: () =>
+                    `+=${
+                      document.querySelector(".hero_container").offsetHeight *
+                      0.25
+                    }`,
+                  scrub: 1,
+                },
+              });
+            },
+          },
+          "<+0.1"
+        )
+        .fromTo(
+          splitHeroPara.words,
+          { yPercent: 100 },
+          {
+            yPercent: 0,
+            ease: "sine.out",
+            stagger: { from: "center", amount: 0.5, ease: "power1.out" },
+            onComplete: () => {
+              gsap.to(splitHeroPara.words, {
+                yPercent: -200,
+                stagger: { from: "center", amount: 0.5, ease: "power4.easeIn" },
+                scrollTrigger: {
+                  trigger: ".hero_container",
+                  start: "top, top",
+                  end: () =>
+                    `+=${
+                      document.querySelector(".hero_container").offsetHeight *
+                      0.1
+                    }`,
+                  scrub: 1,
+                },
+              });
+            },
           },
           "<+0.1"
         )
@@ -87,8 +149,8 @@ timeline
   .fromTo(
     aboutSection,
     {
-      scaleX: 0.9,
-      borderRadius: "32",
+      scaleX: 0.96,
+      borderRadius: "16",
     },
     {
       scaleX: 1,
@@ -125,7 +187,7 @@ timeline
     scrollTrigger: {
       trigger: text,
       scrub: true,
-      start: "0px bottom",
+      start: "100px bottom",
       end: "bottom+=400px bottom",
     },
   })
@@ -141,9 +203,9 @@ timeline
       stagger: 0.5,
       ease: "power4.easeInOut",
       scrollTrigger: {
-        trigger: text,
-        scrub: true,
-        start: "0px bottom",
+        trigger: aboutSection,
+        scrub: 1,
+        start: "top bottom",
         end: "bottom+=100px bottom",
       },
     }

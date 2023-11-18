@@ -60,7 +60,7 @@ void main()
     float proximity = abs(vUv.x - (.5 + sin(uTime)/(12. * uSpread ) ));
     // vec3 full = pat * vec3(clamp(.23 * uSpread  - proximity , 0., 1.));
     // vec3 newPosition = vPosition + vNormal * full;
-    p += pat + sin(uMouse * 0.1);
+    p += pat + sin(uMouse * 0.05);
 
 
     vec4 textureColor = texture2D(uTexture, p);
