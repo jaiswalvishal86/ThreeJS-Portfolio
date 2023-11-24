@@ -13,6 +13,66 @@ const aboutSection = document.getElementById("about-section");
 const text = document.getElementById("text");
 const loaderElement = document.querySelector(".loader-overlay");
 const loadingBarElement = document.querySelector(".loading-bar");
+const hamburgerElement = document.querySelector(".menu");
+const magneticCircle = document.getElementById("magneticCircle");
+const allLinks = document.querySelectorAll("a");
+
+// Function to move the magnetic circle to the cursor position
+function moveMagneticCircle(event) {
+  gsap.to(magneticCircle, {
+    x: event.clientX,
+    y: event.clientY,
+    duration: 0.35,
+    ease: "spring(300, 20, 0.5)",
+  });
+}
+
+// Function to show the magnetic circle with a fade-in animation
+function showMagneticCircle() {
+  gsap.to(magneticCircle, {
+    opacity: 1,
+    // scale: 1,
+    duration: 0.4,
+  });
+}
+
+// Function to hide the magnetic circle with a fade-out animation
+function hideMagneticCircle() {
+  gsap.to(magneticCircle, {
+    opacity: 0,
+    duration: 0.4,
+  });
+}
+
+allLinks.forEach(function (link) {
+  link.addEventListener("mouseenter", function () {
+    gsap.to(magneticCircle, {
+      scale: 5,
+      duration: 0.4,
+      ease: "power1.out",
+    });
+  });
+});
+
+allLinks.forEach(function (link) {
+  link.addEventListener("mouseleave", function () {
+    gsap.to(magneticCircle, {
+      scale: 1,
+      duration: 0.4,
+    });
+  });
+});
+
+// Add event listeners to track mouse movement
+document.addEventListener("mousemove", function (event) {
+  moveMagneticCircle(event);
+  showMagneticCircle();
+});
+
+// Add event listeners to hide the magnetic circle when the mouse leaves the window
+document.addEventListener("mouseleave", function () {
+  hideMagneticCircle();
+});
 
 const loadingManager = new THREE.LoadingManager(
   () => {
@@ -488,8 +548,10 @@ const sizes = {
 
 window.addEventListener("resize", () => {
   // Update sizes
-  sizes.width = window.innerWidth;
-  sizes.height = window.innerHeight;
+  if (sizes.width != window.innerWidth || sizes.height != window.innerHeight) {
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+  }
 
   // Update camera
   camera.aspect = sizes.width / sizes.height;
@@ -555,13 +617,13 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 // const cursor = {};
 // cursor.x = 0;
 // cursor.y = 0;
-const cursor = new THREE.Vector2();
+const mouse = new THREE.Vector2();
 
 window.addEventListener("mousemove", (e) => {
-  cursor.x = e.clientX / sizes.width - 0.5;
-  cursor.y = e.clientY / sizes.height - 0.5;
+  mouse.x = e.clientX / sizes.width - 0.5;
+  mouse.y = e.clientY / sizes.height - 0.5;
 
-  treeShaderMaterial.uniforms.uMouse.value = cursor;
+  treeShaderMaterial.uniforms.uMouse.value = mouse;
 });
 
 /**
