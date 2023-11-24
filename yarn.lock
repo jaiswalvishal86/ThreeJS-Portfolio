@@ -121,10 +121,10 @@
     estree-walker "^2.0.2"
     picomatch "^2.3.1"
 
-"@studio-freight/lenis@^1.0.26":
-  version "1.0.26"
-  resolved "https://registry.yarnpkg.com/@studio-freight/lenis/-/lenis-1.0.26.tgz#c47ddeed8f9b72379f385696e900f8f484936f5c"
-  integrity sha512-PLpPMtYoo50Z1otpUpGONK/BkJ0nrE7pY6Q1+KMWuPup+S+XFR/FJOXGkrtISzc6DtHgilbi1b6xDgDluFHsaA==
+"@studio-freight/lenis@^1.0.28":
+  version "1.0.28"
+  resolved "https://registry.yarnpkg.com/@studio-freight/lenis/-/lenis-1.0.28.tgz#e78c9163b1987fb54dc6a658a92543660472c776"
+  integrity sha512-+t2rKphnNCpaCuoSZjR3/c21wuuALlgb9ldwwKaGDsk9f6le7KXNYJisp5uJJC9Gz6FG37y+IH20OMNGGJqBXA==
 
 "@types/estree@^1.0.0":
   version "1.0.2"

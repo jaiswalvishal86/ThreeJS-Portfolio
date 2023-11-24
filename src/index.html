@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio - Vishal Jaiswal</title>
     <link rel="stylesheet" href="./style.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
-    />
   </head>
   <body>
     <canvas class="webgl" id="webgl"></canvas>
@@ -107,8 +103,8 @@
             </p>
           </div>
 
-          <div class="work-slider">
-            <div class="work-slider_slide">
+          <div class="work-grid">
+            <div class="work-grid--wrapper">
               <img
                 class="work-image"
                 alt="project image"
@@ -116,7 +112,7 @@
               />
               <p>Indigo</p>
             </div>
-            <div class="work-slider_slide">
+            <div class="work-grid--wrapper">
               <img
                 class="work-image"
                 alt="project image"
@@ -124,7 +120,7 @@
               />
               <p>Creative</p>
             </div>
-            <div class="work-slider_slide">
+            <div class="work-grid--wrapper">
               <img
                 class="work-image"
                 alt="project image"
@@ -132,7 +128,7 @@
               />
               <p>Terrain</p>
             </div>
-            <div class="work-slider_slide">
+            <div class="work-grid--wrapper">
               <img
                 class="work-image"
                 alt="project image"
@@ -140,7 +136,7 @@
               />
               <p>Tree</p>
             </div>
-            <div class="work-slider_slide">
+            <div class="work-grid--wrapper">
               <img
                 class="work-image"
                 alt="project image"
@@ -148,7 +144,7 @@
               />
               <p>Creative</p>
             </div>
-            <div class="work-slider_slide">
+            <div class="work-grid--wrapper">
               <img
                 class="work-image"
                 alt="project image"
@@ -156,7 +152,7 @@
               />
               <p>Building</p>
             </div>
-            <div class="work-slider_slide">
+            <div class="work-grid--wrapper">
               <img
                 class="work-image"
                 alt="project image"
@@ -164,9 +160,6 @@
               />
               <p>Tree</p>
             </div>
-          </div>
-          <div class="progress">
-            <div class="progress-fill"></div>
           </div>
         </div>
       </div>
@@ -219,7 +212,6 @@
         </div>
       </div>
     </div>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script type="module" src="./script.js"></script>
     <script src="https://unpkg.com/split-type"></script>
     <script
