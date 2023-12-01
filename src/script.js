@@ -75,15 +75,15 @@ document.addEventListener("mouseleave", function () {
 
 const loadingManager = new THREE.LoadingManager(
   () => {
-    gsap.delayedCall(0.6, () => {
+    gsap.delayedCall(0.5, () => {
       timeline
         .fromTo(
           loaderElement,
           { yPercent: 0 },
           {
-            duration: 1,
+            duration: 2,
             yPercent: -100,
-            ease: "power4.easeInOut",
+            ease: "expo.inOut",
           }
         )
         .fromTo(
@@ -93,10 +93,10 @@ const loadingManager = new THREE.LoadingManager(
           },
           {
             y: 1,
-            duration: 0.8,
-            ease: "power4.easeInOut",
+            duration: 2,
+            ease: "expo.inOut",
           },
-          "<"
+          "<+0.1"
         )
         .fromTo(
           ".hero_container",
@@ -110,9 +110,9 @@ const loadingManager = new THREE.LoadingManager(
             yPercent: 0,
             // z: 1,
             duration: 1,
-            ease: "power4.easeInOut",
+            ease: "expo.easeInOut",
           },
-          "<+0.1"
+          "<+0.3"
         )
         .fromTo(
           splitHeroHeading.chars,
@@ -138,7 +138,7 @@ const loadingManager = new THREE.LoadingManager(
               });
             },
           },
-          "<+0.1"
+          "<+0.3"
         )
         .fromTo(
           splitHeroPara.words,
@@ -164,7 +164,7 @@ const loadingManager = new THREE.LoadingManager(
               });
             },
           },
-          "<+0.1"
+          "<+0.2"
         )
         .from(
           ".service_text",
@@ -350,8 +350,8 @@ const imageTexture = loader.load("../assets/leaf.jpg");
 /**
  * Debug Colors
  */
-debugObject.depthColor = "#E6EFF2";
-debugObject.surfaceColor = "#EEF4F6";
+// debugObject.depthColor = "#E6EFF2";
+// debugObject.surfaceColor = "#EEF4F6";
 
 /**
  * Materials
@@ -395,7 +395,7 @@ const textureLoader = new THREE.TextureLoader(loadingManager);
 const gradientTexture = textureLoader.load("textures/gradients/5.jpg");
 gradientTexture.magFilter = THREE.NearestFilter;
 
-const material = new THREE.MeshToonMaterial({
+const material = new THREE.MeshBasicMaterial({
   color: 0xfbc8e1,
   gradientMap: gradientTexture,
   // wireframe: true,
@@ -426,7 +426,7 @@ treePlaneGeometry.setAttribute(
 const objectDistance = 4;
 const mesh1 = new THREE.Mesh(treePlaneGeometry, treeShaderMaterial);
 
-// const mesh2 = new THREE.Mesh(new THREE.ConeGeometry(0.6, 1, 32), material);
+const mesh2 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), material);
 
 const mesh3 = new THREE.Mesh(waterPlaneGeometry, waterMaterial);
 
@@ -436,10 +436,8 @@ const mesh3 = new THREE.Mesh(waterPlaneGeometry, waterMaterial);
 // );
 
 mesh1.position.y = -objectDistance * 0.1;
-// mesh2.position.y = -objectDistance * 1;
-mesh3.position.y = -objectDistance * 0.4;
-mesh3.rotation.x = -Math.PI * 0.5;
-// mesh3.position.y = -objectDistance * 2;
+mesh2.position.y = -objectDistance * 0.5;
+mesh2.position.z = 0;
 
 // mesh2.position.x = 2;
 // if (window.innerWidth < 990) {
@@ -453,38 +451,6 @@ mesh3.rotation.x = -Math.PI * 0.5;
 scene.add(mesh1);
 
 // const sectionMeshes = [mesh1, mesh2];
-
-/**
- * Particles
- */
-//Geometry
-// let particlesCount = 300;
-// const postions = new Float32Array(particlesCount * 3);
-
-// for (let i = 0; i < particlesCount; i++) {
-//   postions[i * 3 + 0] = (Math.random() - 0.5) * 10;
-//   postions[i * 3 + 1] =
-//     objectDistance * 0.5 -
-//     Math.random() * objectDistance * sectionMeshes.length;
-//   postions[i * 3 + 2] = (Math.random() - 0.5) * 10;
-// }
-
-// const particlesGeometry = new THREE.BufferGeometry();
-// particlesGeometry.setAttribute(
-//   "position",
-//   new THREE.BufferAttribute(postions, 3)
-// );
-
-// //Material
-// const partilesMatrial = new THREE.PointsMaterial({
-//   color: parameters.materialColor,
-//   sizeAttenuation: true,
-//   size: 0.03,
-// });
-
-// //Points
-// const particles = new THREE.Points(particlesGeometry, partilesMatrial);
-// scene.add(particles);
 
 /**
  * Directional Light
@@ -537,6 +503,7 @@ cameraGroup.add(camera);
  */
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
+  antialias: true,
   alpha: true,
 });
 renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
@@ -599,8 +566,8 @@ const tick = () => {
   //Animate Camera
   // camera.position.y = -scrollY / sizes.height;
 
-  // const parallexX = cursor.x;
-  // const parallexY = -cursor.y;
+  // const parallexX = mouse.x;
+  // const parallexY = -mouse.y;
   // cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
   // cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
 

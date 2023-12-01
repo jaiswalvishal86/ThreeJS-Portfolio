@@ -58,7 +58,7 @@ header a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fafafa;
+  background-color: #e5ffdd;
   z-index: 10;
 }
 
@@ -359,13 +359,17 @@ h2 {
 .work-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 4vw;
-  row-gap: 8vw;
+  column-gap: 12vw;
+  row-gap: 12vw;
 }
 
 .work-grid--wrapper {
   width: auto;
   height: 480px;
+}
+
+.work-grid--wrapper:nth-child(even) {
+  margin-top: 80%;
 }
 
 .work-grid--wrapper p {
