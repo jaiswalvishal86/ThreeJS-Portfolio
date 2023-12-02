@@ -3,7 +3,7 @@ uniform float uTime;
 uniform vec2 uMouse;
 
 
-attribute float aRandom;
+// attribute float aRandom;
 
 
 

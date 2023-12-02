@@ -3,8 +3,7 @@ import * as THREE from "three";
 import gsap from "gsap";
 import vertex from "./shaders/test/vertex.glsl";
 import fragment from "./shaders/test/fragment.glsl";
-import waterVertex from "./shaders/water/waterVertex.glsl";
-import waterFragment from "./shaders/water/waterFragment.glsl";
+import fragmentQuad from "./shaders/fragmentQuad.glsl";
 import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 const container = document.querySelector(".gallery-wrapper");
@@ -86,18 +85,18 @@ const loadingManager = new THREE.LoadingManager(
             ease: "expo.inOut",
           }
         )
-        .fromTo(
-          mesh1.position,
-          {
-            y: 0,
-          },
-          {
-            y: 1,
-            duration: 2,
-            ease: "expo.inOut",
-          },
-          "<+0.1"
-        )
+        // .fromTo(
+        //   mesh1.position,
+        //   {
+        //     y: 0,
+        //   },
+        //   {
+        //     y: 1,
+        //     duration: 2,
+        //     ease: "expo.inOut",
+        //   },
+        //   "<+0.1"
+        // )
         .fromTo(
           ".hero_container",
           {
@@ -345,7 +344,7 @@ const debugObject = {};
  * Texture Loader
  */
 const loader = new THREE.TextureLoader(loadingManager);
-const imageTexture = loader.load("../assets/leaf.jpg");
+const imageTexture = loader.load("../assets/white.jpeg");
 
 /**
  * Debug Colors
@@ -356,25 +355,10 @@ const imageTexture = loader.load("../assets/leaf.jpg");
 /**
  * Materials
  */
-const waterMaterial = new THREE.ShaderMaterial({
-  vertexShader: waterVertex,
-  fragmentShader: waterFragment,
-  uniforms: {
-    uTime: { value: 0 },
 
-    uBigWavesElevation: { value: 0.2 },
-    uBigWavesFrequency: { value: new THREE.Vector2(4, 1.5) },
-    uBigWavesSpeed: { value: 0.5 },
-
-    uDepthColor: { value: new THREE.Color(debugObject.depthColor) },
-    uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor) },
-    uColorOffset: { value: 0.08 },
-    uColorMultiplier: { value: 5 },
-  },
-});
 const treeShaderMaterial = new THREE.ShaderMaterial({
   vertexShader: vertex,
-  fragmentShader: fragment,
+  fragmentShader: fragmentQuad,
   transparent: true,
   uniforms: {
     uFrequency: {
@@ -385,59 +369,42 @@ const treeShaderMaterial = new THREE.ShaderMaterial({
     uTexture: { value: imageTexture },
     uColor: { value: new THREE.Color("orange") },
     uResolution: { value: new THREE.Vector2() },
-    uDisplace: { value: 1 },
+    uDisplace: { value: 2 },
     uSpread: { value: 10 },
     uNoise: { value: 8 },
   },
 });
 
-const textureLoader = new THREE.TextureLoader(loadingManager);
-const gradientTexture = textureLoader.load("textures/gradients/5.jpg");
-gradientTexture.magFilter = THREE.NearestFilter;
-
-const material = new THREE.MeshBasicMaterial({
-  color: 0xfbc8e1,
-  gradientMap: gradientTexture,
-  // wireframe: true,
-});
-
 //Geometry
-const treePlaneGeometry = new THREE.PlaneGeometry(10, 6, 500, 500);
-const waterPlaneGeometry = new THREE.PlaneGeometry(
-  window.innerWidth,
-  4,
-  200,
-  200
-);
+const treePlaneGeometry = new THREE.PlaneGeometry(6, 6, 500, 500);
 
-const count = treePlaneGeometry.attributes.position.count;
-const randoms = new Float32Array(count);
+// const count = treePlaneGeometry.attributes.position.count;
+// const randoms = new Float32Array(count);
 
-for (let i = 0; i < count; i++) {
-  randoms[i] = Math.random();
-}
+// for (let i = 0; i < count; i++) {
+//   randoms[i] = Math.random();
+// }
 
-treePlaneGeometry.setAttribute(
-  "aRandom",
-  new THREE.BufferAttribute(randoms, 1)
-);
+// treePlaneGeometry.setAttribute(
+//   "aRandom",
+//   new THREE.BufferAttribute(randoms, 1)
+// );
 
 //Meshes
 const objectDistance = 4;
 const mesh1 = new THREE.Mesh(treePlaneGeometry, treeShaderMaterial);
+// const mesh2 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), material);
 
-const mesh2 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), material);
-
-const mesh3 = new THREE.Mesh(waterPlaneGeometry, waterMaterial);
+// const mesh3 = new THREE.Mesh(waterPlaneGeometry, waterMaterial);
 
 // const mesh3 = new THREE.Mesh(
 //   new THREE.TorusKnotGeometry(0.8, 0.35, 100, 16),
 //   material
 // );
 
-mesh1.position.y = -objectDistance * 0.1;
-mesh2.position.y = -objectDistance * 0.5;
-mesh2.position.z = 0;
+// mesh1.position.y = 100;
+// mesh2.position.y = -objectDistance * 0.5;
+// mesh2.position.z = 0;
 
 // mesh2.position.x = 2;
 // if (window.innerWidth < 990) {
@@ -495,7 +462,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100
 );
-camera.position.z = 6;
+camera.position.z = 5;
 cameraGroup.add(camera);
 
 /**
@@ -536,9 +503,6 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 /**
  * Cursor
  */
-// const cursor = {};
-// cursor.x = 0;
-// cursor.y = 0;
 const mouse = new THREE.Vector2();
 
 window.addEventListener("mousemove", (e) => {
@@ -561,7 +525,6 @@ const tick = () => {
 
   //Update materials
   treeShaderMaterial.uniforms.uTime.value = elapsedTime;
-  // waterMaterial.uniforms.uTime.value = elapsedTime;
 
   //Animate Camera
   // camera.position.y = -scrollY / sizes.height;
