@@ -165,23 +165,31 @@ const loadingManager = new THREE.LoadingManager(
           },
           "<+0.2"
         )
-        .from(
-          ".service_text",
+        .fromTo(
+          splitSubHeading.chars,
+          { yPercent: 100 },
           {
-            xPercent: -10,
-            opacity: 0,
-            stagger: 0.2,
+            yPercent: 0,
+            ease: "sine.out",
+            stagger: { from: "center", amount: 0.5, ease: "power1.out" },
+            onComplete: () => {
+              gsap.to(splitSubHeading.chars, {
+                yPercent: -200,
+                stagger: { from: "center", amount: 0.5, ease: "power4.easeIn" },
+                scrollTrigger: {
+                  trigger: ".hero_container",
+                  start: "top, top",
+                  end: () =>
+                    `+=${
+                      document.querySelector(".hero_container").offsetHeight *
+                      0.1
+                    }`,
+                  scrub: 1,
+                },
+              });
+            },
           },
           "<+0.3"
-        )
-        .from(
-          ".mail",
-          {
-            xPercent: -10,
-            opacity: 0,
-            stagger: 0.2,
-          },
-          "<+0.1"
         );
 
       loadingBarElement.classList.add(".ended");
@@ -202,6 +210,7 @@ const splitSubText = new SplitType("#subText");
 const splitHeading = new SplitType("#heading");
 const splitHeroHeading = new SplitType("#hero-heading");
 const splitHeroPara = new SplitType("#hero-para");
+const splitSubHeading = new SplitType("#hero-sub--text");
 
 timeline
   .fromTo(
@@ -436,10 +445,8 @@ const sizes = {
 
 window.addEventListener("resize", () => {
   // Update sizes
-  if (sizes.width != window.innerWidth || sizes.height != window.innerHeight) {
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
-  }
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
 
   // Update camera
   camera.aspect = sizes.width / sizes.height;
@@ -448,6 +455,8 @@ window.addEventListener("resize", () => {
   // Update renderer
   renderer.setSize(sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Update the previous height for the next comparison
 });
 
 /**
