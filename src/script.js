@@ -279,20 +279,9 @@ timeline
   );
 
 rows.forEach((row, index) => {
+  console.log(row);
   const direction = index % 2 === 0 ? 1 : -1;
   timeline
-    .to(row, {
-      x: `${index * -20 * direction}%`, // Adjust the value as needed
-      duration: 1,
-      scrollTrigger: {
-        trigger: container,
-        start: "top bottom",
-        end: "+=200%",
-        scrub: 1, // Enables smooth scrolling effect
-        // pin: true, // Pins the row during the animation
-        anticipatePin: 1, // Improves the scrolling anticipation
-      },
-    })
     .to(
       rows[0],
       {
@@ -308,7 +297,19 @@ rows.forEach((row, index) => {
         },
       },
       "<"
-    );
+    )
+    .to(row, {
+      x: `${index * -30 * direction}%`, // Adjust the value as needed
+      duration: 1,
+      scrollTrigger: {
+        trigger: container,
+        start: "top bottom",
+        end: "+=200%",
+        scrub: 1, // Enables smooth scrolling effect
+        // pin: true, // Pins the row during the animation
+        anticipatePin: 1, // Improves the scrolling anticipation
+      },
+    });
 });
 
 const lenis = new Lenis({ lerp: 1, duration: 1 });
