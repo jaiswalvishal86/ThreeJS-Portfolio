@@ -299,7 +299,7 @@ rows.forEach((row, index) => {
       "<"
     )
     .to(row, {
-      x: `${index * -30 * direction}%`, // Adjust the value as needed
+      x: `${index * -20 * direction}%`, // Adjust the value as needed
       duration: 1,
       scrollTrigger: {
         trigger: container,
