@@ -16,61 +16,61 @@ const magneticCircle = document.getElementById("magneticCircle");
 const allLinks = document.querySelectorAll("a");
 
 // Function to move the magnetic circle to the cursor position
-function moveMagneticCircle(event) {
-  gsap.to(magneticCircle, {
-    x: event.clientX,
-    y: event.clientY,
-    duration: 0.35,
-    ease: "spring(300, 20, 0.5)",
-  });
-}
+// function moveMagneticCircle(event) {
+//   gsap.to(magneticCircle, {
+//     x: event.clientX,
+//     y: event.clientY,
+//     duration: 0.35,
+//     ease: "spring(300, 20, 0.5)",
+//   });
+// }
 
 // Function to show the magnetic circle with a fade-in animation
-function showMagneticCircle() {
-  gsap.to(magneticCircle, {
-    opacity: 1,
-    // scale: 1,
-    duration: 0.4,
-  });
-}
+// function showMagneticCircle() {
+//   gsap.to(magneticCircle, {
+//     opacity: 1,
+//     // scale: 1,
+//     duration: 0.4,
+//   });
+// }
 
 // Function to hide the magnetic circle with a fade-out animation
-function hideMagneticCircle() {
-  gsap.to(magneticCircle, {
-    opacity: 0,
-    duration: 0.4,
-  });
-}
+// function hideMagneticCircle() {
+//   gsap.to(magneticCircle, {
+//     opacity: 0,
+//     duration: 0.4,
+//   });
+// }
 
-allLinks.forEach(function (link) {
-  link.addEventListener("mouseenter", function () {
-    gsap.to(magneticCircle, {
-      scale: 5,
-      duration: 0.4,
-      ease: "power1.out",
-    });
-  });
-});
+// allLinks.forEach(function (link) {
+//   link.addEventListener("mouseenter", function () {
+//     gsap.to(magneticCircle, {
+//       scale: 5,
+//       duration: 0.4,
+//       ease: "power1.out",
+//     });
+//   });
+// });
 
-allLinks.forEach(function (link) {
-  link.addEventListener("mouseleave", function () {
-    gsap.to(magneticCircle, {
-      scale: 1,
-      duration: 0.4,
-    });
-  });
-});
+// allLinks.forEach(function (link) {
+//   link.addEventListener("mouseleave", function () {
+//     gsap.to(magneticCircle, {
+//       scale: 1,
+//       duration: 0.4,
+//     });
+//   });
+// });
 
 // Add event listeners to track mouse movement
-document.addEventListener("mousemove", function (event) {
-  moveMagneticCircle(event);
-  showMagneticCircle();
-});
+// document.addEventListener("mousemove", function (event) {
+//   moveMagneticCircle(event);
+//   showMagneticCircle();
+// });
 
 // Add event listeners to hide the magnetic circle when the mouse leaves the window
-document.addEventListener("mouseleave", function () {
-  hideMagneticCircle();
-});
+// document.addEventListener("mouseleave", function () {
+//   hideMagneticCircle();
+// });
 
 const loadingManager = new THREE.LoadingManager(
   () => {
@@ -166,14 +166,14 @@ const loadingManager = new THREE.LoadingManager(
           "<+0.2"
         )
         .fromTo(
-          splitSubHeading.chars,
+          splitSubHeading.words,
           { yPercent: 100 },
           {
             yPercent: 0,
             ease: "sine.out",
             stagger: { from: "center", amount: 0.5, ease: "power1.out" },
             onComplete: () => {
-              gsap.to(splitSubHeading.chars, {
+              gsap.to(splitSubHeading.words, {
                 yPercent: -200,
                 stagger: { from: "center", amount: 0.5, ease: "power4.easeIn" },
                 scrollTrigger: {
@@ -213,39 +213,35 @@ const splitHeroPara = new SplitType("#hero-para");
 const splitSubHeading = new SplitType("#hero-sub--text");
 
 timeline
-  .fromTo(
-    aboutSection,
-    {
-      scaleX: 0.96,
-      borderRadius: "16",
+  // .fromTo(
+  //   aboutSection,
+  //   {
+  //     scaleX: 0.96,
+  //     borderRadius: "16",
+  //   },
+  //   {
+  //     scaleX: 1,
+  //     borderRadius: "8",
+  //     scrollTrigger: {
+  //       trigger: aboutSection,
+  //       start: "top+20% bottom",
+  //       end: "bottom bottom",
+  //       scrub: true, // Enables smooth scrolling effect
+  //     },
+  //   }
+  // )
+  .from(splitText.lines, {
+    opacity: 0,
+    xPercent: -10,
+    stagger: 0.1,
+    ease: "power3.Out",
+    scrollTrigger: {
+      trigger: text,
+      scrub: true,
+      start: "0px bottom",
+      end: "bottom+=200px bottom",
     },
-    {
-      scaleX: 1,
-      borderRadius: "8",
-      scrollTrigger: {
-        trigger: aboutSection,
-        start: "top+20% bottom",
-        end: "bottom bottom",
-        scrub: true, // Enables smooth scrolling effect
-      },
-    }
-  )
-  .from(
-    splitText.lines,
-
-    {
-      opacity: 0,
-      xPercent: -10,
-      stagger: 0.1,
-      ease: "power3.Out",
-      scrollTrigger: {
-        trigger: text,
-        scrub: true,
-        start: "0px bottom",
-        end: "bottom+=200px bottom",
-      },
-    }
-  )
+  })
   .from(splitSubText.lines, {
     opacity: 0,
     xPercent: -10,
@@ -255,25 +251,22 @@ timeline
       trigger: text,
       scrub: true,
       start: "100px bottom",
-      end: "bottom+=400px bottom",
+      end: "bottom+=200px bottom",
     },
   })
-  .fromTo(
-    splitHeading.words,
+  .from(
+    splitHeading.lines,
+
     {
       opacity: 0,
-      xPercent: -20,
-    },
-    {
-      opacity: 1,
-      xPercent: 0,
-      stagger: 0.5,
+      xPercent: -10,
+      // stagger: 0.5,
       ease: "power4.easeInOut",
       scrollTrigger: {
         trigger: aboutSection,
         scrub: 1,
         start: "top bottom",
-        end: "bottom+=100px bottom",
+        end: "bottom bottom",
       },
     }
   );

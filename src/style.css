@@ -5,7 +5,6 @@
 @font-face {
   font-family: "PP Nune Montreal";
   src: url("/fonts/PPNeueMontreal-Book.otf") format("otf");
-  src: url("/fonts/Branch.otf") format("otf");
 }
 
 html {
@@ -35,12 +34,15 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  width: 90%;
+  width: 80%;
   display: flex;
   justify-content: space-between;
-  mix-blend-mode: difference;
+  /* mix-blend-mode: difference; */
   align-items: center;
   margin: 1.5rem auto;
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
 }
 header a {
   text-decoration: none;
@@ -49,7 +51,7 @@ header a {
   font-size: 1.3rem;
   line-height: 0.9;
   /* text-transform: uppercase; */
-  color: #ffffff;
+  color: #000000;
 }
 
 .loader-overlay {
@@ -91,7 +93,7 @@ header a {
   width: 100%;
   height: 100%;
   min-width: 24px;
-  color: #ffffff;
+  color: #000000;
 }
 
 #magneticCircle {
@@ -145,8 +147,8 @@ header a {
 .section.is-about {
   z-index: 2;
   background-color: #fafafa;
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
+  /* border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem; */
 }
 
 .section .scroll_wrapper {
@@ -273,7 +275,7 @@ h2 {
 .gallery {
   max-width: 100em;
   margin: auto;
-  padding: 0em 4em;
+  padding: 0em 6em;
   /* background: #fafafa; */
 }
 
