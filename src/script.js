@@ -12,8 +12,8 @@ const aboutSection = document.getElementById("about-section");
 const text = document.getElementById("text");
 const loaderElement = document.querySelector(".loader-overlay");
 const loadingBarElement = document.querySelector(".loading-bar");
-const magneticCircle = document.getElementById("magneticCircle");
-const allLinks = document.querySelectorAll("a");
+// const magneticCircle = document.getElementById("magneticCircle");
+// const allLinks = document.querySelectorAll("a");
 
 // Function to move the magnetic circle to the cursor position
 // function moveMagneticCircle(event) {
@@ -76,6 +76,10 @@ const loadingManager = new THREE.LoadingManager(
   () => {
     gsap.delayedCall(0.5, () => {
       timeline
+        .to("#loaderText", {
+          opacity: 0,
+          duration: 0.5,
+        })
         .fromTo(
           loaderElement,
           { yPercent: 0 },
@@ -83,31 +87,28 @@ const loadingManager = new THREE.LoadingManager(
             duration: 2,
             yPercent: -100,
             ease: "expo.inOut",
-          }
+          },
+          "<"
         )
-        // .fromTo(
-        //   mesh1.position,
-        //   {
-        //     y: 0,
-        //   },
-        //   {
-        //     y: 1,
-        //     duration: 2,
-        //     ease: "expo.inOut",
-        //   },
-        //   "<+0.1"
-        // )
+        .fromTo(
+          mesh1.position,
+          {
+            y: -1,
+          },
+          {
+            y: 0,
+            duration: 2,
+            ease: "expo.inOut",
+          },
+          "<+0.1"
+        )
         .fromTo(
           ".hero_container",
           {
-            // x: -1,
             yPercent: 20,
-            // z: -1,
           },
           {
-            // x: 1,
             yPercent: 0,
-            // z: 1,
             duration: 1,
             ease: "expo.easeInOut",
           },
@@ -337,6 +338,7 @@ const canvas = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
+const sceneCopy = new THREE.Scene();
 
 /**
  * Objects
@@ -377,6 +379,8 @@ const treeShaderMaterial = new THREE.ShaderMaterial({
     uNoise: { value: 8 },
   },
 });
+
+// const material = new THREE.MeshBasicMaterial();
 
 //Geometry
 const treePlaneGeometry = new THREE.PlaneGeometry(6, 6, 500, 500);
