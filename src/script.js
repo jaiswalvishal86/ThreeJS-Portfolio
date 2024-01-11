@@ -131,7 +131,7 @@ const loadingManager = new THREE.LoadingManager(
                   end: () =>
                     `+=${
                       document.querySelector(".hero_container").offsetHeight *
-                      0.25
+                      0.1
                     }`,
                   scrub: 1,
                 },
@@ -183,7 +183,7 @@ const loadingManager = new THREE.LoadingManager(
                   end: () =>
                     `+=${
                       document.querySelector(".hero_container").offsetHeight *
-                      0.1
+                      0.05
                     }`,
                   scrub: 1,
                 },
@@ -483,29 +483,6 @@ const renderer = new THREE.WebGLRenderer({
 renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-/**
- * Scroll Y
- */
-// let scrollY = window.scrollY;
-// let currentSection = 0;
-
-// window.addEventListener("scroll", () => {
-//   scrollY = window.scrollY;
-//   const newSection = Math.round(scrollY / sizes.height);
-
-//   if (newSection != currentSection) {
-//     currentSection = newSection;
-
-//     gsap.to(sectionMeshes[currentSection].rotation, {
-//       duration: 1.5,
-//       ease: "power2.inOut",
-//       x: "+=4",
-//       y: "+=2",
-//       z: "+=1",
-//     });
-//   }
-// });
 
 /**
  * Cursor
