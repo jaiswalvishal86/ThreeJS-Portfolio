@@ -152,8 +152,7 @@ header a {
 
 .section.is-about {
   z-index: 2;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
+  background-color: #fafafa;
 }
 
 .section .scroll_wrapper {
@@ -276,8 +275,7 @@ h2 {
   position: relative;
   z-index: 1;
   padding: 4rem 0rem;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
+  background-color: #fafafa;
 }
 
 .gallery {
@@ -334,8 +332,7 @@ h2 {
 .work-section {
   padding: 4rem 0;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
+  background-color: #fafafa;
 }
 
 .work-container {
@@ -533,8 +530,7 @@ h2 {
 
 .services-section {
   /* min-height: 100vh; */
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
+  background-color: #fafafa;
   padding: 6rem 6em;
 }
 
