@@ -204,7 +204,7 @@ header a {
 .hero_wrapper h1 {
   font-size: 6.5vw;
   font-weight: 300;
-  letter-spacing: -6px;
+  letter-spacing: -2px;
   color: #1b1b1b;
   text-transform: uppercase;
 }
@@ -347,6 +347,7 @@ h2 {
   justify-content: center;
   align-items: flex-start;
   overflow: hidden;
+  background-color: #fafafa;
 }
 
 .work-card--wrapper {
@@ -699,6 +700,11 @@ h2 {
 }
 
 @media only screen and (max-width: 599px) and (min-width: 280px) {
+  header {
+    width: auto;
+    margin: 0;
+    padding: 1.5rem 2rem;
+  }
   .hero_wrapper h1 {
     font-size: 3rem;
     line-height: 1.2;
