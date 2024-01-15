@@ -176,6 +176,7 @@ header a {
   top: 20%;
   left: 8%;
   display: flex;
+  color: #fafafa;
   justify-content: space-between;
 }
 
@@ -190,6 +191,7 @@ header a {
 .services_wrapper .service_text {
   font-size: 0.9rem;
   margin-bottom: 4px;
+  color: #fafafa;
 }
 
 .section .hero_wrapper {
@@ -202,10 +204,10 @@ header a {
 }
 
 .hero_wrapper h1 {
-  font-size: 6.5vw;
+  font-size: 5.5vw;
   font-weight: 300;
   letter-spacing: -2px;
-  color: #1b1b1b;
+  color: #fafafa;
   text-transform: uppercase;
 }
 
@@ -214,16 +216,20 @@ header a {
   overflow: hidden;
 }
 
+h1 .creative {
+  color: #fafafa;
+}
+
 .creative {
   font-style: italic;
   font-weight: 300;
-  color: #4a4a4a;
+  color: #3c3c3c;
 }
 
 .hero_wrapper p {
   font-size: 1.3vw;
   line-height: 1.4;
-  color: #606060;
+  color: #fafafa;
 }
 
 .section .about_wrapper {
@@ -589,9 +595,18 @@ h2 {
 .footer-wrapper {
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 0.5rem;
   justify-content: center;
   background-color: #f3f3f3;
+}
+.footer-wrapper p {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 40%;
 }
 
 @media only screen and (max-width: 990px) and (min-width: 600px) {

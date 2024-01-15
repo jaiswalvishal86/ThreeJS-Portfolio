@@ -51,7 +51,7 @@ void main()
      gl_FragColor = image;
      gl_FragColor = grain;
 
-     vec2 uv_display = vUv + uv_out * 0.01 + uv_in * sin(uTime) + (grain.rg - vec2(0.5)) * -0.1;
+     vec2 uv_display = vUv + uv_out * 0.01 + uv_in * sin(uTime ) + (grain.rg - vec2(0.5)) * -0.1;
 
      vec4 uvTexture = texture2D(uTexture, uv_display);
 
