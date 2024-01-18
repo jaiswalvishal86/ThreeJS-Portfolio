@@ -140,6 +140,14 @@ header a {
   /* mix-blend-mode: difference; */
 }
 
+.hero_container svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -9999px;
+  pointer-events: none;
+}
+
 .spacer {
   height: 100vh;
 }
@@ -205,10 +213,12 @@ header a {
 
 .hero_wrapper h1 {
   font-size: 5.5vw;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -2px;
   color: #fafafa;
   text-transform: uppercase;
+  opacity: 0.8;
+  /* filter: url(#distortionFilter); */
 }
 
 .line {
@@ -218,6 +228,7 @@ header a {
 
 h1 .creative {
   color: #fafafa;
+  font-weight: 400;
 }
 
 .creative {

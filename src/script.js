@@ -12,6 +12,68 @@ const aboutSection = document.getElementById("about-section");
 const text = document.getElementById("text");
 const loaderElement = document.querySelector(".loader-overlay");
 const loadingBarElement = document.querySelector(".loading-bar");
+
+const heroHeading = document.getElementById("hero-heading");
+
+if (heroHeading) {
+  heroHeading.addEventListener("mouseenter", () => {
+    gsap.to(".distort feDisplacementMap", 1, {
+      attr: {
+        scale: 100,
+      },
+      ease: "circ.out",
+    });
+    gsap.to(
+      ".distort feTurbulence",
+      1,
+      {
+        attr: {
+          baseFrequency: "2.08 .08",
+        },
+        ease: "circ.out",
+      },
+      1
+    );
+    gsap.to(title, 1, {
+      fontVariationSettings: "'wght' 650",
+      ease: "back.out",
+    });
+  });
+  heroHeading.addEventListener("mouseleave", () => {
+    gsap.to(
+      ".distort feDisplacementMap",
+      1,
+      {
+        attr: {
+          scale: 0,
+        },
+        ease: "circ.out",
+      },
+      1
+    );
+    gsap.to(
+      ".distort feTurbulence",
+      1,
+      {
+        attr: {
+          baseFrequency: "2.01 .01",
+        },
+        ease: "circ.out",
+      },
+      1
+    );
+    gsap.to(
+      title,
+      1,
+      {
+        fontVariationSettings: "'wght' 700",
+        ease: "back.out",
+      },
+      1
+    );
+  });
+}
+
 // const magneticCircle = document.getElementById("magneticCircle");
 // const allLinks = document.querySelectorAll("a");
 
@@ -511,12 +573,12 @@ const tick = () => {
   treeShaderMaterial.uniforms.uTime.value = elapsedTime;
 
   //Animate Camera
-  // camera.position.y = -scrollY / sizes.height;
+  camera.position.y = -scrollY / sizes.height;
 
-  // const parallexX = mouse.x;
-  // const parallexY = -mouse.y;
-  // cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
-  // cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
+  const parallexX = mouse.x * 0.2;
+  const parallexY = -mouse.y * 0.2;
+  cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
+  cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
 
   //Animate
   // for (const mesh of sectionMeshes) {
