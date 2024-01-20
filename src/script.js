@@ -13,66 +13,66 @@ const text = document.getElementById("text");
 const loaderElement = document.querySelector(".loader-overlay");
 const loadingBarElement = document.querySelector(".loading-bar");
 
-const heroHeading = document.getElementById("hero-heading");
+// const heroHeading = document.getElementById("hero-heading");
 
-if (heroHeading) {
-  heroHeading.addEventListener("mouseenter", () => {
-    gsap.to(".distort feDisplacementMap", 1, {
-      attr: {
-        scale: 100,
-      },
-      ease: "circ.out",
-    });
-    gsap.to(
-      ".distort feTurbulence",
-      1,
-      {
-        attr: {
-          baseFrequency: "2.08 .08",
-        },
-        ease: "circ.out",
-      },
-      1
-    );
-    gsap.to(title, 1, {
-      fontVariationSettings: "'wght' 650",
-      ease: "back.out",
-    });
-  });
-  heroHeading.addEventListener("mouseleave", () => {
-    gsap.to(
-      ".distort feDisplacementMap",
-      1,
-      {
-        attr: {
-          scale: 0,
-        },
-        ease: "circ.out",
-      },
-      1
-    );
-    gsap.to(
-      ".distort feTurbulence",
-      1,
-      {
-        attr: {
-          baseFrequency: "2.01 .01",
-        },
-        ease: "circ.out",
-      },
-      1
-    );
-    gsap.to(
-      title,
-      1,
-      {
-        fontVariationSettings: "'wght' 700",
-        ease: "back.out",
-      },
-      1
-    );
-  });
-}
+// if (heroHeading) {
+//   heroHeading.addEventListener("mouseenter", () => {
+//     gsap.to(".distort feDisplacementMap", 1, {
+//       attr: {
+//         scale: 100,
+//       },
+//       ease: "circ.out",
+//     });
+//     gsap.to(
+//       ".distort feTurbulence",
+//       1,
+//       {
+//         attr: {
+//           baseFrequency: "2.08 .08",
+//         },
+//         ease: "circ.out",
+//       },
+//       1
+//     );
+//     gsap.to(title, 1, {
+//       fontVariationSettings: "'wght' 650",
+//       ease: "back.out",
+//     });
+//   });
+//   heroHeading.addEventListener("mouseleave", () => {
+//     gsap.to(
+//       ".distort feDisplacementMap",
+//       1,
+//       {
+//         attr: {
+//           scale: 0,
+//         },
+//         ease: "circ.out",
+//       },
+//       1
+//     );
+//     gsap.to(
+//       ".distort feTurbulence",
+//       1,
+//       {
+//         attr: {
+//           baseFrequency: "2.01 .01",
+//         },
+//         ease: "circ.out",
+//       },
+//       1
+//     );
+//     gsap.to(
+//       title,
+//       1,
+//       {
+//         fontVariationSettings: "'wght' 700",
+//         ease: "back.out",
+//       },
+//       1
+//     );
+//   });
+// }
 
 // const magneticCircle = document.getElementById("magneticCircle");
 // const allLinks = document.querySelectorAll("a");
@@ -317,25 +317,56 @@ timeline
       end: "bottom+=200px bottom",
     },
   })
-  .from(
-    splitHeading.lines,
-
-    {
-      opacity: 0,
-      xPercent: -10,
-      // stagger: 0.5,
-      ease: "power4.easeInOut",
-      scrollTrigger: {
-        trigger: aboutSection,
-        scrub: 1,
-        start: "top bottom",
-        end: "bottom bottom",
-      },
-    }
-  );
+  .from(splitHeading.lines, {
+    opacity: 0,
+    xPercent: -10,
+    // stagger: 0.5,
+    ease: "power4.easeInOut",
+    scrollTrigger: {
+      trigger: aboutSection,
+      scrub: 1,
+      start: "top bottom",
+      end: "bottom bottom",
+    },
+  })
+  .from(".sustain", {
+    y: 150,
+    scrollTrigger: {
+      trigger: ".work-section",
+      scrub: 1,
+      start: "top bottom",
+      end: "bottom center",
+    },
+  })
+  .from("#ephemeral-text", {
+    y: 200,
+    scrollTrigger: {
+      trigger: ".work-section",
+      scrub: 1,
+      start: "top bottom",
+      end: "bottom center",
+    },
+  })
+  .from(".ephemeral-img--wrapper", {
+    y: 120,
+    scrollTrigger: {
+      trigger: ".work-section",
+      scrub: 1,
+      start: "top bottom",
+      end: "bottom center",
+    },
+  })
+  .from("#ephemeral-para", {
+    y: 150,
+    scrollTrigger: {
+      trigger: ".work-section",
+      scrub: 1,
+      start: "top bottom",
+      end: "bottom center",
+    },
+  });
 
 rows.forEach((row, index) => {
-  console.log(row);
   const direction = index % 2 === 0 ? 1 : -1;
   timeline
     .to(
