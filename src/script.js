@@ -531,7 +531,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100
 );
-camera.position.z = 5;
+camera.position.z = 4;
 cameraGroup.add(camera);
 
 /**
@@ -573,12 +573,16 @@ const tick = () => {
   treeShaderMaterial.uniforms.uTime.value = elapsedTime;
 
   //Animate Camera
-  camera.position.y = -scrollY / sizes.height;
+  camera.position.y = (-scrollY / sizes.height) * 2;
 
   const parallexX = mouse.x * 0.2;
   const parallexY = -mouse.y * 0.2;
   cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
+  cameraGroup.rotation.x +=
+    (parallexX - cameraGroup.rotation.x) * deltaTime * 2;
   cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
+  cameraGroup.rotation.y +=
+    (parallexY - cameraGroup.rotation.y) * deltaTime * 2;
 
   //Animate
   // for (const mesh of sectionMeshes) {

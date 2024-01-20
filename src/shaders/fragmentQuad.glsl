@@ -27,13 +27,13 @@ void main()
      float r = 0.59;
 
      float g_out = pow(dist/r, 110.);
-     float mag_out = 0.5 - cos(g_out - 1.);
+     float mag_out = 1. - cos(g_out - 1.);
      vec2 uv_out = dist < r ? vUv + mag_out * (vUv - vec2(0.5)) : vUv;
 
-     float g_in = pow(dist/r, -8.);
+     float g_in = pow(dist/r, -5.);
      vec2 g_in_power = vec2(sin(vUv.x - 0.5), sin(vUv.y - 0.5));
 
-     float mag_in = 0.5 - cos(g_in - 1.);
+     float mag_in = 1. - cos(g_in - 1.);
 
      vec2 uv_in = dist > r ? vUv : (vUv - vec2(0.5)) * mag_in * g_in_power;
 
@@ -51,7 +51,7 @@ void main()
      gl_FragColor = image;
      gl_FragColor = grain;
 
-     vec2 uv_display = vUv + uv_out * 0.01 + uv_in * sin(uTime ) + (grain.rg - vec2(0.5)) * -0.1;
+     vec2 uv_display = vUv + uv_out * 0.05 + uv_in * sin(uTime) + (grain.rg - vec2(0.5)) * -0.1;
 
      vec4 uvTexture = texture2D(uTexture, uv_display);
 
