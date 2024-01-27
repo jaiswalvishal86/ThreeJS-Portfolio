@@ -152,18 +152,18 @@ const loadingManager = new THREE.LoadingManager(
           },
           "<"
         )
-        .fromTo(
-          mesh1.position,
-          {
-            y: -1,
-          },
-          {
-            y: 0,
-            duration: 2,
-            ease: "expo.inOut",
-          },
-          "<+0.1"
-        )
+        // .fromTo(
+        //   mesh1.position,
+        //   {
+        //     y: -1,
+        //   },
+        //   {
+        //     y: 0,
+        //     duration: 2,
+        //     ease: "expo.inOut",
+        //   },
+        //   "<+0.1"
+        // )
         .fromTo(
           ".hero_container",
           {
@@ -330,7 +330,7 @@ timeline
     },
   })
   .from(".sustain", {
-    y: 150,
+    y: 180,
     scrollTrigger: {
       trigger: ".work-section",
       scrub: 1,
@@ -339,7 +339,7 @@ timeline
     },
   })
   .from("#ephemeral-text", {
-    y: 200,
+    y: 230,
     scrollTrigger: {
       trigger: ".work-section",
       scrub: 1,
@@ -348,7 +348,7 @@ timeline
     },
   })
   .from(".ephemeral-img--wrapper", {
-    y: 120,
+    y: 150,
     scrollTrigger: {
       trigger: ".work-section",
       scrub: 1,
@@ -357,7 +357,7 @@ timeline
     },
   })
   .from("#ephemeral-para", {
-    y: 150,
+    y: 180,
     scrollTrigger: {
       trigger: ".work-section",
       scrub: 1,
@@ -442,7 +442,7 @@ const debugObject = {};
  * Texture Loader
  */
 const loader = new THREE.TextureLoader(loadingManager);
-const imageTexture = loader.load("../assets/pink_tree.jpg");
+const imageTexture = loader.load("../assets/metal.jpg");
 
 /**
  * Debug Colors
@@ -535,6 +535,14 @@ const sizes = {
 };
 
 window.addEventListener("resize", () => {
+  if (
+    canvas.width != canvas.clientWidth ||
+    canvas.height != canvas.clientHeight
+  ) {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+    renderer.setViewport(0, 0, canvas.width, canvas.height);
+  }
   // Update sizes
   sizes.width = window.innerWidth;
   sizes.height = window.innerHeight;

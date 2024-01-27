@@ -41,7 +41,7 @@ header {
   align-items: center;
   margin: 1rem auto;
   padding: 1rem 2rem;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(8px);
 }
 header a {
@@ -62,15 +62,15 @@ header a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffdef1;
+  background-color: #f0f0f0;
   will-change: transform;
   z-index: 10;
 }
 .loader-overlay p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 300;
   margin-bottom: 1rem;
-  color: #b24398;
+  color: #1c1c1c;
 }
 
 .loading-bar {
@@ -78,7 +78,7 @@ header a {
   transform: scaleX(0);
   transform-origin: top center;
   height: 2px;
-  background: #b24398;
+  background: #1c1c1c;
   transition: transform 0.5s;
   will-change: transform;
   border-radius: 2px;
@@ -138,7 +138,7 @@ header a {
   margin-bottom: -100vh;
   z-index: 1;
   will-change: transform;
-  /* mix-blend-mode: difference; */
+  mix-blend-mode: difference;
 }
 
 .hero_container svg {
@@ -213,12 +213,12 @@ header a {
 }
 
 .hero_wrapper h1 {
-  font-size: 5.5vw;
+  font-size: 6vw;
   font-weight: 400;
   letter-spacing: -2px;
-  color: #fafafa;
+  color: #ffffff;
   text-transform: uppercase;
-  opacity: 0.8;
+  opacity: 0.9;
   /* filter: url(#distortionFilter); */
 }
 
@@ -228,7 +228,7 @@ header a {
 }
 
 h1 .creative {
-  color: #fafafa;
+  color: #ffffff;
   font-weight: 400;
 }
 
@@ -397,6 +397,8 @@ h2 {
   left: -10%;
   font-weight: 300;
   z-index: 1;
+  color: #fafafa;
+  mix-blend-mode: difference;
 }
 
 .sustain p {
@@ -508,7 +510,9 @@ h2 {
 } */
 
 .work-grid--wrapper p {
-  font-size: 1rem;
+  margin-top: 0.5vw;
+  font-size: 2.8vw;
+  font-weight: 300;
 }
 
 .work-image--wrapper.first {
@@ -576,8 +580,8 @@ h2 {
 }
 
 .service-wrapper h3 {
-  font-size: 1.8vw;
-  font-weight: 400;
+  font-size: 3vw;
+  font-weight: 300;
   margin-bottom: 0.5vw;
 }
 .service-wrapper p {
@@ -613,12 +617,15 @@ h2 {
   justify-content: center;
   background-color: #f3f3f3;
 }
+.footer-wrapper h2 {
+  text-align: center;
+}
 .footer-wrapper p {
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.6;
   text-align: center;
-  max-width: 40%;
+  max-width: 400px;
 }
 
 @media only screen and (max-width: 990px) and (min-width: 600px) {
@@ -626,7 +633,7 @@ h2 {
     font-size: 1.6rem;
   }
   .hero_wrapper h1 {
-    font-size: 4.5rem;
+    font-size: 5rem;
     line-height: 1.2;
   }
   .hero_wrapper p {
@@ -637,6 +644,11 @@ h2 {
   .section .mail_wrapper {
     width: 60%;
     font-size: 1.6rem;
+  }
+
+  .services_wrapper .service_text {
+    font-size: 1.3em;
+    line-height: 1.4;
   }
   .section .scroll_wrapper {
     top: 90%;
@@ -698,6 +710,10 @@ h2 {
     padding-left: 4em;
   }
 
+  .work-grid--wrapper p {
+    font-size: 2rem;
+  }
+
   .work-slider_slide {
     width: 48%;
     margin-right: 2em;
@@ -706,16 +722,22 @@ h2 {
     margin-top: 30px;
   }
 
+  .services-section {
+    padding: 4rem;
+  }
+
   .service-container {
     flex-direction: column;
+    padding: 1rem 0rem;
   }
 
   .services-container {
-    margin-top: 2rem;
+    margin-top: 1rem;
+    gap: 1rem;
   }
 
-  .service-intro h2 {
-    font-size: 2.4rem;
+  .service-intro h3 {
+    font-size: 2rem;
   }
   .service-wrapper h3 {
     font-size: 1.8rem;
@@ -732,20 +754,25 @@ h2 {
     margin: 0;
     padding: 1.5rem 2rem;
   }
+
+  .section.is-hero {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
   .hero_wrapper h1 {
     font-size: 3rem;
     line-height: 1.2;
   }
   .hero_wrapper p {
-    margin-top: 2rem;
-    font-size: 1rem;
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
   }
   .section .about_wrapper {
     top: 8%;
     width: 80%;
   }
   .section .mail_wrapper {
-    width: 80%;
+    width: 70%;
   }
   .section .services_wrapper {
     /* bottom: 2%; */
@@ -791,8 +818,12 @@ h2 {
   }
 
   .ephemeral h2 {
-    font-size: 2.8rem;
+    position: relative !important;
+    top: 5%;
+    left: -5%;
+    font-size: 3.2rem;
     margin-bottom: 1rem;
+    z-index: 1;
   }
   .ephemeral .work-heading {
     position: static;
@@ -809,6 +840,7 @@ h2 {
   .motive-section {
     flex-wrap: wrap;
     gap: 1rem;
+    padding: 6rem 0rem;
   }
 
   .motive-section h2 {
@@ -843,7 +875,7 @@ h2 {
 
   .work-grid--wrapper p {
     margin-top: 0.5rem;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
   }
 
   .gallery {
@@ -855,26 +887,39 @@ h2 {
     width: 100%;
   }
 
+  .service-container {
+    gap: 0;
+  }
+
   .services-section {
     padding: 2rem;
   }
 
   .service-container {
     flex-direction: column;
+    padding: 1rem 0rem;
   }
 
   .services-container {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 
-  .service-intro h2 {
-    font-size: 1.8rem;
+  .service-intro h3 {
+    font-size: 1.3rem;
   }
   .service-wrapper h3 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .service-wrapper p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+  }
+
+  .footer-wrapper {
+    padding: 0rem 2rem;
+  }
+
+  .footer-wrapper h2 {
+    font-size: 3.5rem;
   }
 }
