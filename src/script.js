@@ -152,30 +152,30 @@ const loadingManager = new THREE.LoadingManager(
           },
           "<"
         )
-        .fromTo(
-          mesh1.position,
-          {
-            y: -1,
-          },
-          {
-            y: 0,
-            duration: 2,
-            ease: "expo.inOut",
-          },
-          "<+0.1"
-        )
-        .fromTo(
-          ".hero_container",
-          {
-            yPercent: 20,
-          },
-          {
-            yPercent: 0,
-            duration: 1,
-            ease: "expo.easeInOut",
-          },
-          "<+0.3"
-        )
+        // .fromTo(
+        //   mesh1.position,
+        //   {
+        //     y: -1,
+        //   },
+        //   {
+        //     y: 0,
+        //     duration: 2,
+        //     ease: "expo.inOut",
+        //   },
+        //   "<+0.1"
+        // )
+        // .fromTo(
+        //   ".hero_container",
+        //   {
+        //     yPercent: 20,
+        //   },
+        //   {
+        //     yPercent: 0,
+        //     duration: 1,
+        //     ease: "expo.easeInOut",
+        //   },
+        //   "<+0.3"
+        // )
         .fromTo(
           splitHeroHeading.chars,
           { yPercent: 100 },
@@ -200,7 +200,7 @@ const loadingManager = new THREE.LoadingManager(
               });
             },
           },
-          "<+0.3"
+          "<+0.6"
         )
         .fromTo(
           splitHeroPara.words,
