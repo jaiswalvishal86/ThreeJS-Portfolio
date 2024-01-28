@@ -152,18 +152,18 @@ const loadingManager = new THREE.LoadingManager(
           },
           "<"
         )
-        // .fromTo(
-        //   mesh1.position,
-        //   {
-        //     y: -1,
-        //   },
-        //   {
-        //     y: 0,
-        //     duration: 2,
-        //     ease: "expo.inOut",
-        //   },
-        //   "<+0.1"
-        // )
+        .fromTo(
+          mesh1.position,
+          {
+            y: -1,
+          },
+          {
+            y: 0,
+            duration: 2,
+            ease: "expo.inOut",
+          },
+          "<+0.1"
+        )
         .fromTo(
           ".hero_container",
           {
@@ -276,57 +276,34 @@ const splitHeroPara = new SplitType("#hero-para");
 const splitSubHeading = new SplitType("#hero-sub--text");
 
 timeline
-  // .fromTo(
-  //   aboutSection,
-  //   {
-  //     scaleX: 0.96,
-  //     borderRadius: "16",
-  //   },
-  //   {
-  //     scaleX: 1,
-  //     borderRadius: "8",
-  //     scrollTrigger: {
-  //       trigger: aboutSection,
-  //       start: "top+20% bottom",
-  //       end: "bottom bottom",
-  //       scrub: true, // Enables smooth scrolling effect
-  //     },
-  //   }
-  // )
-  .from(splitText.lines, {
-    opacity: 0,
-    xPercent: -10,
+  .from(splitText.words, {
+    // opacity: 0,
+    yPercent: 100,
     stagger: 0.1,
-    ease: "power3.Out",
     scrollTrigger: {
       trigger: text,
       scrub: true,
-      start: "0px bottom",
-      end: "bottom+=200px bottom",
+      start: "top bottom",
+      end: "bottom+=150px bottom",
     },
   })
-  .from(splitSubText.lines, {
-    opacity: 0,
-    xPercent: -10,
-    stagger: 0.1,
-    ease: "power3.Out",
+  .from(splitSubText.words, {
+    yPercent: 100,
+    stagger: 0.2,
     scrollTrigger: {
       trigger: text,
       scrub: true,
       start: "100px bottom",
-      end: "bottom+=200px bottom",
+      end: "bottom+=150px bottom",
     },
   })
-  .from(splitHeading.lines, {
-    opacity: 0,
-    xPercent: -10,
-    // stagger: 0.5,
-    ease: "power4.easeInOut",
+  .from(splitHeading.words, {
+    yPercent: 100,
     scrollTrigger: {
       trigger: aboutSection,
       scrub: 1,
       start: "top bottom",
-      end: "bottom bottom",
+      end: "center bottom",
     },
   })
   .from(".sustain", {

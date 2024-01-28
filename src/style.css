@@ -41,14 +41,14 @@ header {
   align-items: center;
   margin: 1rem auto;
   padding: 1rem 2rem;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
 }
 header a {
   text-decoration: none;
   font-family: "PP Nune Montreal", sans-serif;
   font-weight: 300;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 0.9;
   /* text-transform: uppercase; */
   color: #000000;
@@ -71,6 +71,11 @@ header a {
   font-weight: 300;
   margin-bottom: 1rem;
   color: #1c1c1c;
+}
+
+.creative a {
+  color: black;
+  text-decoration: none;
 }
 
 .loading-bar {
@@ -137,7 +142,6 @@ header a {
   overflow: visible;
   margin-bottom: -100vh;
   z-index: 1;
-  will-change: transform;
   mix-blend-mode: difference;
 }
 
@@ -162,6 +166,7 @@ header a {
 .section.is-about {
   z-index: 2;
   background-color: #fafafa;
+  overflow: hidden;
 }
 
 .section .scroll_wrapper {
@@ -219,6 +224,7 @@ header a {
   color: #ffffff;
   text-transform: uppercase;
   opacity: 0.9;
+  will-change: transform;
   /* filter: url(#distortionFilter); */
 }
 
@@ -248,7 +254,7 @@ h1 .creative {
   width: 50%;
   position: absolute;
   top: 15%;
-  left: 8%;
+  left: 10%;
 }
 
 h2 {
@@ -467,7 +473,9 @@ h2 {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 12vw 0vw;
+  align-items: center;
+  /* padding: 12vw 0vw; */
+  min-height: 80vh;
 }
 
 .motive-section p {
@@ -662,7 +670,7 @@ h2 {
     font-size: 4rem;
   }
   .about_content p {
-    font-size: 2rem;
+    font-size: 2.5rem;
     line-height: 1.4;
   }
   .about_sub__content {
@@ -687,8 +695,11 @@ h2 {
   }
 
   .motive-section {
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
     gap: 2rem;
+    min-height: 60vh;
   }
 
   .motive-section p {
@@ -783,13 +794,14 @@ h2 {
     font-size: 2.8rem;
   }
   .about_content p {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
+    line-height: 1.5;
   }
   .about_sub__content {
-    width: 90%;
-    right: 2%;
+    width: 80%;
+    left: 10%;
     bottom: 5%;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .work-card--wrapper {
@@ -840,6 +852,7 @@ h2 {
   .motive-section {
     flex-wrap: wrap;
     gap: 1rem;
+    min-height: 50vh;
     padding: 6rem 0rem;
   }
 
