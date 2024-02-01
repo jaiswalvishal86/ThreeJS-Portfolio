@@ -143,7 +143,7 @@ header a {
   overflow: visible;
   margin-bottom: -100vh;
   z-index: 1;
-  mix-blend-mode: difference;
+  /* mix-blend-mode: difference; */
 }
 
 .hero_container svg {
@@ -191,7 +191,7 @@ header a {
   top: 20%;
   left: 8%;
   display: flex;
-  color: #fafafa;
+  color: #1b1b1b;
   justify-content: space-between;
 }
 
@@ -206,7 +206,7 @@ header a {
 .services_wrapper .service_text {
   font-size: 0.9rem;
   margin-bottom: 4px;
-  color: #fafafa;
+  color: #1b1b1b;
 }
 
 .section .hero_wrapper {
@@ -222,7 +222,7 @@ header a {
   font-size: 6vw;
   font-weight: 400;
   letter-spacing: -2px;
-  color: #ffffff;
+  color: #1b1b1b;
   text-transform: uppercase;
   opacity: 0.9;
   will-change: transform;
@@ -235,7 +235,7 @@ header a {
 }
 
 h1 .creative {
-  color: #ffffff;
+  color: #1b1b1b;
   font-weight: 400;
 }
 
@@ -248,7 +248,7 @@ h1 .creative {
 .hero_wrapper p {
   font-size: 1.3vw;
   line-height: 1.4;
-  color: #fafafa;
+  color: #1b;
 }
 
 .section .about_wrapper {

@@ -419,7 +419,7 @@ const debugObject = {};
  * Texture Loader
  */
 const loader = new THREE.TextureLoader(loadingManager);
-const imageTexture = loader.load("../assets/metal.jpg");
+const imageTexture = loader.load("../assets/flowers.jpg");
 
 /**
  * Debug Colors
