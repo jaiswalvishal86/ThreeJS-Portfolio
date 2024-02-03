@@ -113,12 +113,13 @@ header a {
   position: fixed;
   width: 20px;
   height: 20px;
-  background-color: #1c1c1c;
+  background-color: #ffffff;
   border-radius: 50%;
   pointer-events: none;
   transform-origin: center center;
   opacity: 0;
-  z-index: 9;
+  z-index: 100;
+  mix-blend-mode: difference;
 }
 
 .section {
@@ -248,7 +249,7 @@ h1 .creative {
 .hero_wrapper p {
   font-size: 1.3vw;
   line-height: 1.4;
-  color: #1b;
+  color: #1b1b1b;
 }
 
 .section .about_wrapper {
@@ -638,6 +639,9 @@ h2 {
 }
 
 @media only screen and (max-width: 990px) and (min-width: 600px) {
+  #magneticCircle {
+    display: none;
+  }
   .loader-overlay p {
     font-size: 1.6rem;
   }
@@ -761,6 +765,9 @@ h2 {
 }
 
 @media only screen and (max-width: 599px) and (min-width: 280px) {
+  #magneticCircle {
+    display: none;
+  }
   header {
     width: auto;
     margin: 0;
@@ -856,6 +863,9 @@ h2 {
     min-height: 50vh;
     padding: 6rem 0rem;
   }
+  .motive-section span {
+    display: none;
+  }
 
   .motive-section h2 {
     text-align: right;
@@ -934,6 +944,6 @@ h2 {
   }
 
   .footer-wrapper h2 {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
 }

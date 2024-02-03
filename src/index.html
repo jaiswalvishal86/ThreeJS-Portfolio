@@ -8,7 +8,7 @@
   </head>
   <body>
     <canvas class="webgl" id="webgl"></canvas>
-    <!-- <div id="magneticCircle"></div> -->
+    <div id="magneticCircle"></div>
     <header>
       <a class="brand" href="/">Vishal</a>
       <a data-cursor-stick data-cursor-text="Menu" class="menu" href="/">
@@ -30,34 +30,6 @@
 
     <div class="section_wrapper">
       <div class="hero_container">
-        <svg class="distort">
-          <filter id="distortionFilter">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="2.01 .01"
-              numOctaves="5"
-              seed="2"
-              stitchTiles="noStitch"
-              x="0%"
-              y="0%"
-              width="100%"
-              height="100%"
-              result="noise"
-            ></feTurbulence>
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="noise"
-              scale="0"
-              xChannelSelector="R"
-              yChannelSelector="B"
-              x="0%"
-              y="0%"
-              width="100%"
-              height="100%"
-              filterUnits="userSpaceOnUse"
-            ></feDisplacementMap>
-          </filter>
-        </svg>
         <section class="section is-hero">
           <div class="mail_wrapper">
             <div id="hero-sub--text" class="year_text">@2024</div>

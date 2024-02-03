@@ -13,126 +13,65 @@ const text = document.getElementById("text");
 const loaderElement = document.querySelector(".loader-overlay");
 const loadingBarElement = document.querySelector(".loading-bar");
 
-// const heroHeading = document.getElementById("hero-heading");
-
-// if (heroHeading) {
-//   heroHeading.addEventListener("mouseenter", () => {
-//     gsap.to(".distort feDisplacementMap", 1, {
-//       attr: {
-//         scale: 100,
-//       },
-//       ease: "circ.out",
-//     });
-//     gsap.to(
-//       ".distort feTurbulence",
-//       1,
-//       {
-//         attr: {
-//           baseFrequency: "2.08 .08",
-//         },
-//         ease: "circ.out",
-//       },
-//       1
-//     );
-//     gsap.to(title, 1, {
-//       fontVariationSettings: "'wght' 650",
-//       ease: "back.out",
-//     });
-//   });
-//   heroHeading.addEventListener("mouseleave", () => {
-//     gsap.to(
-//       ".distort feDisplacementMap",
-//       1,
-//       {
-//         attr: {
-//           scale: 0,
-//         },
-//         ease: "circ.out",
-//       },
-//       1
-//     );
-//     gsap.to(
-//       ".distort feTurbulence",
-//       1,
-//       {
-//         attr: {
-//           baseFrequency: "2.01 .01",
-//         },
-//         ease: "circ.out",
-//       },
-//       1
-//     );
-//     gsap.to(
-//       title,
-//       1,
-//       {
-//         fontVariationSettings: "'wght' 700",
-//         ease: "back.out",
-//       },
-//       1
-//     );
-//   });
-// }
-
-// const magneticCircle = document.getElementById("magneticCircle");
-// const allLinks = document.querySelectorAll("a");
+const magneticCircle = document.getElementById("magneticCircle");
+const allLinks = document.querySelectorAll("a");
 
 // Function to move the magnetic circle to the cursor position
-// function moveMagneticCircle(event) {
-//   gsap.to(magneticCircle, {
-//     x: event.clientX,
-//     y: event.clientY,
-//     duration: 0.35,
-//     ease: "spring(300, 20, 0.5)",
-//   });
-// }
+function moveMagneticCircle(event) {
+  gsap.to(magneticCircle, {
+    x: event.clientX,
+    y: event.clientY,
+    duration: 0.35,
+    ease: "spring(300, 20, 0.5)",
+  });
+}
 
 // Function to show the magnetic circle with a fade-in animation
-// function showMagneticCircle() {
-//   gsap.to(magneticCircle, {
-//     opacity: 1,
-//     // scale: 1,
-//     duration: 0.4,
-//   });
-// }
+function showMagneticCircle() {
+  gsap.to(magneticCircle, {
+    opacity: 1,
+    // scale: 1,
+    duration: 0.4,
+  });
+}
 
 // Function to hide the magnetic circle with a fade-out animation
-// function hideMagneticCircle() {
-//   gsap.to(magneticCircle, {
-//     opacity: 0,
-//     duration: 0.4,
-//   });
-// }
+function hideMagneticCircle() {
+  gsap.to(magneticCircle, {
+    opacity: 0,
+    duration: 0.4,
+  });
+}
 
-// allLinks.forEach(function (link) {
-//   link.addEventListener("mouseenter", function () {
-//     gsap.to(magneticCircle, {
-//       scale: 5,
-//       duration: 0.4,
-//       ease: "power1.out",
-//     });
-//   });
-// });
+allLinks.forEach(function (link) {
+  link.addEventListener("mouseenter", function () {
+    gsap.to(magneticCircle, {
+      scale: 6,
+      duration: 0.4,
+      ease: "power1.out",
+    });
+  });
+});
 
-// allLinks.forEach(function (link) {
-//   link.addEventListener("mouseleave", function () {
-//     gsap.to(magneticCircle, {
-//       scale: 1,
-//       duration: 0.4,
-//     });
-//   });
-// });
+allLinks.forEach(function (link) {
+  link.addEventListener("mouseleave", function () {
+    gsap.to(magneticCircle, {
+      scale: 1,
+      duration: 0.4,
+    });
+  });
+});
 
 // Add event listeners to track mouse movement
-// document.addEventListener("mousemove", function (event) {
-//   moveMagneticCircle(event);
-//   showMagneticCircle();
-// });
+document.addEventListener("mousemove", function (event) {
+  moveMagneticCircle(event);
+  showMagneticCircle();
+});
 
 // Add event listeners to hide the magnetic circle when the mouse leaves the window
-// document.addEventListener("mouseleave", function () {
-//   hideMagneticCircle();
-// });
+document.addEventListener("mouseleave", function () {
+  hideMagneticCircle();
+});
 
 const loadingManager = new THREE.LoadingManager(
   () => {
@@ -152,30 +91,6 @@ const loadingManager = new THREE.LoadingManager(
           },
           "<"
         )
-        // .fromTo(
-        //   mesh1.position,
-        //   {
-        //     y: -1,
-        //   },
-        //   {
-        //     y: 0,
-        //     duration: 2,
-        //     ease: "expo.inOut",
-        //   },
-        //   "<+0.1"
-        // )
-        // .fromTo(
-        //   ".hero_container",
-        //   {
-        //     yPercent: 20,
-        //   },
-        //   {
-        //     yPercent: 0,
-        //     duration: 1,
-        //     ease: "expo.easeInOut",
-        //   },
-        //   "<+0.3"
-        // )
         .fromTo(
           splitHeroHeading.chars,
           { yPercent: 100 },
@@ -422,12 +337,6 @@ const loader = new THREE.TextureLoader(loadingManager);
 const imageTexture = loader.load("../assets/flowers.jpg");
 
 /**
- * Debug Colors
- */
-// debugObject.depthColor = "#E6EFF2";
-// debugObject.surfaceColor = "#EEF4F6";
-
-/**
  * Materials
  */
 
@@ -455,53 +364,11 @@ const treeShaderMaterial = new THREE.ShaderMaterial({
 //Geometry
 const treePlaneGeometry = new THREE.PlaneGeometry(6, 6, 500, 500);
 
-// const count = treePlaneGeometry.attributes.position.count;
-// const randoms = new Float32Array(count);
-
-// for (let i = 0; i < count; i++) {
-//   randoms[i] = Math.random();
-// }
-
-// treePlaneGeometry.setAttribute(
-//   "aRandom",
-//   new THREE.BufferAttribute(randoms, 1)
-// );
-
 //Meshes
 const objectDistance = 4;
 const mesh1 = new THREE.Mesh(treePlaneGeometry, treeShaderMaterial);
-// const mesh2 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), material);
 
-// const mesh3 = new THREE.Mesh(waterPlaneGeometry, waterMaterial);
-
-// const mesh3 = new THREE.Mesh(
-//   new THREE.TorusKnotGeometry(0.8, 0.35, 100, 16),
-//   material
-// );
-
-// mesh1.position.y = 100;
-// mesh2.position.y = -objectDistance * 0.5;
-// mesh2.position.z = 0;
-
-// mesh2.position.x = 2;
-// if (window.innerWidth < 990) {
-//   mesh2.position.x = 0.8;
-// }
-// if (window.innerWidth < 600) {
-//   mesh2.position.x = 0.4;
-//   mesh2.position.y = -objectDistance * 1.1;
-// }
-// mesh3.position.x = 2;
 scene.add(mesh1);
-
-// const sectionMeshes = [mesh1, mesh2];
-
-/**
- * Directional Light
- */
-// const directionalLight = new THREE.DirectionalLight("#7e7e8f", 1);
-// directionalLight.position.set(0, 1, 0);
-// scene.add(directionalLight);
 
 /**
  * Sizes
@@ -589,22 +456,16 @@ const tick = () => {
   treeShaderMaterial.uniforms.uTime.value = elapsedTime;
 
   //Animate Camera
-  camera.position.y = (-scrollY / sizes.height) * 2;
+  // camera.position.y = (-scrollY / sizes.height) * 2;
 
-  const parallexX = mouse.x * 0.2;
-  const parallexY = -mouse.y * 0.2;
-  cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
-  cameraGroup.rotation.x +=
-    (parallexX - cameraGroup.rotation.x) * deltaTime * 2;
-  cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
-  cameraGroup.rotation.y +=
-    (parallexY - cameraGroup.rotation.y) * deltaTime * 2;
-
-  //Animate
-  // for (const mesh of sectionMeshes) {
-  //   mesh.rotation.x += deltaTime * 0.4;
-  //   mesh.rotation.y += deltaTime * 0.35;
-  // }
+  // const parallexX = mouse.x * 0.2;
+  // const parallexY = -mouse.y * 0.2;
+  // cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
+  // cameraGroup.rotation.x +=
+  //   (parallexX - cameraGroup.rotation.x) * deltaTime * 2;
+  // cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
+  // cameraGroup.rotation.y +=
+  //   (parallexY - cameraGroup.rotation.y) * deltaTime * 2;
 
   // Render
   renderer.render(scene, camera);
