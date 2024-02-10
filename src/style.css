@@ -655,6 +655,15 @@ h2 {
   max-width: 400px;
 }
 
+.footer-content {
+  position: relative;
+  z-index: 1;
+}
+
+.is-footer canvas {
+  position: absolute;
+}
+
 @media only screen and (max-width: 990px) and (min-width: 600px) {
   #magneticCircle {
     display: none;
