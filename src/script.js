@@ -184,43 +184,47 @@ gsap.registerPlugin(ScrollTrigger);
 
 const timeline = gsap.timeline();
 const splitText = new SplitType("#text");
-const splitSubText = new SplitType("#subText");
 const splitHeading = new SplitType("#heading");
 const splitHeroHeading = new SplitType("#hero-heading");
 const splitHeroPara = new SplitType("#hero-para");
 const splitSubHeading = new SplitType("#hero-sub--text");
 
 timeline
-  .from(splitText.words, {
-    // opacity: 0,
-    yPercent: 100,
-    stagger: 0.1,
-    scrollTrigger: {
-      trigger: text,
-      scrub: true,
-      start: "top bottom",
-      end: "bottom+=150px bottom",
+  .fromTo(
+    splitText.lines,
+    {
+      opacity: 0,
+      x: -50,
     },
-  })
-  .from(splitSubText.words, {
-    yPercent: 100,
-    stagger: 0.2,
-    scrollTrigger: {
-      trigger: text,
-      scrub: true,
-      start: "100px bottom",
-      end: "bottom+=150px bottom",
+    {
+      opacity: 1,
+      x: 0,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: text,
+        scrub: true,
+        start: "top bottom",
+        end: "bottom+=150px bottom",
+      },
+    }
+  )
+  .fromTo(
+    splitHeading.lines,
+    {
+      x: -50,
+      opacity: 0,
     },
-  })
-  .from(splitHeading.words, {
-    yPercent: 100,
-    scrollTrigger: {
-      trigger: aboutSection,
-      scrub: 1,
-      start: "top bottom",
-      end: "center bottom",
-    },
-  })
+    {
+      x: 0,
+      opacity: 1,
+      scrollTrigger: {
+        trigger: aboutSection,
+        scrub: 1,
+        start: "top bottom",
+        end: "center bottom",
+      },
+    }
+  )
   .from(".sustain", {
     y: 180,
     scrollTrigger: {
@@ -256,7 +260,22 @@ timeline
       start: "top bottom",
       end: "bottom center",
     },
-  });
+  })
+  .fromTo(
+    ".image-container",
+    {
+      scale: 1,
+    },
+    {
+      scale: 0.8,
+      scrollTrigger: {
+        trigger: ".services-section",
+        scrub: 1,
+        start: "top 30%",
+        end: "bottom bottom",
+      },
+    }
+  );
 
 rows.forEach((row, index) => {
   const direction = index % 2 === 0 ? 1 : -1;
