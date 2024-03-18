@@ -16,8 +16,6 @@ const loadingBarElement = document.querySelector(".loading-bar");
 
 const magneticCircle = document.getElementById("magneticCircle");
 const allLinks = document.querySelectorAll("a");
-const matterContainer = document.querySelector("#matter-container");
-const THICCNESS = 40;
 
 // Function to move the magnetic circle to the cursor position
 function moveMagneticCircle(event) {
@@ -75,6 +73,8 @@ document.addEventListener("mousemove", function (event) {
 document.addEventListener("mouseleave", function () {
   hideMagneticCircle();
 });
+
+gsap.registerPlugin(ScrollTrigger);
 
 const loadingManager = new THREE.LoadingManager(
   () => {
@@ -183,8 +183,6 @@ const loadingManager = new THREE.LoadingManager(
   }
 );
 
-gsap.registerPlugin(ScrollTrigger);
-
 const timeline = gsap.timeline();
 const splitText = new SplitType("#text");
 const splitHeading = new SplitType("#heading");
@@ -204,7 +202,7 @@ timeline
       x: 0,
       stagger: 0.1,
       scrollTrigger: {
-        trigger: text,
+        trigger: ".motive-section",
         scrub: true,
         start: "top bottom",
         end: "bottom+=150px bottom",
@@ -263,22 +261,22 @@ timeline
       start: "top bottom",
       end: "bottom center",
     },
-  })
-  .fromTo(
-    ".image-container",
-    {
-      scale: 1,
-    },
-    {
-      scale: 0.8,
-      scrollTrigger: {
-        trigger: ".services-section",
-        scrub: 1,
-        start: "top 30%",
-        end: "bottom bottom",
-      },
-    }
-  );
+  });
+// .fromTo(
+//   ".image-container",
+//   {
+//     scale: 1,
+//   },
+//   {
+//     scale: 0.8,
+//     scrollTrigger: {
+//       trigger: ".services-section",
+//       scrub: 1,
+//       start: "top 30%",
+//       end: "bottom bottom",
+//     },
+//   }
+// );
 
 rows.forEach((row, index) => {
   const direction = index % 2 === 0 ? 1 : -1;
@@ -300,7 +298,7 @@ rows.forEach((row, index) => {
       "<"
     )
     .to(row, {
-      x: `${index * -20 * direction}%`, // Adjust the value as needed
+      x: `${index * -10 * direction}%`, // Adjust the value as needed
       duration: 1,
       scrollTrigger: {
         trigger: container,
@@ -460,16 +458,16 @@ const tick = () => {
   treeShaderMaterial.uniforms.uTime.value = elapsedTime;
 
   //Animate Camera
-  // camera.position.y = (-scrollY / sizes.height) * 2;
+  camera.position.y = (-scrollY / sizes.height) * 2;
 
-  // const parallexX = mouse.x * 0.2;
-  // const parallexY = -mouse.y * 0.2;
-  // cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
-  // cameraGroup.rotation.x +=
-  //   (parallexX - cameraGroup.rotation.x) * deltaTime * 2;
-  // cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
-  // cameraGroup.rotation.y +=
-  //   (parallexY - cameraGroup.rotation.y) * deltaTime * 2;
+  const parallexX = mouse.x * 0.2;
+  const parallexY = -mouse.y * 0.2;
+  cameraGroup.position.x += (parallexX - cameraGroup.position.x) * deltaTime;
+  cameraGroup.rotation.x +=
+    (parallexX - cameraGroup.rotation.x) * deltaTime * 2;
+  cameraGroup.position.y += (parallexY - cameraGroup.position.y) * deltaTime;
+  cameraGroup.rotation.y +=
+    (parallexY - cameraGroup.rotation.y) * deltaTime * 2;
 
   // Render
   renderer.render(scene, camera);
@@ -479,157 +477,3 @@ const tick = () => {
 };
 
 tick();
-
-const renderCanvas = () => {
-  let Engine = Matter.Engine,
-    Render = Matter.Render,
-    Runner = Matter.Runner,
-    Bodies = Matter.Bodies,
-    Composite = Matter.Composite;
-
-  // create an engine
-  let engine = Engine.create();
-
-  // create a renderer
-  let render = Render.create({
-    element: matterContainer,
-    engine: engine,
-    options: {
-      width: matterContainer.clientWidth,
-      height: matterContainer.clientHeight,
-      background: "transparent",
-      wireframes: false,
-      showAngleIndicator: false,
-    },
-  });
-
-  const boxSize = 50;
-  const boxCount = 50;
-  const boxes = [];
-
-  for (let i = 0; i < boxCount; i++) {
-    const box = Bodies.circle(
-      Math.random() * matterContainer.clientWidth,
-      -i * 100,
-      Math.random() * boxSize,
-      // boxSize,
-      {
-        friction: 0.3,
-        frictionAir: 0.00001,
-        restitution: 0.8,
-        render: {
-          fillStyle: "#ffc5b5",
-        },
-      }
-    );
-    boxes.push(box);
-    Composite.add(engine.world, box);
-  }
-
-  // for (let i = 0; i < 100; i++) {
-  //   let circle = Bodies.circle(i, 10, 30, {
-  //     friction: 0.3,
-  //     frictionAir: 0.00001,
-  //     restitution: 0.8,
-  //   });
-  //   Composite.add(engine.world, circle);
-  // }
-
-  let ground = Bodies.rectangle(
-    matterContainer.clientWidth / 2,
-    matterContainer.clientHeight + THICCNESS / 2,
-    27184,
-    THICCNESS,
-    { isStatic: true }
-  );
-
-  let leftWall = Bodies.rectangle(
-    0 - THICCNESS / 2,
-    matterContainer.clientHeight / 2,
-    THICCNESS,
-    matterContainer.clientHeight * 5,
-    {
-      isStatic: true,
-    }
-  );
-
-  let rightWall = Bodies.rectangle(
-    matterContainer.clientWidth + THICCNESS / 2,
-    matterContainer.clientHeight / 2,
-    THICCNESS,
-    matterContainer.clientHeight * 5,
-    { isStatic: true }
-  );
-
-  // add all of the bodies to the world
-  Composite.add(engine.world, [ground, leftWall, rightWall]);
-
-  let matterMouse = Matter.Mouse.create(render.canvas);
-  let mouseConstraint = Matter.MouseConstraint.create(engine, {
-    mouse: matterMouse,
-    constraint: {
-      stiffness: 0.2,
-      render: {
-        visible: false,
-      },
-    },
-  });
-
-  Composite.add(engine.world, mouseConstraint);
-
-  // allow scroll through the canvas
-  mouseConstraint.mouse.element.removeEventListener(
-    "mousewheel",
-    mouseConstraint.mouse.mousewheel
-  );
-  mouseConstraint.mouse.element.removeEventListener(
-    "DOMMouseScroll",
-    mouseConstraint.mouse.mousewheel
-  );
-
-  // run the renderer
-  Render.run(render);
-
-  // create runner
-  var runner = Runner.create();
-
-  // run the engine
-  Runner.run(runner, engine);
-
-  function handleResize(matterContainer) {
-    // set canvas size to new values
-    render.canvas.width = matterContainer.clientWidth;
-    render.canvas.height = matterContainer.clientHeight;
-
-    // reposition ground
-    Matter.Body.setPosition(
-      ground,
-      Matter.Vector.create(
-        matterContainer.clientWidth / 2,
-        matterContainer.clientHeight + THICCNESS / 2
-      )
-    );
-
-    // reposition right wall
-    Matter.Body.setPosition(
-      rightWall,
-      Matter.Vector.create(
-        matterContainer.clientWidth + THICCNESS / 2,
-        matterContainer.clientHeight / 2
-      )
-    );
-  }
-
-  window.addEventListener("resize", () => handleResize(matterContainer));
-};
-
-ScrollTrigger.create({
-  trigger: matterContainer,
-  onEnter: renderCanvas,
-  once: true,
-  start: "top top",
-  end: "bottom bottom",
-  // onLeave: myLeaveFunc,
-  // onEnterBack: myEnterFunc,
-  // onLeaveBack: myLeaveFunc
-});

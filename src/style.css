@@ -359,8 +359,8 @@ h2 {
 
 .gallery-img__container {
   position: absolute;
-  min-width: 30vw;
-  max-height: 40vh;
+  min-width: 18vw;
+  max-height: 45vh;
   position: relative;
   overflow: hidden;
 }
@@ -844,6 +844,10 @@ h2 {
   .service-wrapper p {
     font-size: 1.3rem;
   }
+  .gallery-img__container {
+    min-width: 16rem;
+    max-height: 24rem;
+  }
 }
 
 @media only screen and (max-width: 599px) and (min-width: 280px) {
@@ -1023,6 +1027,11 @@ h2 {
   .gallery {
     padding-left: 2em;
     padding-right: 2em;
+  }
+
+  .gallery-img__container {
+    min-width: 10rem;
+    max-height: 16rem;
   }
 
   .work-content_wrapper {
