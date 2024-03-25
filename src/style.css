@@ -945,7 +945,7 @@ h2 {
     padding-right: 2rem;
   }
   .hero_wrapper h1 {
-    font-size: 3.4rem;
+    font-size: 3.2rem;
     line-height: 1.3;
     letter-spacing: -2px;
   }
@@ -966,11 +966,28 @@ h2 {
     margin-top: 1.5rem;
     font-size: 1.2rem;
   }
+
+  .section.is-about {
+    background-color: #fafafa;
+  }
+
+  .work-section {
+    background-color: #fafafa;
+  }
+
+  .services-section {
+    background-color: #fafafa;
+  }
+
+  .gallery-section {
+    background-color: #fafafa;
+  }
   .section .about_wrapper {
     top: 8%;
     width: 80%;
   }
   .section .mail_wrapper {
+    font-size: 0.85rem;
     top: 20%;
     width: 70%;
   }
