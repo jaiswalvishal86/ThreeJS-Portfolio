@@ -1,11 +1,12 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-/* @font-face {
-  font-family: "PP Nune Montreal";
-  src: url("/fonts/Mona-Sans.ttf") format("otf");
-} */
+@font-face {
+  font-family: "PPEditorialNew";
+  src: url("/fonts/PPEditorialNew-UltralightItalic.otf") format("otf");
+}
 
 html {
   background-color: #ffffff;
@@ -168,7 +169,8 @@ header a {
 
 .section.is-about {
   z-index: 2;
-  background-color: #fafafa;
+  background-color: #fafafa8f;
+  backdrop-filter: blur(8px);
   overflow: hidden;
 }
 
@@ -190,7 +192,7 @@ header a {
 .section .mail_wrapper {
   width: 20%;
   position: absolute;
-  top: 20%;
+  top: 42%;
   left: 10%;
   display: flex;
   color: #1b1b1b;
@@ -200,7 +202,7 @@ header a {
 .section .services_wrapper {
   position: absolute;
   right: 8%;
-  bottom: 15%;
+  bottom: 12%;
   text-transform: uppercase;
   /* color: #518a9b; */
 }
@@ -221,12 +223,22 @@ header a {
 }
 
 .hero_wrapper h1 {
-  font-size: 6.5vw;
+  font-size: 10vw;
   font-weight: 400;
-  letter-spacing: -3px;
-  color: #1b1b1b;
+  letter-spacing: -4px;
+  color: #1c1c1c;
   text-transform: uppercase;
   will-change: transform;
+}
+
+.heading_line-1 {
+  position: relative;
+  left: -20%;
+}
+
+.heading_line-2 {
+  position: relative;
+  left: 20%;
 }
 
 .line {
@@ -317,7 +329,8 @@ h2 {
   position: relative;
   z-index: 1;
   padding: 4rem 0rem;
-  background-color: #fafafa;
+  background-color: #fafafa8f;
+  backdrop-filter: blur(8px);
 }
 
 .gallery {
@@ -374,7 +387,8 @@ h2 {
 .work-section {
   padding: 4rem 0;
   overflow: hidden;
-  background-color: #fafafa;
+  background-color: #fafafa8f;
+  backdrop-filter: blur(8px);
 }
 
 .work-container {
@@ -389,7 +403,7 @@ h2 {
   justify-content: center;
   align-items: flex-start;
   overflow: hidden;
-  background-color: #fafafa;
+  /* background-color: #fafafa; */
 }
 
 .work-card--wrapper {
@@ -618,14 +632,18 @@ h2 {
 
 .services-section {
   /* min-height: 100vh; */
-  background-color: #fafafa;
+  background-color: #fafafa8f;
+  backdrop-filter: blur(8px);
   padding: 6rem 6em;
+  position: relative;
 }
 
 .service-container {
   max-width: 100em;
   margin: 0 auto;
   display: flex;
+  align-items: start;
+  justify-content: space-between;
   gap: 2rem;
   padding: 2rem 0rem;
 }
@@ -634,31 +652,70 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 40%;
+}
+
+.service-intro {
+  position: sticky;
+  top: 20%;
+}
+
+.service-intro p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.7;
 }
 
 .service-intro h3 {
-  font-size: 3vw;
+  margin-top: 2rem;
+  font-size: 5vw;
   line-height: 1.3;
   font-weight: 300;
   color: #9c9c9c;
   text-transform: none;
 }
 
+.service-cta {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.service-wrapper {
+  padding: 2rem;
+  border: 1px solid rgb(180, 180, 180);
+  color: #5c5c5c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.service-content {
+  max-width: 60%;
+}
+
 .service-wrapper h3 {
-  font-size: 3vw;
-  font-weight: 300;
-  margin-bottom: 0.5vw;
+  font-size: 1.8vw;
+  font-weight: 400;
+  margin-bottom: 1rem;
 }
 .service-wrapper p {
-  font-size: 1.3vw;
+  font-size: 0.9vw;
   line-height: 1.5;
   font-weight: 300;
 }
 
-.service-line {
+.service-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.service-icon svg {
+  height: 100%;
   width: 100%;
-  height: 1px;
-  background-color: #8c8c8c;
 }
 
 .footer-section {
@@ -680,7 +737,8 @@ h2 {
   align-items: center;
   gap: 0.5rem;
   justify-content: center;
-  background-color: #f3f3f3;
+  background-color: #fafafa45;
+  backdrop-filter: blur(8px);
 }
 .footer-wrapper h2 {
   text-align: center;
@@ -713,15 +771,25 @@ h2 {
     font-size: 1.6rem;
   }
   .hero_wrapper h1 {
-    font-size: 5rem;
+    font-size: 6.5rem;
     line-height: 1.2;
   }
+
+  .heading_line-1 {
+    left: 0;
+  }
+
+  .heading_line-2 {
+    left: 0;
+  }
+
   .hero_wrapper p {
     margin-top: 1rem;
     font-size: 1.3rem;
     max-width: 75%;
   }
   .section .mail_wrapper {
+    top: 20%;
     width: 60%;
     font-size: 1.6rem;
   }
@@ -831,18 +899,30 @@ h2 {
 
   .services-container {
     margin-top: 1rem;
-    gap: 1rem;
+  }
+
+  .service-intro {
+    position: relative;
+    top: auto;
+  }
+
+  .service-content {
+    max-width: 80%;
   }
 
   .service-intro h3 {
-    font-size: 2rem;
+    font-size: 4rem;
+  }
+
+  .service-wrapper {
+    padding: 2.5rem;
   }
   .service-wrapper h3 {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
   }
 
   .service-wrapper p {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
   .gallery-img__container {
     min-width: 16rem;
@@ -865,9 +945,23 @@ h2 {
     padding-right: 2rem;
   }
   .hero_wrapper h1 {
-    font-size: 3rem;
-    line-height: 1.2;
+    font-size: 3.4rem;
+    line-height: 1.3;
+    letter-spacing: -2px;
   }
+
+  .heading_line-1 {
+    left: 0;
+  }
+
+  .heading_line-2 {
+    left: 0;
+  }
+
+  .heading_line-3 {
+    left: 0;
+  }
+
   .hero_wrapper p {
     margin-top: 1.5rem;
     font-size: 1.2rem;
@@ -877,6 +971,7 @@ h2 {
     width: 80%;
   }
   .section .mail_wrapper {
+    top: 20%;
     width: 70%;
   }
   .section .services_wrapper {
@@ -1055,9 +1150,23 @@ h2 {
     margin-top: 1.5rem;
   }
 
-  .service-intro h3 {
-    font-size: 1.3rem;
+  .service-intro {
+    position: relative;
+    top: auto;
   }
+
+  .service-intro h3 {
+    font-size: 2.6rem;
+  }
+
+  .service-icon {
+    display: none;
+  }
+
+  .service-content {
+    max-width: 100%;
+  }
+
   .service-wrapper h3 {
     font-size: 2rem;
   }
