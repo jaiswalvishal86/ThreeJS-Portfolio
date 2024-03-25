@@ -969,18 +969,22 @@ h2 {
 
   .section.is-about {
     background-color: #fafafa;
+    backdrop-filter: blur(0px);
   }
 
   .work-section {
     background-color: #fafafa;
+    backdrop-filter: blur(0px);
   }
 
   .services-section {
     background-color: #fafafa;
+    backdrop-filter: blur(0px);
   }
 
   .gallery-section {
     background-color: #fafafa;
+    backdrop-filter: blur(0px);
   }
   .section .about_wrapper {
     top: 8%;
