@@ -37,7 +37,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   /* mix-blend-mode: difference; */
@@ -64,12 +64,12 @@ header a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0;
+  background-color: #fafafa;
   will-change: transform;
   z-index: 10;
 }
 .loader-overlay p {
-  font-size: 1.4rem;
+  font-size: 2rem;
   text-transform: uppercase;
   font-weight: 300;
   margin-bottom: 1rem;
@@ -82,7 +82,7 @@ header a {
 }
 
 .loading-bar {
-  width: 15%;
+  width: 50%;
   transform: scaleX(0);
   transform-origin: top center;
   height: 2px;
@@ -169,13 +169,14 @@ header a {
 
 .section.is-about {
   z-index: 2;
-  background-color: #fafafa8f;
+  background-color: #fafafaaa;
   backdrop-filter: blur(8px);
   overflow: hidden;
   padding: 6rem 6em;
 }
 
 .about_wrapper {
+  width: 100%;
   padding: 2rem 0rem;
   max-width: 100em;
   margin: 0 auto;
@@ -232,7 +233,7 @@ header a {
 .hero_wrapper h1 {
   font-size: 10vw;
   font-weight: 400;
-  letter-spacing: -4px;
+  letter-spacing: -6px;
   color: #1c1c1c;
   text-transform: uppercase;
   will-change: transform;
@@ -268,13 +269,6 @@ h1 .creative {
   font-size: 1.3vw;
   line-height: 1.4;
   color: #1b1b1b;
-}
-
-.section .about_wrapper {
-  width: 100%;
-  /* position: absolute;
-  top: 15%;
-  left: 10%; */
 }
 
 h2 {
@@ -336,7 +330,7 @@ h2 {
   position: relative;
   z-index: 1;
   padding: 4rem 0rem;
-  background-color: #fafafa8f;
+  background-color: #fafafaaa;
   backdrop-filter: blur(8px);
 }
 
@@ -394,7 +388,7 @@ h2 {
 .work-section {
   padding: 4rem 0;
   overflow: hidden;
-  background-color: #fafafa8f;
+  background-color: #fafafaaa;
   backdrop-filter: blur(8px);
 }
 
@@ -639,7 +633,7 @@ h2 {
 
 .services-section {
   /* min-height: 100vh; */
-  background-color: #fafafa8f;
+  background-color: #fafafaaa;
   backdrop-filter: blur(8px);
   padding: 6rem 6em;
   position: relative;
@@ -744,7 +738,7 @@ h2 {
   align-items: center;
   gap: 0.5rem;
   justify-content: center;
-  /* background-color: #fafafa8f; */
+  /* background-color: #fafafaaa; */
   backdrop-filter: blur(8px);
 }
 .footer-wrapper h2 {
@@ -801,6 +795,10 @@ h2 {
     font-size: 1.6rem;
   }
 
+  .section.is-about {
+    padding: 4rem;
+  }
+
   .services_wrapper .service_text {
     font-size: 1.3em;
     line-height: 1.4;
@@ -808,10 +806,9 @@ h2 {
   .section .scroll_wrapper {
     top: 90%;
   }
-  /* .section .about_wrapper {
-    top: 10%;
-    width: 80%;
-  } */
+  .section .about_wrapper {
+    padding: 1rem 0rem;
+  }
 
   .vignette {
     height: 500px;
@@ -977,6 +974,7 @@ h2 {
   .section.is-about {
     background-color: #fafafa;
     backdrop-filter: blur(0px);
+    padding: 2rem;
   }
 
   .work-section {
@@ -993,10 +991,11 @@ h2 {
     background-color: #fafafa;
     backdrop-filter: blur(0px);
   }
-  /* .section .about_wrapper {
-    top: 8%;
-    width: 80%;
-  } */
+
+  .section .about_wrapper {
+    padding: 1rem 0rem;
+  }
+
   .section .mail_wrapper {
     font-size: 0.85rem;
     top: 20%;

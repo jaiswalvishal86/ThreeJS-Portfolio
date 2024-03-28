@@ -260,16 +260,16 @@ timeline
       start: "top bottom",
       end: "bottom center",
     },
-  })
-  .from(".footer-content", {
-    yPercent: 100,
-    scrollTrigger: {
-      trigger: container,
-      scrub: 1,
-      start: "top center",
-      end: "bottom top",
-    },
   });
+// .from(".footer-content", {
+//   yPercent: 500,
+//   scrollTrigger: {
+//     trigger: container,
+//     scrub: 1,
+//     start: "top center",
+//     end: "bottom top",
+//   },
+// });
 // .fromTo(
 //   ".image-container",
 //   {
@@ -319,7 +319,7 @@ rows.forEach((row, index) => {
     });
 });
 
-const lenis = new Lenis({ lerp: 1, duration: 1 });
+const lenis = new Lenis({ lerp: 1, duration: 0.6 });
 
 lenis.on("scroll", (e) => {
   // console.log(e);
@@ -369,8 +369,6 @@ const treeShaderMaterial = new THREE.ShaderMaterial({
     uNoise: { value: 8 },
   },
 });
-
-// const material = new THREE.MeshBasicMaterial();
 
 //Geometry
 const treePlaneGeometry = new THREE.PlaneGeometry(6, 6, 500, 500);
