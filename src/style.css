@@ -132,8 +132,8 @@ header a {
 
   font-weight: 300;
   color: #37393f;
-  padding-left: 10%;
-  padding-right: 10%;
+  /* padding-left: 10%;
+  padding-right: 10%; */
 }
 
 .section_wrapper {
@@ -172,6 +172,13 @@ header a {
   background-color: #fafafa8f;
   backdrop-filter: blur(8px);
   overflow: hidden;
+  padding: 6rem 6em;
+}
+
+.about_wrapper {
+  padding: 2rem 0rem;
+  max-width: 100em;
+  margin: 0 auto;
 }
 
 .section .scroll_wrapper {
@@ -264,10 +271,10 @@ h1 .creative {
 }
 
 .section .about_wrapper {
-  width: 50%;
-  position: absolute;
+  width: 100%;
+  /* position: absolute;
   top: 15%;
-  left: 10%;
+  left: 10%; */
 }
 
 h2 {
@@ -737,7 +744,7 @@ h2 {
   align-items: center;
   gap: 0.5rem;
   justify-content: center;
-  background-color: #fafafa45;
+  /* background-color: #fafafa8f; */
   backdrop-filter: blur(8px);
 }
 .footer-wrapper h2 {
@@ -801,10 +808,10 @@ h2 {
   .section .scroll_wrapper {
     top: 90%;
   }
-  .section .about_wrapper {
+  /* .section .about_wrapper {
     top: 10%;
     width: 80%;
-  }
+  } */
 
   .vignette {
     height: 500px;
@@ -986,10 +993,10 @@ h2 {
     background-color: #fafafa;
     backdrop-filter: blur(0px);
   }
-  .section .about_wrapper {
+  /* .section .about_wrapper {
     top: 8%;
     width: 80%;
-  }
+  } */
   .section .mail_wrapper {
     font-size: 0.85rem;
     top: 20%;

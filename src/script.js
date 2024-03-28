@@ -185,7 +185,6 @@ const loadingManager = new THREE.LoadingManager(
 
 const timeline = gsap.timeline();
 const splitText = new SplitType("#text");
-const splitHeading = new SplitType("#heading");
 const splitHeroHeading = new SplitType("#hero-heading");
 const splitHeroPara = new SplitType("#hero-para");
 const splitSubHeading = new SplitType("#hero-sub--text");
@@ -202,30 +201,30 @@ timeline
       x: 0,
       stagger: 0.1,
       scrollTrigger: {
-        trigger: ".motive-section",
+        trigger: aboutSection,
         scrub: true,
         start: "top bottom",
         end: "bottom+=150px bottom",
       },
     }
   )
-  .fromTo(
-    splitHeading.lines,
-    {
-      x: -50,
-      opacity: 0,
-    },
-    {
-      x: 0,
-      opacity: 1,
-      scrollTrigger: {
-        trigger: aboutSection,
-        scrub: 1,
-        start: "top bottom",
-        end: "center bottom",
-      },
-    }
-  )
+  // .fromTo(
+  //   splitHeading.lines,
+  //   {
+  //     x: -50,
+  //     opacity: 0,
+  //   },
+  //   {
+  //     x: 0,
+  //     opacity: 1,
+  //     scrollTrigger: {
+  //       trigger: aboutSection,
+  //       scrub: 1,
+  //       start: "top bottom",
+  //       end: "center bottom",
+  //     },
+  //   }
+  // )
   .from(".sustain", {
     y: 180,
     scrollTrigger: {
@@ -261,16 +260,16 @@ timeline
       start: "top bottom",
       end: "bottom center",
     },
+  })
+  .from(".footer-content", {
+    yPercent: 100,
+    scrollTrigger: {
+      trigger: container,
+      scrub: 1,
+      start: "top center",
+      end: "bottom top",
+    },
   });
-// .from(".footer-content", {
-//   yPercent: 500,
-//   scrollTrigger: {
-//     trigger: container,
-//     scrub: 1,
-//     start: "top center",
-//     end: "bottom top",
-//   },
-// });
 // .fromTo(
 //   ".image-container",
 //   {
