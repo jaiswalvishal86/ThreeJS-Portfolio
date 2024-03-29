@@ -17,61 +17,113 @@ const loadingBarElement = document.querySelector(".loading-bar");
 const magneticCircle = document.getElementById("magneticCircle");
 const allLinks = document.querySelectorAll("a");
 
-// Function to move the magnetic circle to the cursor position
-function moveMagneticCircle(event) {
-  gsap.to(magneticCircle, {
-    x: event.clientX,
-    y: event.clientY,
-    duration: 0.35,
-    ease: "spring(300, 20, 0.5)",
-  });
-}
+const media = gsap.matchMedia();
 
-// Function to show the magnetic circle with a fade-in animation
-function showMagneticCircle() {
-  gsap.to(magneticCircle, {
-    opacity: 1,
-    // scale: 1,
-    duration: 0.4,
-  });
-}
+const timeline = gsap.timeline();
+const splitText = new SplitType("#text");
+const splitHeroHeading = new SplitType("#hero-heading", { types: "chars" });
 
-// Function to hide the magnetic circle with a fade-out animation
-function hideMagneticCircle() {
-  gsap.to(magneticCircle, {
-    opacity: 0,
-    duration: 0.4,
-  });
-}
+const splitHeroPara = new SplitType("#hero-para");
+const splitSubHeading = new SplitType("#hero-sub--text");
 
-allLinks.forEach(function (link) {
-  link.addEventListener("mouseenter", function () {
-    gsap.to(magneticCircle, {
-      scale: 6,
-      duration: 0.4,
-      ease: "power1.out",
+media.add("(min-width: 992px)", () => {
+  const fontWeightItems = document.querySelectorAll(
+    '[data-animate="font-weight"]'
+  );
+  const MAX_DISTANCE = 300;
+  const MAX_FONT_WEIGHT = 700;
+  const MIN_FONT_WEIGHT = 300;
+
+  // fontWeightItems.forEach((item) => {
+  //   new SplitType(item, { types: "chars" }).chars;
+  // });
+  document.addEventListener("mousemove", (event) => {
+    const mouseX = event.pageX;
+    const mouseY = event.pageY;
+
+    fontWeightItems.forEach((item) => {
+      item.querySelectorAll(".char").forEach((char) => {
+        const itemRect = char.getBoundingClientRect();
+        const itemCenterX = itemRect.left + itemRect.width / 2 + window.scrollX;
+
+        const itemCenterY = itemRect.top + itemRect.height / 2 + window.scrollY;
+
+        const distance = Math.sqrt(
+          Math.pow(mouseX - itemCenterX, 2) + Math.pow(mouseY - itemCenterY, 2)
+        );
+
+        let fontWeight =
+          distance < MAX_DISTANCE
+            ? gsap.utils.mapRange(
+                0,
+                MAX_DISTANCE,
+                MIN_FONT_WEIGHT,
+                MAX_FONT_WEIGHT,
+                Math.max(0, MAX_DISTANCE - distance)
+              )
+            : MIN_FONT_WEIGHT;
+
+        gsap.to(char, { fontWeight, duration: 0.5 });
+      });
     });
   });
-});
 
-allLinks.forEach(function (link) {
-  link.addEventListener("mouseleave", function () {
+  // Function to move the magnetic circle to the cursor position
+  function moveMagneticCircle(event) {
     gsap.to(magneticCircle, {
-      scale: 1,
+      x: event.clientX,
+      y: event.clientY,
+      duration: 0.35,
+      ease: "spring(300, 20, 0.5)",
+    });
+  }
+
+  // Function to show the magnetic circle with a fade-in animation
+  function showMagneticCircle() {
+    gsap.to(magneticCircle, {
+      opacity: 1,
+      // scale: 1,
       duration: 0.4,
     });
+  }
+
+  // Function to hide the magnetic circle with a fade-out animation
+  function hideMagneticCircle() {
+    gsap.to(magneticCircle, {
+      opacity: 0,
+      duration: 0.4,
+    });
+  }
+
+  allLinks.forEach(function (link) {
+    link.addEventListener("mouseenter", function () {
+      gsap.to(magneticCircle, {
+        scale: 6,
+        duration: 0.4,
+        ease: "power1.out",
+      });
+    });
   });
-});
 
-// Add event listeners to track mouse movement
-document.addEventListener("mousemove", function (event) {
-  moveMagneticCircle(event);
-  showMagneticCircle();
-});
+  allLinks.forEach(function (link) {
+    link.addEventListener("mouseleave", function () {
+      gsap.to(magneticCircle, {
+        scale: 1,
+        duration: 0.4,
+      });
+    });
+  });
 
-// Add event listeners to hide the magnetic circle when the mouse leaves the window
-document.addEventListener("mouseleave", function () {
-  hideMagneticCircle();
+  // Add event listeners to track mouse movement
+  document.addEventListener("mousemove", function (event) {
+    moveMagneticCircle(event);
+    showMagneticCircle();
+  });
+
+  // Add event listeners to hide the magnetic circle when the mouse leaves the window
+  document.addEventListener("mouseleave", function () {
+    hideMagneticCircle();
+  });
 });
 
 gsap.registerPlugin(ScrollTrigger);
@@ -183,18 +235,12 @@ const loadingManager = new THREE.LoadingManager(
   }
 );
 
-const timeline = gsap.timeline();
-const splitText = new SplitType("#text");
-const splitHeroHeading = new SplitType("#hero-heading");
-const splitHeroPara = new SplitType("#hero-para");
-const splitSubHeading = new SplitType("#hero-sub--text");
-
 timeline
   .fromTo(
     splitText.lines,
     {
       opacity: 0,
-      x: -50,
+      x: -100,
     },
     {
       opacity: 1,
@@ -319,7 +365,7 @@ rows.forEach((row, index) => {
     });
 });
 
-const lenis = new Lenis({ lerp: 1, duration: 0.6 });
+const lenis = new Lenis({ lerp: 1, duration: 0.8 });
 
 lenis.on("scroll", (e) => {
   // console.log(e);

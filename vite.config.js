@@ -1,9 +1,12 @@
 import glsl from "vite-plugin-glsl";
+import { resolve } from "path";
+import { defineConfig } from "vite";
 
 const isCodeSandbox =
   "SANDBOX_URL" in process.env || "CODESANDBOX_HOST" in process.env;
 
-export default {
+export default defineConfig({
+  envDir: __dirname,
   root: "src/",
   publicDir: "../static/",
   base: "./",
@@ -12,9 +15,15 @@ export default {
     open: !isCodeSandbox, // Open if it's not a CodeSandbox
   },
   build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "src/index.html"),
+        page: resolve(__dirname, "src/pages/case.html"),
+      },
+    },
     outDir: "../dist",
     emptyOutDir: true,
     sourcemap: true,
   },
   plugins: [glsl()],
-};
+});

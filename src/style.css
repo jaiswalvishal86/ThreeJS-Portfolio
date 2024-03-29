@@ -47,13 +47,17 @@ header {
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
 }
-header a {
+
+a {
+  color: #000000;
   text-decoration: none;
+}
+
+header a {
   font-weight: 300;
   font-size: 1.2rem;
   line-height: 0.9;
   text-transform: uppercase;
-  color: #000000;
 }
 
 .loader-overlay {
@@ -129,7 +133,6 @@ header a {
   align-items: center;
   height: 100vh;
   position: relative;
-
   font-weight: 300;
   color: #37393f;
   /* padding-left: 10%;
@@ -198,7 +201,7 @@ header a {
 }
 
 .section .mail_wrapper {
-  width: 20%;
+  width: 22%;
   position: absolute;
   top: 42%;
   left: 10%;
@@ -233,7 +236,8 @@ header a {
 .hero_wrapper h1 {
   font-size: 10vw;
   font-weight: 400;
-  letter-spacing: -6px;
+  letter-spacing: -7px;
+  /* line-height: 1.1; */
   color: #1c1c1c;
   text-transform: uppercase;
   will-change: transform;
@@ -241,12 +245,18 @@ header a {
 
 .heading_line-1 {
   position: relative;
-  left: -20%;
+  left: -35%;
+  overflow: hidden;
 }
 
 .heading_line-2 {
   position: relative;
-  left: 20%;
+  left: 25%;
+  overflow: hidden;
+}
+
+.heading_line-3 {
+  overflow: hidden;
 }
 
 .line {
@@ -390,6 +400,8 @@ h2 {
   overflow: hidden;
   background-color: #fafafaaa;
   backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 1;
 }
 
 .work-container {
