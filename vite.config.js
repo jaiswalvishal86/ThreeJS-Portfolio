@@ -18,7 +18,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
-        page: resolve(__dirname, "src/pages/case.html"),
+        page1: resolve(__dirname, "src/pages/case1.html"),
+        page2: resolve(__dirname, "src/pages/case2.html"),
       },
     },
     outDir: "../dist",
