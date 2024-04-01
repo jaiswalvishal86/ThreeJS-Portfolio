@@ -26,6 +26,41 @@ const splitHeroHeading = new SplitType("#hero-heading", { types: "chars" });
 const splitHeroPara = new SplitType("#hero-para");
 const splitSubHeading = new SplitType("#hero-sub--text");
 
+const words = "EXPERIENCE";
+
+const animationDuration = 4000;
+
+const characters = words.split("").forEach((char, i) => {
+  function createElement(offset) {
+    const div = document.createElement("div");
+    div.innerText = char;
+    div.classList.add("character");
+    div.style.animationDelay = `-${i * (animationDuration / 16) - offset}ms`;
+
+    return div;
+  }
+  document.getElementById("spiral").append(createElement(0));
+  document
+    .getElementById("spiral2")
+    .append(createElement(-1 * (animationDuration / 2)));
+});
+
+function removeAllAnimationClasses() {
+  const characterDoms = document.querySelectorAll(".character");
+
+  characterDoms.forEach(function (element) {
+    element.classList.remove("character");
+  });
+}
+
+window.addEventListener("load", function () {
+  let delayTime = 5000;
+
+  setTimeout(function () {
+    removeAllAnimationClasses();
+  }, delayTime);
+});
+
 media.add("(min-width: 992px)", () => {
   const fontWeightItems = document.querySelectorAll(
     '[data-animate="font-weight"]'
@@ -63,7 +98,7 @@ media.add("(min-width: 992px)", () => {
               )
             : MIN_FONT_WEIGHT;
 
-        gsap.to(char, { fontWeight, duration: 0.5 });
+        gsap.to(char, { fontWeight, duration: 0.8 });
       });
     });
   });
@@ -130,12 +165,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 const loadingManager = new THREE.LoadingManager(
   () => {
-    gsap.delayedCall(0.5, () => {
+    gsap.delayedCall(2, () => {
       timeline
-        .to("#loaderText", {
+        .to("#spiral", {
           opacity: 0,
           duration: 0.5,
         })
+        .to(
+          "#spiral2",
+          {
+            opacity: 0,
+            duration: 0.5,
+          },
+          "<"
+        )
         .fromTo(
           loaderElement,
           { yPercent: 0 },
@@ -225,13 +268,13 @@ const loadingManager = new THREE.LoadingManager(
           "<+0.3"
         );
 
-      loadingBarElement.classList.add(".ended");
-      loadingBarElement.style.transform = "";
+      // loadingBarElement.classList.add(".ended");
+      // loadingBarElement.style.transform = "";
     });
   },
   (itemUrl, itemLoaded, itemTotal) => {
-    const progressRatio = itemLoaded / itemTotal;
-    loadingBarElement.style.transform = `scaleX(${progressRatio})`;
+    // const progressRatio = itemLoaded / itemTotal;
+    // loadingBarElement.style.transform = `scaleX(${progressRatio})`;
   }
 );
 

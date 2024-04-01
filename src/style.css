@@ -31,6 +31,38 @@ body {
   /* height: 100vh; */
 }
 
+.spiral {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spiral {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+
+.character {
+  transform: translateY(calc(cos(var(--angle)) * 50px))
+    scale(calc(sin(var(--angle)) * 0.5 + 0.5));
+  animation: spiral 4s linear infinite;
+}
+
 header {
   position: fixed;
   z-index: 10;
@@ -954,6 +986,10 @@ h2 {
     width: auto;
     margin: 0;
     padding: 1.5rem 2rem;
+  }
+
+  .spiral {
+    font-size: 2rem;
   }
 
   .section.is-hero {
