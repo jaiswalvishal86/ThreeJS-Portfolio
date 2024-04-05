@@ -3,7 +3,7 @@ import Matter from "matter-js";
 // import * as dat from "lil-gui";
 import gsap from "gsap";
 import vertex from "./shaders/test/vertex.glsl";
-import fragment from "./shaders/test/fragment.glsl";
+// import fragment from "./shaders/test/fragment.glsl";
 import fragmentQuad from "./shaders/fragmentQuad.glsl";
 import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -359,21 +359,6 @@ timeline
 //     end: "bottom top",
 //   },
 // });
-// .fromTo(
-//   ".image-container",
-//   {
-//     scale: 1,
-//   },
-//   {
-//     scale: 0.8,
-//     scrollTrigger: {
-//       trigger: ".services-section",
-//       scrub: 1,
-//       start: "top 30%",
-//       end: "bottom bottom",
-//     },
-//   }
-// );
 
 rows.forEach((row, index) => {
   const direction = index % 2 === 0 ? 1 : -1;
