@@ -13,10 +13,24 @@
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
+    <header>
+      <a class="brand" href="/">Vishal</a>
+      <a data-cursor-stick data-cursor-text="Menu" class="menu" href="/">
+        <div class="hamburger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </div>
+        Menu</a
+      >
+    </header>
     <main>
       <section class="case-section">
         <div class="container">
-          <h1 class="case-heading">Intro</h1>
+          <h2>Intro</h2>
           <p class="case-para">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             Reprehenderit quo dolore suscipit quia sunt assumenda nemo
@@ -24,15 +38,12 @@
             dolorum numquam sit magnam inventore, velit veniam!
           </p>
           <br />
-          <img
-            src="https://d1zdxptf8tk3f9.cloudfront.net/ckeditor_assets/pictures/2509/content_geordanna-cordero-fields-762612-unsplash.jpg"
-            alt=""
-          />
+          <img src="../assets/abstract.jpg" alt="" />
         </div>
       </section>
       <section class="case-section">
         <div class="container">
-          <h1 class="case-heading">Intro</h1>
+          <h2>Intro</h2>
           <p class="case-para">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             Reprehenderit quo dolore suscipit quia sunt assumenda nemo
@@ -40,15 +51,12 @@
             dolorum numquam sit magnam inventore, velit veniam!
           </p>
           <br />
-          <img
-            src="https://www.adorama.com/alc/wp-content/uploads/2020/10/abstract-photography-design-feature.jpg"
-            alt=""
-          />
+          <img src="../assets/building.jpg" alt="" />
         </div>
       </section>
       <section class="case-section">
         <div class="container">
-          <h1 class="case-heading">Intro</h1>
+          <h2>Intro</h2>
           <p class="case-para">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
             Reprehenderit quo dolore suscipit quia sunt assumenda nemo
@@ -56,20 +64,31 @@
             dolorum numquam sit magnam inventore, velit veniam!
           </p>
           <br />
-          <img
-            src="https://www.adorama.com/alc/wp-content/uploads/2020/10/abstract-photography-light-pattern-mirrors.jpg"
-            alt=""
-          />
+          <img src="../assets/pillers.jpg" alt="" />
         </div>
       </section>
     </main>
-    <script>
+    <script type="module">
       let minimap = document.createElement("div");
       let minimapSize = document.createElement("div");
       let viewer = document.createElement("div");
       let minimapContent = document.createElement("iframe");
       let scale = 0.1;
       let realScale;
+      import Lenis from "@studio-freight/lenis";
+
+      const lenis = new Lenis({ lerp: 1, duration: 0.8 });
+
+      lenis.on("scroll", (e) => {
+        // console.log(e);
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
 
       minimap.className = "minimap__container";
       minimapSize.className = "minimap__size";
@@ -100,7 +119,7 @@
         let bodyRatio = document.body.clientHeight / bodyWidth;
         let winRatio = window.innerHeight / window.innerWidth;
 
-        minimap.style.width = "15%";
+        minimap.style.width = "8%";
 
         realScale = minimap.clientWidth / bodyWidth;
 

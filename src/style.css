@@ -808,9 +808,12 @@ h2 {
   position: absolute;
 }
 
+main {
+  margin-top: 6rem;
+}
+
 .case-section {
   width: 100%;
-  min-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -818,7 +821,7 @@ h2 {
 }
 
 .container {
-  width: 60%;
+  width: 70%;
   max-width: 800px;
 }
 
@@ -832,15 +835,16 @@ img {
 }
 
 .case-para {
-  font-size: clamp(1px, 2.2vw, 18px);
+  font-size: clamp(1px, 2.2vw, 16px);
   font-weight: 300;
   line-height: 1.7;
 }
 
 .minimap__container {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 50%;
+  right: 2%;
+  transform: translate(0%, -50%);
   min-width: 20px;
   z-index: 100;
 }
@@ -1321,5 +1325,9 @@ img {
 
   .footer-wrapper h2 {
     font-size: 3rem;
+  }
+
+  .container {
+    width: 90%;
   }
 }

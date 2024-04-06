@@ -26,7 +26,7 @@ const splitHeroHeading = new SplitType("#hero-heading", { types: "chars" });
 const splitHeroPara = new SplitType("#hero-para");
 const splitSubHeading = new SplitType("#hero-sub--text");
 
-const words = "EXPERIENCE";
+const words = "POLISHING PIXELS";
 
 const animationDuration = 4000;
 
