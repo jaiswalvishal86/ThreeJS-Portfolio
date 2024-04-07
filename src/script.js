@@ -2,6 +2,7 @@ import * as THREE from "three";
 import Matter from "matter-js";
 // import * as dat from "lil-gui";
 import gsap from "gsap";
+import CustomEase from "gsap/CustomEase";
 import vertex from "./shaders/test/vertex.glsl";
 // import fragment from "./shaders/test/fragment.glsl";
 import fragmentQuad from "./shaders/fragmentQuad.glsl";
@@ -26,7 +27,9 @@ const splitHeroHeading = new SplitType("#hero-heading", { types: "chars" });
 const splitHeroPara = new SplitType("#hero-para");
 const splitSubHeading = new SplitType("#hero-sub--text");
 
-const words = "POLISHING PIXELS";
+gsap.registerPlugin(CustomEase);
+
+const words = "CREATIVITY";
 
 const animationDuration = 4000;
 
@@ -59,6 +62,83 @@ window.addEventListener("load", function () {
   setTimeout(function () {
     removeAllAnimationClasses();
   }, delayTime);
+});
+
+//Testimonial Animation
+
+CustomEase.create("cubic", "0.83, 0, 0.17, 1");
+let isAnimating = false;
+
+function splitTextIntoSpans(selector) {
+  let elements = document.querySelectorAll(selector);
+  elements.forEach((element) => {
+    let text = element.innerText;
+    let splitText = text
+      .split("")
+      .map(function (char) {
+        return `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`;
+      })
+      .join("");
+    element.innerHTML = splitText;
+  });
+}
+
+function initializeCards() {
+  let cards = Array.from(document.querySelectorAll(".card"));
+  gsap.to(cards, {
+    y: (i) => -15 + 15 * i + "%",
+    z: (i) => 15 * i,
+    // rotationZ: (i) => (i % 2 === 0 ? 1 : -1),
+    duration: 1,
+    ease: "cubic",
+    stagger: -0.1,
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  splitTextIntoSpans(".copy h2");
+  initializeCards();
+
+  gsap.set("h2 span", { y: -200 });
+  gsap.set(".card:last-child h2 span", { y: 0 });
+});
+
+document.addEventListener("click", function () {
+  if (isAnimating) return;
+
+  isAnimating = true;
+  let slider = document.querySelector(".slider");
+  let cards = Array.from(slider.querySelectorAll(".card"));
+  let lastCard = cards.pop();
+  let nextCard = cards[cards.length - 1];
+
+  gsap.to(lastCard.querySelectorAll("h2 span"), {
+    y: 200,
+    duration: 0.75,
+    ease: "cubic",
+  });
+
+  gsap.to(lastCard, {
+    y: "+=150%",
+    duration: 0.75,
+    ease: "cubic",
+    onComplete: () => {
+      slider.prepend(lastCard);
+      initializeCards();
+      gsap.set(lastCard.querySelectorAll("h2 span"), { y: -200 });
+
+      setTimeout(() => {
+        isAnimating = false;
+      }, 1000);
+    },
+  });
+
+  gsap.to(nextCard.querySelectorAll("h2 span"), {
+    y: 0,
+    duration: 1,
+    ease: "cubic",
+    stagger: 0.05,
+  });
 });
 
 media.add("(min-width: 992px)", () => {
