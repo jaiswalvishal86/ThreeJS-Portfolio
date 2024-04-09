@@ -14,6 +14,7 @@ const aboutSection = document.getElementById("about-section");
 const text = document.getElementById("text");
 const loaderElement = document.querySelector(".loader-overlay");
 const loadingBarElement = document.querySelector(".loading-bar");
+const testimonialSlide = document.getElementById("testimonialSlide");
 
 const magneticCircle = document.getElementById("magneticCircle");
 const allLinks = document.querySelectorAll("a");
@@ -69,26 +70,29 @@ window.addEventListener("load", function () {
 CustomEase.create("cubic", "0.83, 0, 0.17, 1");
 let isAnimating = false;
 
-function splitTextIntoSpans(selector) {
-  let elements = document.querySelectorAll(selector);
-  elements.forEach((element) => {
-    let text = element.innerText;
-    let splitText = text
-      .split("")
-      .map(function (char) {
-        return `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`;
-      })
-      .join("");
-    element.innerHTML = splitText;
-  });
-}
+// function splitTextIntoSpans(selector) {
+//   let elements = document.querySelectorAll(selector);
+//   elements.forEach((element) => {
+//     let text = element.innerText;
+//     let splitText = text
+//       .split("")
+//       .map(function (char) {
+//         return `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`;
+//       })
+//       .join("");
+//     element.innerHTML = splitText;
+//   });
+// }
+
+new SplitType(".card-copy", { types: "lines,words" });
+new SplitType(".copy", { types: "chars" });
 
 function initializeCards() {
   let cards = Array.from(document.querySelectorAll(".card"));
   gsap.to(cards, {
-    y: (i) => -15 + 15 * i + "%",
-    z: (i) => 15 * i,
-    // rotationZ: (i) => (i % 2 === 0 ? 1 : -1),
+    y: (i) => -12 + 12 * i + "%",
+    z: (i) => 12 * i,
+    // rotationZ: (i) => (i % 2 === 0 ? 2 : -2) * Math.random(),
     duration: 1,
     ease: "cubic",
     stagger: -0.1,
@@ -96,14 +100,16 @@ function initializeCards() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  splitTextIntoSpans(".copy h2");
+  // splitTextIntoSpans(".copy h2");
   initializeCards();
 
-  gsap.set("h2 span", { y: -200 });
-  gsap.set(".card:last-child h2 span", { y: 0 });
+  gsap.set("h2 .char", { y: -200 });
+  gsap.set(".card-copy .word", { y: -200 });
+  gsap.set(".card:last-child h2 .char", { y: 0 });
+  gsap.set(".card:last-child p .word", { y: 0 });
 });
 
-document.addEventListener("click", function () {
+testimonialSlide.addEventListener("click", function () {
   if (isAnimating) return;
 
   isAnimating = true;
@@ -111,34 +117,65 @@ document.addEventListener("click", function () {
   let cards = Array.from(slider.querySelectorAll(".card"));
   let lastCard = cards.pop();
   let nextCard = cards[cards.length - 1];
+  let tl = gsap.timeline();
 
-  gsap.to(lastCard.querySelectorAll("h2 span"), {
-    y: 200,
-    duration: 0.75,
-    ease: "cubic",
-  });
-
-  gsap.to(lastCard, {
-    y: "+=150%",
-    duration: 0.75,
-    ease: "cubic",
-    onComplete: () => {
-      slider.prepend(lastCard);
-      initializeCards();
-      gsap.set(lastCard.querySelectorAll("h2 span"), { y: -200 });
-
-      setTimeout(() => {
-        isAnimating = false;
-      }, 1000);
-    },
-  });
-
-  gsap.to(nextCard.querySelectorAll("h2 span"), {
-    y: 0,
-    duration: 1,
+  tl.to(lastCard.querySelectorAll("h2 .char"), {
+    y: -200,
+    duration: 0.5,
     ease: "cubic",
     stagger: 0.05,
-  });
+  })
+    .to(
+      lastCard.querySelectorAll(".card-copy .word"),
+      {
+        y: -200,
+        duration: 0.5,
+        ease: "cubic",
+        stagger: 0.01,
+      },
+      "<+0.1"
+    )
+    .to(
+      lastCard,
+      {
+        y: "+=150%",
+        duration: 0.75,
+        ease: "cubic",
+        onComplete: () => {
+          slider.prepend(lastCard);
+          initializeCards();
+          // gsap.set(lastCard, { opacity: 0 });
+          // gsap.set(lastCard.querySelectorAll("h2 .char"), { y: -200 });
+          // gsap.set(lastCard.querySelectorAll(".card-copy .word"), { y: -200 });
+
+          setTimeout(() => {
+            // gsap.set(lastCard, { opacity: 1 });
+            isAnimating = false;
+          }, 1500);
+        },
+      },
+      "<+0.3"
+    )
+    .to(
+      nextCard.querySelectorAll("h2 .char"),
+      {
+        y: 0,
+        duration: 0.75,
+        ease: "cubic",
+        stagger: 0.05,
+      },
+      "<+1"
+    )
+    .to(
+      nextCard.querySelectorAll(".card-copy .word"),
+      {
+        y: 0,
+        duration: 0.75,
+        ease: "cubic",
+        stagger: 0.01,
+      },
+      "<+0.2"
+    );
 });
 
 media.add("(min-width: 992px)", () => {
@@ -265,7 +302,7 @@ const loadingManager = new THREE.LoadingManager(
           {
             duration: 2,
             yPercent: -100,
-            ease: "expo.inOut",
+            ease: "cubic",
           },
           "<"
         )
@@ -633,7 +670,9 @@ const tick = () => {
   renderer.render(scene, camera);
 
   // Call tick again on the next frame
-  window.requestAnimationFrame(tick);
+  if (window.innerWidth > 768) {
+    window.requestAnimationFrame(tick);
+  }
 };
 
 tick();

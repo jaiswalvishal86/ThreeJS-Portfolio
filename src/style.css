@@ -775,52 +775,76 @@ img {
   position: relative;
   overflow: hidden;
   background: #fafafaaa;
+  backdrop-filter: blur(8px);
 }
 
 .slider {
   position: absolute;
-  top: 15vh;
+  /* top: 10vh; */
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   perspective: 200px;
   perspective-origin: 50% 100%;
 }
 
-.card {
+.slider .visit {
   position: absolute;
   top: 50%;
+  right: 10%;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.card {
+  position: absolute;
+  top: 15%;
   left: 50%;
-  width: 35%;
-  height: 480px;
-  border-radius: 10px;
-  overflow: hidden;
+  width: 22%;
+  height: 64vh;
+  /* overflow: hidden; */
   transform: translate3d(-50%, -50%, 0);
-  background-color: black;
+  /* background-color: black; */
 }
 
 .card img {
   position: absolute;
-  opacity: 0.95;
+  border-radius: 4px;
 }
 
 .copy {
   position: absolute;
-  top: 40%;
-  left: 50%;
+  top: 25%;
+  left: -50%;
   transform: translate(-50%, -50%);
   width: 100%;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
+.content-copy {
+  position: absolute;
+  bottom: 0%;
+  left: 150%;
+  width: 80%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+}
+
+.content-copy p {
+  font-weight: 300;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
 .copy h2 {
   position: relative;
   text-align: center;
-  font-size: 6vw;
-  font-weight: 400;
+  font-size: 4vw;
+  /* font-weight: 400; */
   letter-spacing: -0.05em;
   text-transform: uppercase;
-  color: #fafafa;
+  color: #1c1c1c;
 }
 
 .copy h2 span {
@@ -1021,6 +1045,11 @@ img {
     display: none;
   }
 
+  .slider .visit {
+    display: flex;
+    right: 0;
+  }
+
   .motive-section {
     flex-direction: column;
     justify-content: center;
@@ -1111,7 +1140,32 @@ img {
     max-height: 24rem;
   }
   .card {
-    width: 60%;
+    top: 50%;
+    width: 32%;
+    height: 40vh;
+  }
+  .copy {
+    left: 5%;
+    top: -15%;
+  }
+
+  .card-copy {
+    width: 100%;
+  }
+
+  .content-copy {
+    left: 0%;
+    bottom: -20%;
+    width: 100%;
+    transform: translate(0, 0);
+  }
+  .copy h2 {
+    font-size: 3.2rem;
+  }
+
+  .circle-visit {
+    width: 2rem;
+    height: 2rem;
   }
 }
 
@@ -1403,6 +1457,33 @@ img {
     background-color: #fafafa;
   }
   .card {
+    top: 45%;
     width: 60%;
+    height: 40vh;
+  }
+  .copy {
+    left: 50%;
+    top: -10%;
+  }
+
+  .content-copy {
+    left: 0%;
+    bottom: -25%;
+    width: 100%;
+    transform: translate(0, 0);
+  }
+
+  .copy h2 {
+    font-size: 2rem;
+  }
+
+  .slider .visit {
+    display: flex;
+    top: 92%;
+    left: 50%;
+  }
+  .circle-visit {
+    width: 2rem;
+    height: 2rem;
   }
 }
