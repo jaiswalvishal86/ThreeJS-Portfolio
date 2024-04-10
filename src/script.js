@@ -84,14 +84,16 @@ let isAnimating = false;
 //   });
 // }
 
-new SplitType(".card-copy", { types: "lines,words" });
-new SplitType(".copy", { types: "chars" });
+new SplitType(".card-copy", { types: "lines, words" });
+new SplitType(".copy", { types: "lines, chars" });
 
 function initializeCards() {
-  let cards = Array.from(document.querySelectorAll(".card"));
+  let cards = Array.from(
+    document.querySelectorAll(".testimonial-card--content")
+  );
   gsap.to(cards, {
-    y: (i) => -12 + 12 * i + "%",
-    z: (i) => 12 * i,
+    y: (i) => -4 + 4 * i + "%",
+    z: (i) => 4 * i,
     // rotationZ: (i) => (i % 2 === 0 ? 2 : -2) * Math.random(),
     duration: 1,
     ease: "cubic",
@@ -100,21 +102,20 @@ function initializeCards() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  // splitTextIntoSpans(".copy h2");
   initializeCards();
 
   gsap.set("h2 .char", { y: -200 });
   gsap.set(".card-copy .word", { y: -200 });
-  gsap.set(".card:last-child h2 .char", { y: 0 });
-  gsap.set(".card:last-child p .word", { y: 0 });
+  gsap.set(".testimonial-card--content:last-child h2 .char", { y: 0 });
+  gsap.set(".testimonial-card--content:last-child p .word", { y: 0 });
 });
 
 testimonialSlide.addEventListener("click", function () {
   if (isAnimating) return;
 
   isAnimating = true;
-  let slider = document.querySelector(".slider");
-  let cards = Array.from(slider.querySelectorAll(".card"));
+  let slider = document.querySelector(".testimonial-card--wrapper");
+  let cards = Array.from(slider.querySelectorAll(".testimonial-card--content"));
   let lastCard = cards.pop();
   let nextCard = cards[cards.length - 1];
   let tl = gsap.timeline();
@@ -184,7 +185,7 @@ media.add("(min-width: 992px)", () => {
   );
   const MAX_DISTANCE = 300;
   const MAX_FONT_WEIGHT = 700;
-  const MIN_FONT_WEIGHT = 300;
+  const MIN_FONT_WEIGHT = 400;
 
   // fontWeightItems.forEach((item) => {
   //   new SplitType(item, { types: "chars" }).chars;
@@ -670,9 +671,8 @@ const tick = () => {
   renderer.render(scene, camera);
 
   // Call tick again on the next frame
-  if (window.innerWidth > 768) {
-    window.requestAnimationFrame(tick);
-  }
+
+  window.requestAnimationFrame(tick);
 };
 
 tick();
