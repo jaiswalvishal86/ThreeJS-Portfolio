@@ -1253,6 +1253,7 @@ img {
   .gallery-section {
     background-color: #fafafa;
     backdrop-filter: blur(0px);
+    padding: 2rem;
   }
 
   .section .about_wrapper {
@@ -1414,8 +1415,7 @@ img {
   }
 
   .gallery {
-    padding-left: 2em;
-    padding-right: 2em;
+    padding: 1rem 0rem;
   }
 
   .gallery-img__container {
@@ -1425,6 +1425,10 @@ img {
 
   .work-content_wrapper {
     width: 100%;
+  }
+
+  .work-content_wrapper p {
+    font-size: 1rem;
   }
 
   .service-container {
@@ -1484,6 +1488,7 @@ img {
   .testimonial-container {
     background-color: #fafafa;
     padding: 2rem;
+    height: 120vh;
   }
   .testimonial-wrapper {
     padding: 0rem;
@@ -1511,7 +1516,7 @@ img {
   }
 
   .content-copy p {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 
   .copy h2 {

@@ -165,7 +165,7 @@ testimonialSlide.addEventListener("click", function () {
         ease: "cubic",
         stagger: 0.05,
       },
-      "<+1"
+      "<+1.2"
     )
     .to(
       nextCard.querySelectorAll(".card-copy .word"),
@@ -175,7 +175,7 @@ testimonialSlide.addEventListener("click", function () {
         ease: "cubic",
         stagger: 0.01,
       },
-      "<+0.2"
+      "<+0.3"
     );
 });
 
