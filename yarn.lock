@@ -363,11 +363,6 @@ maath@^0.10.7:
   resolved "https://registry.yarnpkg.com/maath/-/maath-0.10.7.tgz#9289b42a5db8ac5b26407b3bfca4e3bebefe50b4"
   integrity sha512-zQ2xd7dNOIVTjAS+hj22fyj1EFYmOJX6tzKjZ92r6WDoq8hyFxjuGA2q950tmR4iC/EKXoMQdSipkaJVuUHDTg==
 
-matter-js@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/matter-js/-/matter-js-0.19.0.tgz#185e518146ae4fa20c33826ebc7e6e42685e3642"
-  integrity sha512-v2huwvQGOHTGOkMqtHd2hercCG3f6QAObTisPPHg8TZqq2lz7eIY/5i/5YUV8Ibf3mEioFEmwibcPUF2/fnKKQ==
-
 meshline@^3.1.6:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/meshline/-/meshline-3.2.0.tgz#0fcffd1fcae780b0e6bf0db991c8d7384154b075"

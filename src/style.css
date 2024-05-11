@@ -268,7 +268,7 @@ header a {
 .hero_wrapper h1 {
   font-size: 10vw;
   font-weight: 400;
-  letter-spacing: -7px;
+  letter-spacing: -5px;
   /* line-height: 1.1; */
   color: #1c1c1c;
   text-transform: uppercase;
@@ -730,13 +730,29 @@ h2 {
 }
 
 .service-wrapper {
-  padding: 2rem;
-  border: 1px solid rgb(180, 180, 180);
+  padding: 3rem;
+  position: sticky;
+  border: 1px solid #f0f0f0;
   color: #5c5c5c;
+  background-color: #fafafadb;
+  backdrop-filter: blur(8px);
+  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+.service-wrapper:nth-child(1) {
+  top: 20%;
+}
+.service-wrapper:nth-child(2) {
+  top: 25%;
+}
+.service-wrapper:nth-child(3) {
+  top: 30%;
+}
+.service-wrapper:nth-child(4) {
+  top: 35%;
 }
 
 .service-content {
@@ -1140,6 +1156,7 @@ img {
   }
 
   .service-wrapper {
+    position: static;
     padding: 2.5rem;
   }
   .service-wrapper h3 {
@@ -1463,6 +1480,11 @@ img {
 
   .service-content {
     max-width: 100%;
+  }
+
+  .service-wrapper {
+    position: static;
+    padding: 2rem;
   }
 
   .service-wrapper h3 {

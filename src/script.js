@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import Matter from "matter-js";
 // import * as dat from "lil-gui";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
@@ -313,11 +312,16 @@ const loadingManager = new THREE.LoadingManager(
           {
             yPercent: 0,
             ease: "sine.easeOut",
-            stagger: { from: "center", amount: 0.6, ease: "power1.out" },
+            stagger: {
+              from: "center",
+              amount: 0.6,
+              ease: "power1.out",
+              yoyo: true,
+            },
             onComplete: () => {
               gsap.to(splitHeroHeading.chars, {
                 yPercent: -100,
-                stagger: { from: "center", amount: 0.5, ease: "power4.easeIn" },
+                stagger: { from: "random", amount: 0.4, ease: "power4.easeIn" },
                 scrollTrigger: {
                   trigger: ".hero_container",
                   start: "top, top",
@@ -339,11 +343,11 @@ const loadingManager = new THREE.LoadingManager(
           {
             yPercent: 0,
             ease: "sine.out",
-            stagger: { from: "center", amount: 0.5, ease: "power1.out" },
+            stagger: { from: "center", amount: 0.5, ease: "power4.out" },
             onComplete: () => {
               gsap.to(splitHeroPara.words, {
                 yPercent: -200,
-                stagger: { from: "center", amount: 0.5, ease: "power4.easeIn" },
+                stagger: { from: "center", amount: 0.4, ease: "power4.easeIn" },
                 scrollTrigger: {
                   trigger: ".hero_container",
                   start: "top, top",
@@ -365,11 +369,11 @@ const loadingManager = new THREE.LoadingManager(
           {
             yPercent: 0,
             ease: "sine.out",
-            stagger: { from: "center", amount: 0.5, ease: "power1.out" },
+            stagger: { from: "center", amount: 0.5, ease: "power4.out" },
             onComplete: () => {
               gsap.to(splitSubHeading.words, {
                 yPercent: -200,
-                stagger: { from: "center", amount: 0.5, ease: "power4.easeIn" },
+                stagger: { from: "center", amount: 0.4, ease: "power4.easeIn" },
                 scrollTrigger: {
                   trigger: ".hero_container",
                   start: "top, top",
