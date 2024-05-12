@@ -269,7 +269,7 @@ header a {
   font-size: 10vw;
   font-weight: 400;
   letter-spacing: -5px;
-  /* line-height: 1.1; */
+  line-height: 1;
   color: #1c1c1c;
   text-transform: uppercase;
   will-change: transform;
@@ -698,15 +698,22 @@ h2 {
 
 @media only screen and (max-width: 600px) {
   #projects {
-    height: 800vh;
+    height: auto;
   }
 
   .projects_sticky {
+    position: relative;
     height: 12.5%;
+  }
+
+  .projects_slider {
+    height: auto;
+    flex-direction: column;
   }
 
   .project {
     width: 100vw;
+    padding: 2rem;
   }
 }
 
@@ -1289,6 +1296,7 @@ img {
   }
 
   .work-section {
+    padding: 0;
     background-color: #fafafa;
     backdrop-filter: blur(0px);
   }
@@ -1370,6 +1378,11 @@ img {
     margin-bottom: 1rem;
     z-index: 1;
   }
+
+  .ephemeral p {
+    width: 100%;
+    margin: 8px 0;
+  }
   .ephemeral .work-heading {
     position: static;
   }
@@ -1386,21 +1399,22 @@ img {
     flex-wrap: wrap;
     gap: 1rem;
     min-height: 50vh;
-    padding: 6rem 0rem;
+    padding: 4rem 0rem;
   }
   .motive-section span {
     display: none;
   }
 
   .motive-section h2 {
-    text-align: right;
+    /* text-align: right; */
     font-weight: 400;
     width: 100%;
   }
 
   .motive-section p {
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    text-align: left;
   }
 
   .work-heading {
@@ -1410,37 +1424,6 @@ img {
   .work-container {
     padding-right: 2em;
     padding-left: 2em;
-  }
-
-  .item-parent {
-    width: 100%;
-  }
-
-  .item-parent.right.left {
-    float: left;
-  }
-
-  .work-image--wrapper.size-two {
-    width: 18rem;
-    height: 26rem;
-  }
-
-  .work-image--wrapper.size-one {
-    width: 18rem;
-    height: 26rem;
-  }
-  .work-image--wrapper.size-three {
-    width: 18rem;
-    height: 26rem;
-  }
-
-  .work-image--wrapper {
-    width: 100%;
-    min-height: 350px;
-  }
-
-  .work-content--wrapper.size-one {
-    width: 90%;
   }
 
   .gallery {
@@ -1475,6 +1458,7 @@ img {
 
   .services-container {
     margin-top: 1.5rem;
+    gap: 1rem;
   }
 
   .service-intro {
@@ -1496,15 +1480,16 @@ img {
 
   .service-wrapper {
     position: static;
-    padding: 2rem;
+    padding: 1.5rem 1rem;
   }
 
   .service-wrapper h3 {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
   }
 
   .service-wrapper p {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
   }
 
   .footer-wrapper {

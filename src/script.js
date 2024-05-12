@@ -70,20 +70,6 @@ window.addEventListener("load", function () {
 CustomEase.create("cubic", "0.83, 0, 0.17, 1");
 let isAnimating = false;
 
-// function splitTextIntoSpans(selector) {
-//   let elements = document.querySelectorAll(selector);
-//   elements.forEach((element) => {
-//     let text = element.innerText;
-//     let splitText = text
-//       .split("")
-//       .map(function (char) {
-//         return `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`;
-//       })
-//       .join("");
-//     element.innerHTML = splitText;
-//   });
-// }
-
 new SplitType(".card-copy", { types: "lines, words" });
 new SplitType(".copy", { types: "lines, chars" });
 
@@ -126,6 +112,20 @@ document.addEventListener("DOMContentLoaded", function () {
         ? percentages.medium
         : percentages.large;
   }
+
+  media.add("(min-width: 600px)", () => {
+    gsap.to(".projects_slider", {
+      xPercent: -50,
+      ease: "power4.easeIn",
+      duration: 1,
+      scrollTrigger: {
+        trigger: "#projects",
+        scrub: true,
+        start: "top top",
+        end: "bottom+=50px bottom",
+      },
+    });
+  });
 
   window.addEventListener("resize", setLimit);
 
@@ -445,17 +445,7 @@ timeline
       },
     }
   )
-  .to(".projects_slider", {
-    xPercent: -50,
-    ease: "power4.easeIn",
-    duration: 1,
-    scrollTrigger: {
-      trigger: "#projects",
-      scrub: true,
-      start: "top top",
-      end: "bottom+=50px bottom",
-    },
-  })
+
   // .fromTo(
   //   splitHeading.lines,
   //   {
@@ -713,7 +703,7 @@ const tick = () => {
 
   // Call tick again on the next frame
 
-  window.requestAnimationFrame(tick);
+  // window.requestAnimationFrame(tick);
 };
 
 tick();
