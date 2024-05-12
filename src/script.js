@@ -7,6 +7,7 @@ import vertex from "./shaders/test/vertex.glsl";
 import fragmentQuad from "./shaders/fragmentQuad.glsl";
 import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { createProjects } from "./projects";
 const container = document.querySelector(".gallery-wrapper");
 const rows = document.querySelectorAll(".row");
 const aboutSection = document.getElementById("about-section");
@@ -102,6 +103,31 @@ function initializeCards() {
 
 document.addEventListener("DOMContentLoaded", function () {
   initializeCards();
+  createProjects();
+
+  let percentages = {
+    small: 700,
+    medium: 300,
+    large: 100,
+  };
+
+  let limit =
+    window.innerWidth <= 600
+      ? percentages.small
+      : window.innerWidth <= 1100
+      ? percentages.medium
+      : percentages.large;
+
+  function setLimit() {
+    limit =
+      window.innerWidth <= 600
+        ? percentages.small
+        : window.innerWidth <= 1100
+        ? percentages.medium
+        : percentages.large;
+  }
+
+  window.addEventListener("resize", setLimit);
 
   gsap.set("h2 .char", { y: -200 });
   gsap.set(".card-copy .word", { y: -200 });
@@ -182,7 +208,7 @@ media.add("(min-width: 992px)", () => {
   const fontWeightItems = document.querySelectorAll(
     '[data-animate="font-weight"]'
   );
-  const MAX_DISTANCE = 300;
+  const MAX_DISTANCE = 400;
   const MAX_FONT_WEIGHT = 700;
   const MIN_FONT_WEIGHT = 400;
 
@@ -419,6 +445,17 @@ timeline
       },
     }
   )
+  .to(".projects_slider", {
+    xPercent: -50,
+    ease: "power4.easeIn",
+    duration: 1,
+    scrollTrigger: {
+      trigger: "#projects",
+      scrub: true,
+      start: "top top",
+      end: "bottom+=50px bottom",
+    },
+  })
   // .fromTo(
   //   splitHeading.lines,
   //   {
