@@ -8,13 +8,10 @@ import fragmentQuad from "./shaders/fragmentQuad.glsl";
 import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { createProjects } from "./projects";
-const container = document.querySelector(".gallery-wrapper");
-const rows = document.querySelectorAll(".row");
+
 const aboutSection = document.getElementById("about-section");
-const text = document.getElementById("text");
+const gallerySection = document.getElementById("gallery");
 const loaderElement = document.querySelector(".loader-overlay");
-const loadingBarElement = document.querySelector(".loading-bar");
-const testimonialSlide = document.getElementById("testimonialSlide");
 
 const magneticCircle = document.getElementById("magneticCircle");
 const allLinks = document.querySelectorAll("a");
@@ -23,7 +20,9 @@ const media = gsap.matchMedia();
 
 const timeline = gsap.timeline();
 const splitText = new SplitType("#text");
-const splitHeroHeading = new SplitType("#hero-heading", { types: "chars" });
+const splitHeroHeading = new SplitType("#hero-heading", {
+  types: "chars lines",
+});
 
 const splitHeroPara = new SplitType("#hero-para");
 const splitSubHeading = new SplitType("#hero-sub--text");
@@ -65,30 +64,302 @@ window.addEventListener("load", function () {
   }, delayTime);
 });
 
-//Testimonial Animation
+//Matter
+// const renderMatterCanvas = () => {
+let Engine = Matter.Engine,
+  Render = Matter.Render,
+  Runner = Matter.Runner,
+  Bodies = Matter.Bodies,
+  Composite = Matter.Composite,
+  Body = Matter.Body;
 
-CustomEase.create("cubic", "0.83, 0, 0.17, 1");
-let isAnimating = false;
+// create an engine
+let engine = Engine.create();
+engine.world.gravity.y = 0;
+const thickness = 50;
 
-new SplitType(".card-copy", { types: "lines, words" });
-new SplitType(".copy", { types: "lines, chars" });
+const render = Render.create({
+  element: gallerySection,
+  engine: engine,
+  options: {
+    width: gallerySection.clientWidth,
+    height: gallerySection.clientHeight,
+    background: "transparent",
+    wireframes: false,
+  },
+});
 
-function initializeCards() {
-  let cards = Array.from(
-    document.querySelectorAll(".testimonial-card--content")
-  );
-  gsap.to(cards, {
-    y: (i) => -4 + 4 * i + "%",
-    z: (i) => 4 * i,
-    // rotationZ: (i) => (i % 2 === 0 ? 2 : -2) * Math.random(),
-    duration: 1,
-    ease: "cubic",
-    stagger: -0.1,
-  });
+const top = Bodies.rectangle(
+  gallerySection.clientWidth / 2,
+  0 - thickness / 2,
+  gallerySection.clientWidth,
+  thickness,
+  {
+    isStatic: true,
+    render: {
+      strokeStyle: "transparent",
+    },
+  }
+);
+
+const bottom = Bodies.rectangle(
+  gallerySection.clientWidth / 2,
+  gallerySection.clientHeight + thickness / 2,
+  gallerySection.clientWidth,
+  thickness,
+  {
+    isStatic: true,
+    render: {
+      strokeStyle: "transparent",
+    },
+  }
+);
+
+const left = Bodies.rectangle(
+  0 - thickness / 2,
+  gallerySection.clientHeight / 2,
+  thickness,
+  gallerySection.clientHeight,
+  {
+    isStatic: true,
+    render: {
+      strokeStyle: "transparent",
+    },
+  }
+);
+
+const right = Bodies.rectangle(
+  gallerySection.clientWidth + thickness / 2,
+  gallerySection.clientHeight / 2,
+  thickness,
+  gallerySection.clientHeight,
+  {
+    isStatic: true,
+    render: {
+      strokeStyle: "transparent",
+    },
+  }
+);
+
+Composite.add(engine.world, [top, bottom, left, right]);
+
+class Item {
+  constructor(x, y, imagePath) {
+    let options = {
+      frictionAir: 0.075,
+      restitution: 0.25,
+      density: 0.002,
+      angle: (Math.random() * Math.PI) / 2,
+      render: {
+        fillStyle: "transparent",
+      },
+    };
+
+    this.body = Bodies.rectangle(x, y, 100, 200, options);
+    Composite.add(engine.world, this.body);
+
+    this.div = document.createElement("div");
+    this.div.classList = "gallery-item";
+    this.div.style.left = `${this.body.position.x - 50}px`;
+    this.div.style.top = `${this.body.position.y - 100}px`;
+
+    const img = document.createElement("img");
+    img.src = imagePath;
+    this.div.appendChild(img);
+    gallerySection.appendChild(this.div);
+  }
+  update() {
+    this.div.style.left = `${this.body.position.x - 50}px`;
+    this.div.style.top = `${this.body.position.y - 100}px`;
+    this.div.style.transform = `rotate(${this.body.angle}rad)`;
+  }
 }
 
+let items = [];
+// let lastMouseX = -1;
+// let lastMouseY = -1;
+
+for (let i = 0; i < 12; i++) {
+  let x =
+    Math.random(100, gallerySection.clientWidth - 100) *
+    gallerySection.clientWidth;
+  let y =
+    Math.random(100, gallerySection.clientHeight - 100) *
+    gallerySection.clientHeight;
+  items.push(new Item(x, y, `assets/img${i + 1}.jpg`));
+}
+
+// let matterMouse = Matter.Mouse.create(render.canvas);
+// let mouseConstraint = Matter.MouseConstraint.create(engine, {
+//   mouse: matterMouse,
+//   constraint: {
+//     stiffness: 0.2,
+//     render: {
+//       visible: false,
+//     },
+//   },
+// });
+
+// Composite.add(engine.world, mouseConstraint);
+
+// mouseConstraint.mouse.element.removeEventListener(
+//   "mousewheel",
+//   mouseConstraint.mouse.mousewheel
+// );
+// mouseConstraint.mouse.element.removeEventListener(
+//   "DOMMouseScroll",
+//   mouseConstraint.mouse.mousewheel
+// );
+
+let mouseX = 0;
+let mouseY = 0;
+
+document
+  .querySelector(".gallery-section canvas")
+  .addEventListener("mousemove", (event) => {
+    const rect = canvas.getBoundingClientRect();
+    mouseX = event.clientX - rect.left;
+    mouseY = event.clientY - rect.top;
+  });
+
+const initialPositions = items.map((item) => ({
+  x: item.body.position.x,
+  y: item.body.position.y,
+}));
+
+const moveMouseBodies = () => {
+  const offsetX = mouseX;
+  const offsetY = mouseY;
+
+  items.forEach((item, index) => {
+    const distance = Math.sqrt(
+      Math.pow(offsetX - item.body.position.x, 2) +
+        Math.pow(offsetY - item.body.position.y, 2)
+    );
+    // console.log(distance);
+    if (distance <= 100) {
+      Matter.Body.applyForce(
+        item.body,
+        {
+          x: initialPositions[index].x + offsetX,
+          y: initialPositions[index].y + offsetY,
+        },
+        {
+          x: Math.random() * -3,
+          y: Math.random() * 2,
+        }
+      );
+    }
+  });
+};
+
+Matter.Events.on(engine, "beforeUpdate", moveMouseBodies);
+
+function handleResize(gallerySection) {
+  // set canvas size to new values
+  render.canvas.width = gallerySection.clientWidth;
+  render.canvas.height = gallerySection.clientHeight;
+
+  // reposition ground
+  Matter.Body.setPosition(
+    bottom,
+    Matter.Vector.create(
+      gallerySection.clientWidth / 2,
+      gallerySection.clientHeight + thickness / 2
+    )
+  );
+
+  // reposition top
+  Matter.Body.setPosition(
+    top,
+    Matter.Vector.create(gallerySection.clientWidth / 2, 0 - thickness / 2)
+  );
+
+  // reposition right wall
+  Matter.Body.setPosition(
+    right,
+    Matter.Vector.create(
+      gallerySection.clientWidth + thickness / 2,
+      gallerySection.clientHeight / 2
+    )
+  );
+}
+
+Render.run(render);
+
+const runner = Runner.create();
+
+// Run the engine
+Matter.Runner.run(runner, engine);
+
+window.addEventListener("resize", () => handleResize(gallerySection));
+function moveBodies() {
+  items.forEach((item) => item.update());
+  requestAnimationFrame(moveBodies);
+}
+moveBodies();
+// };
+
+// renderMatterCanvas();
+
+//Testimonial Animation
+
 document.addEventListener("DOMContentLoaded", function () {
-  initializeCards();
+  const stickyBar = document.querySelector(".sticky-bar");
+  function getStickyBarCenter() {
+    return stickyBar.offsetTop + stickyBar.offsetHeight / 2;
+  }
+
+  document.querySelectorAll(".testimonial-row").forEach((row) => {
+    ScrollTrigger.create({
+      trigger: row,
+      start: () => `top+=${getStickyBarCenter() - 550} center`,
+      end: () => `top+=${getStickyBarCenter() - 450} center`,
+      scrub: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const maxGap = window.innerWidth < 900 ? 10 : 15;
+        const minGap = window.innerWidth < 900 ? 0.5 : 1;
+        const currentGap = minGap + (maxGap - minGap) * progress;
+        row.style.gap = `${currentGap}em`;
+      },
+    });
+  });
+
+  document.querySelectorAll(".testimonial-row").forEach((row) => {
+    ScrollTrigger.create({
+      trigger: row,
+      start: () => `top+=${getStickyBarCenter() - 300} center`,
+      end: () => `top+=${getStickyBarCenter() - 200} center`,
+      scrub: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const maxGap = window.innerWidth < 900 ? 0.5 : 1;
+        const minGap = window.innerWidth < 900 ? 10 : 15;
+        const currentGap = minGap + (maxGap - minGap) * progress;
+        row.style.gap = `${currentGap}em`;
+      },
+    });
+  });
+
+  ScrollTrigger.create({
+    trigger: ".testimonials",
+    start: "top center",
+    end: "bottom center",
+    onEnter: () => {
+      gsap.to(stickyBar, { opacity: 1, visibility: "visible" });
+    },
+    onLeave: () => {
+      gsap.to(stickyBar, { opacity: 0, visibility: "hidden" });
+    },
+    onEnterBack: () => {
+      gsap.to(stickyBar, { opacity: 1, visibility: "visible" });
+    },
+    onLeaveBack: () => {
+      gsap.to(stickyBar, { opacity: 0, visibility: "hidden" });
+    },
+  });
+
   createProjects();
 
   let percentages = {
@@ -128,80 +399,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   window.addEventListener("resize", setLimit);
-
-  gsap.set("h2 .char", { y: -200 });
-  gsap.set(".card-copy .word", { y: -200 });
-  gsap.set(".testimonial-card--content:last-child h2 .char", { y: 0 });
-  gsap.set(".testimonial-card--content:last-child p .word", { y: 0 });
-});
-
-testimonialSlide.addEventListener("click", function () {
-  if (isAnimating) return;
-
-  isAnimating = true;
-  let slider = document.querySelector(".testimonial-card--wrapper");
-  let cards = Array.from(slider.querySelectorAll(".testimonial-card--content"));
-  let lastCard = cards.pop();
-  let nextCard = cards[cards.length - 1];
-  let tl = gsap.timeline();
-
-  tl.to(lastCard.querySelectorAll("h2 .char"), {
-    y: -200,
-    duration: 0.5,
-    ease: "cubic",
-    stagger: 0.05,
-  })
-    .to(
-      lastCard.querySelectorAll(".card-copy .word"),
-      {
-        y: -200,
-        duration: 0.5,
-        ease: "cubic",
-        stagger: 0.01,
-      },
-      "<+0.1"
-    )
-    .to(
-      lastCard,
-      {
-        y: "+=150%",
-        duration: 0.75,
-        ease: "cubic",
-        onComplete: () => {
-          slider.prepend(lastCard);
-          initializeCards();
-          // gsap.set(lastCard, { opacity: 0 });
-          // gsap.set(lastCard.querySelectorAll("h2 .char"), { y: -200 });
-          // gsap.set(lastCard.querySelectorAll(".card-copy .word"), { y: -200 });
-
-          setTimeout(() => {
-            // gsap.set(lastCard, { opacity: 1 });
-            isAnimating = false;
-          }, 1500);
-        },
-      },
-      "<+0.3"
-    )
-    .to(
-      nextCard.querySelectorAll("h2 .char"),
-      {
-        y: 0,
-        duration: 0.75,
-        ease: "cubic",
-        stagger: 0.05,
-      },
-      "<+1.2"
-    )
-    .to(
-      nextCard.querySelectorAll(".card-copy .word"),
-      {
-        y: 0,
-        duration: 0.75,
-        ease: "cubic",
-        stagger: 0.01,
-      },
-      "<+0.3"
-    );
 });
 
 media.add("(min-width: 992px)", () => {
@@ -211,6 +408,10 @@ media.add("(min-width: 992px)", () => {
   const MAX_DISTANCE = 400;
   const MAX_FONT_WEIGHT = 700;
   const MIN_FONT_WEIGHT = 400;
+
+  const BLUR_MAX_DISTANCE = 400;
+  const BLUR_MAX_FONT_WEIGHT = 3;
+  const BLUR_MIN_FONT_WEIGHT = 0;
 
   // fontWeightItems.forEach((item) => {
   //   new SplitType(item, { types: "chars" }).chars;
@@ -241,7 +442,22 @@ media.add("(min-width: 992px)", () => {
               )
             : MIN_FONT_WEIGHT;
 
-        gsap.to(char, { fontWeight, duration: 0.8 });
+        let blurFontWeight =
+          distance < BLUR_MAX_DISTANCE
+            ? gsap.utils.mapRange(
+                0,
+                BLUR_MAX_DISTANCE,
+                BLUR_MIN_FONT_WEIGHT,
+                BLUR_MAX_FONT_WEIGHT,
+                Math.max(0, BLUR_MAX_DISTANCE - distance)
+              )
+            : BLUR_MIN_FONT_WEIGHT;
+
+        gsap.to(char, {
+          fontWeight,
+          filter: `blur(${blurFontWeight}px)`,
+          duration: 0.8,
+        });
       });
     });
   });
@@ -328,7 +544,7 @@ const loadingManager = new THREE.LoadingManager(
           {
             duration: 2,
             yPercent: -100,
-            ease: "cubic",
+            ease: "power4.inOut",
           },
           "<"
         )
@@ -445,24 +661,6 @@ timeline
       },
     }
   )
-
-  // .fromTo(
-  //   splitHeading.lines,
-  //   {
-  //     x: -50,
-  //     opacity: 0,
-  //   },
-  //   {
-  //     x: 0,
-  //     opacity: 1,
-  //     scrollTrigger: {
-  //       trigger: aboutSection,
-  //       scrub: 1,
-  //       start: "top bottom",
-  //       end: "center bottom",
-  //     },
-  //   }
-  // )
   .from(".sustain", {
     y: 180,
     scrollTrigger: {
@@ -509,40 +707,7 @@ timeline
 //   },
 // });
 
-rows.forEach((row, index) => {
-  const direction = index % 2 === 0 ? 1 : -1;
-  timeline
-    .to(
-      rows[0],
-      {
-        x: "-20%",
-        duration: 1,
-        scrollTrigger: {
-          trigger: container,
-          start: "top bottom",
-          end: "+=200%",
-          scrub: 1, // Enables smooth scrolling effect
-          // pin: true, // Pins the row during the animation
-          anticipatePin: 1, // Improves the scrolling anticipation
-        },
-      },
-      "<"
-    )
-    .to(row, {
-      x: `${index * -10 * direction}%`, // Adjust the value as needed
-      duration: 1,
-      scrollTrigger: {
-        trigger: container,
-        start: "top bottom",
-        end: "+=200%",
-        scrub: 1, // Enables smooth scrolling effect
-        // pin: true, // Pins the row during the animation
-        anticipatePin: 1, // Improves the scrolling anticipation
-      },
-    });
-});
-
-const lenis = new Lenis({ lerp: 1, duration: 0.8 });
+const lenis = new Lenis({ lerp: 1, duration: 1.5 });
 
 lenis.on("scroll", (e) => {
   // console.log(e);
@@ -682,6 +847,8 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime();
   const deltaTime = elapsedTime - previousTime;
   previousTime = elapsedTime;
+
+  items.forEach((item) => item.update());
 
   //Update materials
   treeShaderMaterial.uniforms.uTime.value = elapsedTime;
