@@ -13,9 +13,6 @@ const aboutSection = document.getElementById("about-section");
 const gallerySection = document.getElementById("gallery");
 const loaderElement = document.querySelector(".loader-overlay");
 
-const magneticCircle = document.getElementById("magneticCircle");
-const allLinks = document.querySelectorAll("a");
-
 const media = gsap.matchMedia();
 
 const timeline = gsap.timeline();
@@ -27,11 +24,20 @@ const splitHeroHeading = new SplitType("#hero-heading", {
 const splitHeroPara = new SplitType("#hero-para");
 const splitSubHeading = new SplitType("#hero-sub--text");
 
-gsap.registerPlugin(CustomEase);
-
 const words = "CREATIVITY";
 
 const animationDuration = 4000;
+
+gsap.registerPlugin(ScrollTrigger);
+
+const lenis = new Lenis({ lerp: 1, duration: 1.5 });
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
 
 const characters = words.split("").forEach((char, i) => {
   function createElement(offset) {
@@ -65,7 +71,6 @@ window.addEventListener("load", function () {
 });
 
 //Matter
-// const renderMatterCanvas = () => {
 let Engine = Matter.Engine,
   Render = Matter.Render,
   Runner = Matter.Runner,
@@ -176,8 +181,6 @@ class Item {
 }
 
 let items = [];
-// let lastMouseX = -1;
-// let lastMouseY = -1;
 
 for (let i = 0; i < 12; i++) {
   let x =
@@ -236,7 +239,6 @@ const moveMouseBodies = () => {
       Math.pow(offsetX - item.body.position.x, 2) +
         Math.pow(offsetY - item.body.position.y, 2)
     );
-    // console.log(distance);
     if (distance <= 100) {
       Matter.Body.applyForce(
         item.body,
@@ -245,8 +247,8 @@ const moveMouseBodies = () => {
           y: initialPositions[index].y + offsetY,
         },
         {
-          x: Math.random() * -3,
-          y: Math.random() * 2,
+          x: Math.random() * -0.3,
+          y: Math.random() * 0.2,
         }
       );
     }
@@ -298,68 +300,10 @@ function moveBodies() {
   requestAnimationFrame(moveBodies);
 }
 moveBodies();
-// };
-
-// renderMatterCanvas();
 
 //Testimonial Animation
 
 document.addEventListener("DOMContentLoaded", function () {
-  const stickyBar = document.querySelector(".sticky-bar");
-  function getStickyBarCenter() {
-    return stickyBar.offsetTop + stickyBar.offsetHeight / 2;
-  }
-
-  document.querySelectorAll(".testimonial-row").forEach((row) => {
-    ScrollTrigger.create({
-      trigger: row,
-      start: () => `top+=${getStickyBarCenter() - 550} center`,
-      end: () => `top+=${getStickyBarCenter() - 450} center`,
-      scrub: true,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const maxGap = window.innerWidth < 900 ? 10 : 15;
-        const minGap = window.innerWidth < 900 ? 0.5 : 1;
-        const currentGap = minGap + (maxGap - minGap) * progress;
-        row.style.gap = `${currentGap}em`;
-      },
-    });
-  });
-
-  document.querySelectorAll(".testimonial-row").forEach((row) => {
-    ScrollTrigger.create({
-      trigger: row,
-      start: () => `top+=${getStickyBarCenter() - 300} center`,
-      end: () => `top+=${getStickyBarCenter() - 200} center`,
-      scrub: true,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const maxGap = window.innerWidth < 900 ? 0.5 : 1;
-        const minGap = window.innerWidth < 900 ? 10 : 15;
-        const currentGap = minGap + (maxGap - minGap) * progress;
-        row.style.gap = `${currentGap}em`;
-      },
-    });
-  });
-
-  ScrollTrigger.create({
-    trigger: ".testimonials",
-    start: "top center",
-    end: "bottom center",
-    onEnter: () => {
-      gsap.to(stickyBar, { opacity: 1, visibility: "visible" });
-    },
-    onLeave: () => {
-      gsap.to(stickyBar, { opacity: 0, visibility: "hidden" });
-    },
-    onEnterBack: () => {
-      gsap.to(stickyBar, { opacity: 1, visibility: "visible" });
-    },
-    onLeaveBack: () => {
-      gsap.to(stickyBar, { opacity: 0, visibility: "hidden" });
-    },
-  });
-
   createProjects();
 
   let percentages = {
@@ -413,9 +357,6 @@ media.add("(min-width: 992px)", () => {
   const BLUR_MAX_FONT_WEIGHT = 3;
   const BLUR_MIN_FONT_WEIGHT = 0;
 
-  // fontWeightItems.forEach((item) => {
-  //   new SplitType(item, { types: "chars" }).chars;
-  // });
   document.addEventListener("mousemove", (event) => {
     const mouseX = event.pageX;
     const mouseY = event.pageY;
@@ -455,72 +396,13 @@ media.add("(min-width: 992px)", () => {
 
         gsap.to(char, {
           fontWeight,
-          filter: `blur(${blurFontWeight}px)`,
+          // filter: `blur(${blurFontWeight}px)`,
           duration: 0.8,
         });
       });
     });
   });
-
-  // Function to move the magnetic circle to the cursor position
-  function moveMagneticCircle(event) {
-    gsap.to(magneticCircle, {
-      x: event.clientX,
-      y: event.clientY,
-      duration: 0.35,
-      ease: "spring(300, 20, 0.5)",
-    });
-  }
-
-  // Function to show the magnetic circle with a fade-in animation
-  function showMagneticCircle() {
-    gsap.to(magneticCircle, {
-      opacity: 1,
-      // scale: 1,
-      duration: 0.4,
-    });
-  }
-
-  // Function to hide the magnetic circle with a fade-out animation
-  function hideMagneticCircle() {
-    gsap.to(magneticCircle, {
-      opacity: 0,
-      duration: 0.4,
-    });
-  }
-
-  allLinks.forEach(function (link) {
-    link.addEventListener("mouseenter", function () {
-      gsap.to(magneticCircle, {
-        scale: 6,
-        duration: 0.4,
-        ease: "power1.out",
-      });
-    });
-  });
-
-  allLinks.forEach(function (link) {
-    link.addEventListener("mouseleave", function () {
-      gsap.to(magneticCircle, {
-        scale: 1,
-        duration: 0.4,
-      });
-    });
-  });
-
-  // Add event listeners to track mouse movement
-  document.addEventListener("mousemove", function (event) {
-    moveMagneticCircle(event);
-    showMagneticCircle();
-  });
-
-  // Add event listeners to hide the magnetic circle when the mouse leaves the window
-  document.addEventListener("mouseleave", function () {
-    hideMagneticCircle();
-  });
 });
-
-gsap.registerPlugin(ScrollTrigger);
 
 const loadingManager = new THREE.LoadingManager(
   () => {
@@ -697,28 +579,6 @@ timeline
       end: "bottom center",
     },
   });
-// .from(".footer-content", {
-//   yPercent: 500,
-//   scrollTrigger: {
-//     trigger: container,
-//     scrub: 1,
-//     start: "top center",
-//     end: "bottom top",
-//   },
-// });
-
-const lenis = new Lenis({ lerp: 1, duration: 1.5 });
-
-lenis.on("scroll", (e) => {
-  // console.log(e);
-});
-
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-
-requestAnimationFrame(raf);
 
 THREE.ColorManagement.enabled = false;
 
@@ -794,8 +654,6 @@ window.addEventListener("resize", () => {
   // Update renderer
   renderer.setSize(sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-  // Update the previous height for the next comparison
 });
 
 /**
@@ -870,7 +728,7 @@ const tick = () => {
 
   // Call tick again on the next frame
 
-  // window.requestAnimationFrame(tick);
+  window.requestAnimationFrame(tick);
 };
 
 tick();

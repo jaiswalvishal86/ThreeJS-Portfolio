@@ -69,7 +69,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  width: 90%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
   /* mix-blend-mode: difference; */
@@ -117,7 +117,7 @@ header a {
   text-decoration: none;
 }
 
-.loading-bar {
+/* .loading-bar {
   width: 50%;
   transform: scaleX(0);
   transform-origin: top center;
@@ -131,7 +131,7 @@ header a {
 .loading-bar.ended {
   transform-origin: top center;
   transition: transform 1.5s ease-in-out;
-}
+} */
 
 .menu {
   display: flex;
@@ -376,7 +376,8 @@ h2 {
   /* padding: 4rem 6em; */
   background-color: #fafafaaa;
   backdrop-filter: blur(8px);
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   z-index: 3;
 }
 
@@ -775,11 +776,11 @@ h2 {
 }
 
 .service-wrapper {
-  padding: 2.5rem;
+  padding: 4rem;
   position: sticky;
-  /* border: 1px solid #f1f1f1; */
+  border: 1px solid #f1f1f1;
   color: #5c5c5c;
-  background-color: #fafafadb;
+  background-color: #fafafaa0;
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -828,65 +829,6 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.sticky-bar {
-  position: fixed;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 1em;
-  display: flex;
-  z-index: 1;
-  mix-blend-mode: difference;
-  opacity: 0;
-}
-
-.sticky-bar .item:nth-child(1),
-.sticky-bar .item:nth-child(3) {
-  flex: 2;
-}
-
-.sticky-bar .item:nth-child(3) {
-  text-align: right;
-}
-
-.sticky-bar .item:nth-child(2) {
-  flex: 1;
-  text-align: center;
-}
-
-.sticky-bar .item p {
-  text-transform: uppercase;
-  color: #fafafa;
-  font-size: 1.25vw;
-}
-
-.testimonials {
-  width: 100%;
-  padding: 4em 1em;
-}
-
-.testimonial-row {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 1em;
-  margin-bottom: 1em;
-}
-
-.testimonial-logo p {
-  font-size: 2.2rem;
-}
-
-.testimonial-container {
-  width: 100vw;
-  /* height: 100vh; */
-  position: relative;
-  /* overflow: hidden; */
-  background: #fafafaaa;
-  backdrop-filter: blur(8px);
-  padding: 4rem 6em;
 }
 
 .footer-section {
