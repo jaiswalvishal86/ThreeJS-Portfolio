@@ -248,7 +248,7 @@ const moveMouseBodies = () => {
         },
         {
           x: Math.random() * -0.3,
-          y: Math.random() * 0.2,
+          y: Math.random() * 0.1,
         }
       );
     }
@@ -296,15 +296,32 @@ Matter.Runner.run(runner, engine);
 
 window.addEventListener("resize", () => handleResize(gallerySection));
 function moveBodies() {
-  items.forEach((item) => item.update());
   requestAnimationFrame(moveBodies);
 }
-moveBodies();
+// moveBodies();
 
 //Testimonial Animation
 
 document.addEventListener("DOMContentLoaded", function () {
   createProjects();
+
+  let testimonialTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".features-section",
+      end: "bottom bottom",
+      scrub: true,
+      toggleActions: "restart none reverse",
+      pin: ".features-wrapper",
+    },
+  });
+  testimonialTl.from(".feature-card", {
+    // opacity: 0,
+    yPercent: 175,
+    // xPercent: 35,
+    scale: 1.5,
+    duration: 1,
+    stagger: { each: 0.8, from: "end" },
+  });
 
   let percentages = {
     small: 700,
@@ -728,7 +745,7 @@ const tick = () => {
 
   // Call tick again on the next frame
 
-  window.requestAnimationFrame(tick);
+  // window.requestAnimationFrame(tick);
 };
 
 tick();

@@ -753,13 +753,13 @@ h2 {
 }
 
 .service-intro p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 300;
   line-height: 1.7;
 }
 
 .service-intro h3 {
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   font-size: 5vw;
   line-height: 1.3;
   font-weight: 300;
@@ -768,9 +768,9 @@ h2 {
 }
 
 .service-cta {
-  margin-top: 1rem;
+  margin-top: 0.8rem;
   padding: 1rem 2rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   background-color: transparent;
   border: 1px solid black;
 }
@@ -829,6 +829,96 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.features-section {
+  height: 300vh;
+}
+
+.features-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: #fafafaaa;
+  backdrop-filter: blur(8px);
+}
+
+.features-wrapper-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 100%;
+}
+
+.title-heading-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  max-width: 72ch;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.title-heading {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.features-card-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem;
+  width: 24rem;
+  min-height: 18rem;
+  position: absolute;
+  z-index: 1;
+  border: 1px solid #f1f1f1;
+  background-color: #fefefe;
+  /* border-radius: 1rem; */
+}
+
+.feature-card._2 {
+  z-index: 2;
+  transform: rotateZ(5deg);
+}
+
+.feature-card._3 {
+  z-index: 3;
+  transform: rotateZ(-8deg);
+}
+
+.feature-card h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.features-card-icon_wrapper {
+  background-color: antiquewhite;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
 }
 
 .footer-section {
@@ -1121,17 +1211,17 @@ img {
     padding: 1rem;
   }
 
-  .content-copy {
-    height: auto;
-    width: 80%;
+  .features-wrapper-inner {
+    padding-top: 12rem;
+  }
+  .features-card-wrapper {
+    height: 80%;
   }
 
-  .content-copy p {
-    font-size: 1rem;
-  }
-
-  .copy h2 {
-    font-size: 3.2rem;
+  .feature-card {
+    width: 32rem;
+    height: 24rem;
+    padding: 2rem;
   }
 
   .circle-visit {
@@ -1360,7 +1450,7 @@ img {
   }
 
   .service-intro h3 {
-    font-size: 2.6rem;
+    font-size: 2rem;
   }
 
   .service-cta {
@@ -1401,49 +1491,29 @@ img {
     width: 90%;
   }
 
-  .testimonial-container {
-    background-color: #fafafa;
-    padding: 2rem;
-    height: 120vh;
-  }
-  .testimonial-wrapper {
-    padding: 0rem;
+  .features-wrapper-inner {
+    padding-top: 8rem;
   }
 
-  .testimonial-card--content {
-    flex-direction: column;
-    height: 85%;
+  .title-heading {
+    font-size: 1.8rem;
   }
 
-  .testimonial-card {
-    width: 16rem;
-    height: 24rem;
-    top: 50%;
+  .title-heading-wrapper {
+    font-size: 0.8rem;
   }
 
-  .copy {
-    height: auto;
-    padding: 1rem;
+  .features-card-wrapper {
+    height: 70%;
   }
 
-  .content-copy {
-    height: auto;
-    width: 100%;
+  .feature-card {
+    width: 20rem;
+    height: 16rem;
+    font-size: 0.9rem;
+    font-weight: 300;
   }
 
-  .content-copy p {
-    font-size: 0.85rem;
-  }
-
-  .copy h2 {
-    font-size: 2rem;
-  }
-
-  .testimonial-card--wrapper .visit {
-    display: flex;
-    top: 8%;
-    right: -20%;
-  }
   .circle-visit {
     width: 2rem;
     height: 2rem;
