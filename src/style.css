@@ -833,6 +833,7 @@ img {
 
 .features-section {
   height: 300vh;
+  overflow: hidden;
 }
 
 .features-wrapper {
@@ -1250,7 +1251,8 @@ img {
   }
   .hero_wrapper h1 {
     font-size: 3.2rem;
-    line-height: 1.3;
+    line-height: 1.2;
+    font-weight: 500;
     letter-spacing: -2px;
   }
 
@@ -1267,8 +1269,8 @@ img {
   }
 
   .hero_wrapper p {
-    margin-top: 1.5rem;
-    font-size: 1.2rem;
+    margin-top: 0.8rem;
+    font-size: 1rem;
   }
 
   #projects {
@@ -1298,6 +1300,11 @@ img {
     background-color: #fafafa;
     backdrop-filter: blur(0px);
     padding: 2rem;
+  }
+
+  .features-wrapper {
+    background-color: #fafafa;
+    backdrop-filter: blur(0px);
   }
 
   .section .about_wrapper {
@@ -1441,7 +1448,7 @@ img {
 
   .services-container {
     margin-top: 1.5rem;
-    gap: 1rem;
+    gap: 0.8rem;
   }
 
   .service-intro {
@@ -1471,7 +1478,7 @@ img {
   }
 
   .service-wrapper h3 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin-bottom: 0.5rem;
   }
 

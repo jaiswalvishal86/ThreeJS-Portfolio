@@ -308,6 +308,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let testimonialTl = gsap.timeline({
     scrollTrigger: {
       trigger: ".features-section",
+      start: "top top",
       end: "bottom bottom",
       scrub: true,
       toggleActions: "restart none reverse",
@@ -745,7 +746,7 @@ const tick = () => {
 
   // Call tick again on the next frame
 
-  // window.requestAnimationFrame(tick);
+  window.requestAnimationFrame(tick);
 };
 
 tick();
