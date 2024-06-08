@@ -1,7 +1,5 @@
 import * as THREE from "three";
-// import * as dat from "lil-gui";
 import gsap from "gsap";
-import CustomEase from "gsap/CustomEase";
 import vertex from "./shaders/test/vertex.glsl";
 // import fragment from "./shaders/test/fragment.glsl";
 import fragmentQuad from "./shaders/fragmentQuad.glsl";
@@ -24,10 +22,6 @@ const splitHeroHeading = new SplitType("#hero-heading", {
 const splitHeroPara = new SplitType("#hero-para");
 const splitSubHeading = new SplitType("#hero-sub--text");
 
-const words = "CREATIVITY";
-
-const animationDuration = 4000;
-
 gsap.registerPlugin(ScrollTrigger);
 
 const lenis = new Lenis({ lerp: 1, duration: 1.5 });
@@ -38,37 +32,6 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
-
-const characters = words.split("").forEach((char, i) => {
-  function createElement(offset) {
-    const div = document.createElement("div");
-    div.innerText = char;
-    div.classList.add("character");
-    div.style.animationDelay = `-${i * (animationDuration / 16) - offset}ms`;
-
-    return div;
-  }
-  document.getElementById("spiral").append(createElement(0));
-  document
-    .getElementById("spiral2")
-    .append(createElement(-1 * (animationDuration / 2)));
-});
-
-function removeAllAnimationClasses() {
-  const characterDoms = document.querySelectorAll(".character");
-
-  characterDoms.forEach(function (element) {
-    element.classList.remove("character");
-  });
-}
-
-window.addEventListener("load", function () {
-  let delayTime = 5000;
-
-  setTimeout(function () {
-    removeAllAnimationClasses();
-  }, delayTime);
-});
 
 //Matter
 let Engine = Matter.Engine,
@@ -182,7 +145,7 @@ class Item {
 
 let items = [];
 
-for (let i = 0; i < 12; i++) {
+for (let i = 0; i < 8; i++) {
   let x =
     Math.random(100, gallerySection.clientWidth - 100) *
     gallerySection.clientWidth;
@@ -296,9 +259,10 @@ Matter.Runner.run(runner, engine);
 
 window.addEventListener("resize", () => handleResize(gallerySection));
 function moveBodies() {
+  items.forEach((item) => item.update());
   requestAnimationFrame(moveBodies);
 }
-// moveBodies();
+moveBodies();
 
 //Testimonial Animation
 
@@ -372,7 +336,7 @@ media.add("(min-width: 992px)", () => {
   const MIN_FONT_WEIGHT = 400;
 
   const BLUR_MAX_DISTANCE = 400;
-  const BLUR_MAX_FONT_WEIGHT = 3;
+  const BLUR_MAX_FONT_WEIGHT = 4;
   const BLUR_MIN_FONT_WEIGHT = 0;
 
   document.addEventListener("mousemove", (event) => {
@@ -424,19 +388,23 @@ media.add("(min-width: 992px)", () => {
 
 const loadingManager = new THREE.LoadingManager(
   () => {
-    gsap.delayedCall(2, () => {
+    gsap.delayedCall(0.5, () => {
       timeline
-        .to("#spiral", {
-          opacity: 0,
+        .from("#counter-num", {
+          yPercent: 100,
+          autoAlpha: true,
+          // stagger: 0.05,
+          ease: "power4.inOut",
           duration: 0.5,
         })
         .to(
-          "#spiral2",
+          "#counter-num",
           {
-            opacity: 0,
+            yPercent: -100,
             duration: 0.5,
+            ease: "power4.inOut",
           },
-          "<"
+          "<+1"
         )
         .fromTo(
           loaderElement,
@@ -531,9 +499,6 @@ const loadingManager = new THREE.LoadingManager(
           },
           "<+0.3"
         );
-
-      // loadingBarElement.classList.add(".ended");
-      // loadingBarElement.style.transform = "";
     });
   },
   (itemUrl, itemLoaded, itemTotal) => {

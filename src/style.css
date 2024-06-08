@@ -28,6 +28,7 @@ body {
   left: 0;
   outline: none;
   overflow: hidden;
+  pointer-events: none;
   /* height: 100vh; */
 }
 
@@ -35,11 +36,11 @@ body {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 @property --angle {
@@ -104,12 +105,26 @@ header a {
   will-change: transform;
   z-index: 10;
 }
+
+.loading-wrapper {
+  position: relative;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .loader-overlay p {
-  font-size: 2rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   font-weight: 300;
-  margin-bottom: 1rem;
   color: #1c1c1c;
+  /* transform: translateY(-100%); */
+}
+
+#counter-num {
+  visibility: hidden;
 }
 
 .creative a {
@@ -273,12 +288,12 @@ header a {
   color: #1c1c1c;
   text-transform: uppercase;
   will-change: transform;
-  min-width: 50vw;
+  min-width: 60vw;
 }
 
 .heading_line-1 {
   position: relative;
-  left: -35%;
+  left: -30%;
   overflow: hidden;
 }
 
@@ -641,7 +656,7 @@ h2 {
 }
 
 .project {
-  width: 25vw;
+  width: 33.3vw;
   height: 100%;
   padding: 64px 16px 48px;
   display: flex;
@@ -651,7 +666,7 @@ h2 {
 .image__container {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 1.78/1;
   overflow: hidden;
 }
 
@@ -1232,6 +1247,9 @@ img {
 }
 
 @media only screen and (max-width: 599px) and (min-width: 280px) {
+  .webgl {
+    min-height: 800px;
+  }
   #magneticCircle {
     display: none;
   }
