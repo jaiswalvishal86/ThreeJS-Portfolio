@@ -7,14 +7,11 @@ import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { createProjects } from "./projects";
 
-const aboutSection = document.getElementById("about-section");
-const gallerySection = document.getElementById("gallery");
 const loaderElement = document.querySelector(".loader-overlay");
 
 const media = gsap.matchMedia();
 
 const timeline = gsap.timeline();
-const splitText = new SplitType("#text");
 const splitHeroHeading = new SplitType("#hero-heading", {
   types: "chars lines",
 });
@@ -24,6 +21,40 @@ const splitSubHeading = new SplitType("#hero-sub--text");
 
 gsap.registerPlugin(ScrollTrigger);
 
+let typeSplit = new SplitType("[text-split]", {
+  types: "lines, words",
+  tagName: "span",
+});
+
+function createScrollTrigger(triggerElement, timeline) {
+  // Reset tl when scroll out of view past bottom of screen
+  ScrollTrigger.create({
+    trigger: triggerElement,
+    start: "top bottom",
+    // onLeaveBack: () => {
+    //   timeline.progress(0);
+    //   timeline.pause();
+    // },
+  });
+  // Play tl when scrolled into view (60% from top of screen)
+  ScrollTrigger.create({
+    trigger: triggerElement,
+    start: "top 70%",
+    onEnter: () => timeline.play(),
+  });
+}
+
+$("[letters-slide-up]").each(function (index) {
+  let tl = gsap.timeline({ paused: true });
+  tl.from($(this).find(".word"), {
+    yPercent: 100,
+    duration: 0.6,
+    ease: "power4.out",
+    stagger: { amount: 0.3 },
+  });
+  createScrollTrigger($(this), tl);
+});
+
 const lenis = new Lenis({ lerp: 1, duration: 1.5 });
 
 function raf(time) {
@@ -32,237 +63,6 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
-
-//Matter
-let Engine = Matter.Engine,
-  Render = Matter.Render,
-  Runner = Matter.Runner,
-  Bodies = Matter.Bodies,
-  Composite = Matter.Composite,
-  Body = Matter.Body;
-
-// create an engine
-let engine = Engine.create();
-engine.world.gravity.y = 0;
-const thickness = 50;
-
-const render = Render.create({
-  element: gallerySection,
-  engine: engine,
-  options: {
-    width: gallerySection.clientWidth,
-    height: gallerySection.clientHeight,
-    background: "transparent",
-    wireframes: false,
-  },
-});
-
-const top = Bodies.rectangle(
-  gallerySection.clientWidth / 2,
-  0 - thickness / 2,
-  gallerySection.clientWidth,
-  thickness,
-  {
-    isStatic: true,
-    render: {
-      strokeStyle: "transparent",
-    },
-  }
-);
-
-const bottom = Bodies.rectangle(
-  gallerySection.clientWidth / 2,
-  gallerySection.clientHeight + thickness / 2,
-  gallerySection.clientWidth,
-  thickness,
-  {
-    isStatic: true,
-    render: {
-      strokeStyle: "transparent",
-    },
-  }
-);
-
-const left = Bodies.rectangle(
-  0 - thickness / 2,
-  gallerySection.clientHeight / 2,
-  thickness,
-  gallerySection.clientHeight,
-  {
-    isStatic: true,
-    render: {
-      strokeStyle: "transparent",
-    },
-  }
-);
-
-const right = Bodies.rectangle(
-  gallerySection.clientWidth + thickness / 2,
-  gallerySection.clientHeight / 2,
-  thickness,
-  gallerySection.clientHeight,
-  {
-    isStatic: true,
-    render: {
-      strokeStyle: "transparent",
-    },
-  }
-);
-
-Composite.add(engine.world, [top, bottom, left, right]);
-
-class Item {
-  constructor(x, y, imagePath) {
-    let options = {
-      frictionAir: 0.075,
-      restitution: 0.25,
-      density: 0.002,
-      angle: (Math.random() * Math.PI) / 2,
-      render: {
-        fillStyle: "transparent",
-      },
-    };
-
-    this.body = Bodies.rectangle(x, y, 100, 200, options);
-    Composite.add(engine.world, this.body);
-
-    this.div = document.createElement("div");
-    this.div.classList = "gallery-item";
-    this.div.style.left = `${this.body.position.x - 50}px`;
-    this.div.style.top = `${this.body.position.y - 100}px`;
-
-    const img = document.createElement("img");
-    img.src = imagePath;
-    this.div.appendChild(img);
-    gallerySection.appendChild(this.div);
-  }
-  update() {
-    this.div.style.left = `${this.body.position.x - 50}px`;
-    this.div.style.top = `${this.body.position.y - 100}px`;
-    this.div.style.transform = `rotate(${this.body.angle}rad)`;
-  }
-}
-
-let items = [];
-
-for (let i = 0; i < 8; i++) {
-  let x =
-    Math.random(100, gallerySection.clientWidth - 100) *
-    gallerySection.clientWidth;
-  let y =
-    Math.random(100, gallerySection.clientHeight - 100) *
-    gallerySection.clientHeight;
-  items.push(new Item(x, y, `assets/img${i + 1}.jpg`));
-}
-
-// let matterMouse = Matter.Mouse.create(render.canvas);
-// let mouseConstraint = Matter.MouseConstraint.create(engine, {
-//   mouse: matterMouse,
-//   constraint: {
-//     stiffness: 0.2,
-//     render: {
-//       visible: false,
-//     },
-//   },
-// });
-
-// Composite.add(engine.world, mouseConstraint);
-
-// mouseConstraint.mouse.element.removeEventListener(
-//   "mousewheel",
-//   mouseConstraint.mouse.mousewheel
-// );
-// mouseConstraint.mouse.element.removeEventListener(
-//   "DOMMouseScroll",
-//   mouseConstraint.mouse.mousewheel
-// );
-
-let mouseX = 0;
-let mouseY = 0;
-
-document
-  .querySelector(".gallery-section canvas")
-  .addEventListener("mousemove", (event) => {
-    const rect = canvas.getBoundingClientRect();
-    mouseX = event.clientX - rect.left;
-    mouseY = event.clientY - rect.top;
-  });
-
-const initialPositions = items.map((item) => ({
-  x: item.body.position.x,
-  y: item.body.position.y,
-}));
-
-const moveMouseBodies = () => {
-  const offsetX = mouseX;
-  const offsetY = mouseY;
-
-  items.forEach((item, index) => {
-    const distance = Math.sqrt(
-      Math.pow(offsetX - item.body.position.x, 2) +
-        Math.pow(offsetY - item.body.position.y, 2)
-    );
-    if (distance <= 100) {
-      Matter.Body.applyForce(
-        item.body,
-        {
-          x: initialPositions[index].x + offsetX,
-          y: initialPositions[index].y + offsetY,
-        },
-        {
-          x: Math.random() * -0.3,
-          y: Math.random() * 0.1,
-        }
-      );
-    }
-  });
-};
-
-Matter.Events.on(engine, "beforeUpdate", moveMouseBodies);
-
-function handleResize(gallerySection) {
-  // set canvas size to new values
-  render.canvas.width = gallerySection.clientWidth;
-  render.canvas.height = gallerySection.clientHeight;
-
-  // reposition ground
-  Matter.Body.setPosition(
-    bottom,
-    Matter.Vector.create(
-      gallerySection.clientWidth / 2,
-      gallerySection.clientHeight + thickness / 2
-    )
-  );
-
-  // reposition top
-  Matter.Body.setPosition(
-    top,
-    Matter.Vector.create(gallerySection.clientWidth / 2, 0 - thickness / 2)
-  );
-
-  // reposition right wall
-  Matter.Body.setPosition(
-    right,
-    Matter.Vector.create(
-      gallerySection.clientWidth + thickness / 2,
-      gallerySection.clientHeight / 2
-    )
-  );
-}
-
-Render.run(render);
-
-const runner = Runner.create();
-
-// Run the engine
-Matter.Runner.run(runner, engine);
-
-window.addEventListener("resize", () => handleResize(gallerySection));
-function moveBodies() {
-  items.forEach((item) => item.update());
-  requestAnimationFrame(moveBodies);
-}
-moveBodies();
 
 //Testimonial Animation
 
@@ -281,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   testimonialTl.from(".feature-card", {
     // opacity: 0,
-    yPercent: 175,
+    yPercent: 160,
     // xPercent: 35,
     scale: 1.5,
     duration: 1,
@@ -388,7 +188,7 @@ media.add("(min-width: 992px)", () => {
 
 const loadingManager = new THREE.LoadingManager(
   () => {
-    gsap.delayedCall(0.5, () => {
+    gsap.delayedCall(0.2, () => {
       timeline
         .from("#counter-num", {
           yPercent: 100,
@@ -404,7 +204,7 @@ const loadingManager = new THREE.LoadingManager(
             duration: 0.5,
             ease: "power4.inOut",
           },
-          "<+1"
+          "<+1.5"
         )
         .fromTo(
           loaderElement,
@@ -446,6 +246,15 @@ const loadingManager = new THREE.LoadingManager(
             },
           },
           "<+0.6"
+        )
+        .from(
+          cameraGroup.position,
+          {
+            z: 1.5,
+            ease: "expo.inOut",
+            duration: 2,
+          },
+          "<"
         )
         .fromTo(
           splitHeroPara.words,
@@ -508,24 +317,6 @@ const loadingManager = new THREE.LoadingManager(
 );
 
 timeline
-  .fromTo(
-    splitText.lines,
-    {
-      opacity: 0,
-      x: -100,
-    },
-    {
-      opacity: 1,
-      x: 0,
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: aboutSection,
-        scrub: true,
-        start: "top bottom",
-        end: "bottom+=150px bottom",
-      },
-    }
-  )
   .from(".sustain", {
     y: 180,
     scrollTrigger: {
@@ -570,7 +361,7 @@ const canvas = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
-const sceneCopy = new THREE.Scene();
+// const sceneCopy = new THREE.Scene();
 
 /**
  * Texture Loader
@@ -688,8 +479,6 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime();
   const deltaTime = elapsedTime - previousTime;
   previousTime = elapsedTime;
-
-  items.forEach((item) => item.update());
 
   //Update materials
   treeShaderMaterial.uniforms.uTime.value = elapsedTime;
