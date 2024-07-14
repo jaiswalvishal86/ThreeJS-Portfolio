@@ -16,7 +16,13 @@
     <canvas class="webgl" id="webgl"></canvas>
     <header>
       <a class="brand" href="/">Vishal</a>
-      <a data-cursor-stick data-cursor-text="Menu" class="menu" href="/">
+      <a
+        data-cursor-stick
+        data-cursor-text="Menu"
+        class="menu"
+        href="#contact"
+        onclick="lenis.scrollTo('#contact')"
+      >
         <div class="hamburger">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path
@@ -25,7 +31,7 @@
             ></path>
           </svg>
         </div>
-        Menu</a
+        Contact</a
       >
     </header>
     <div class="loader-overlay">
@@ -34,6 +40,12 @@
       </div>
       <!-- <p id="loaderText">Loading</p> -->
       <!-- <div class="loading-bar"></div> -->
+    </div>
+
+    <div class="horizontal_nav">
+      <a href="#projects"><p>Works</p></a>
+      <a href="#services"><p>Services</p></a>
+      <a href="#testimonials"><p>Testimonials</p></a>
     </div>
 
     <div class="section_wrapper">
@@ -62,9 +74,9 @@
             </p>
           </div>
           <div class="services_wrapper">
-            <p id="hero-sub--text" class="service_text">*3D Development</p>
             <p id="hero-sub--text" class="service_text">Creative Design</p>
-            <p id="hero-sub--text" class="service_text">Digital Experience</p>
+            <p id="hero-sub--text" class="service_text">Webflow Development</p>
+            <p id="hero-sub--text" class="service_text">*3D Integration</p>
           </div>
           <!-- <div class="scroll_wrapper">Scroll</div> -->
         </section>
@@ -83,7 +95,7 @@
                   influence.
                 </p>
                 <div class="sustain-img--wrapper">
-                  <img src="/assets/img1.jpg" alt="abstract" />
+                  <img src="/assets/white.jpeg" alt="abstract" />
                 </div>
               </a>
             </div>
@@ -115,12 +127,11 @@
           <div class="motive-section">
             <h2 class="work-heading">Our Motive</h2>
             <p class="motive-text">
-              Welcome to my creative design portfolio, where innovation meets
-              imagination!<span class="para-img-1"></span> As a passionate
-              creative designer, I thrive on pushing boundaries and crafting
-              visual experiences <span class="para-img-2"></span> that leave a
-              lasting impression. Welcome to my creative design portfolio, where
-              innovation meets imagination!
+              Welcome to my portfolio, where I'll be showcasing my skills, and
+              the projects I'm proud of.<span class="para-img-1"></span> As a
+              passionate designer and Webflow developer, I thrive on pushing
+              boundaries and crafting visual experiences
+              <span class="para-img-2"></span> that leave a lasting impression.
             </p>
           </div>
         </div>
@@ -135,26 +146,7 @@
         </div>
       </div>
 
-      <!-- <section class="work-section">
-        <div class="work">
-          <div class="image-container">
-            <img alt="project image" src="/assets/building.jpg" />
-          </div>
-          <div class="vignette">
-            <img alt="project image" src="/assets/building.jpg" />
-          </div>
-        </div>
-        <div class="work">
-          <div class="image-container">
-            <img alt="project image" src="/assets/terrain.jpeg" />
-          </div>
-          <div class="vignette">
-            <img alt="project image" src="/assets/terrain.jpeg" />
-          </div>
-        </div>
-      </section> -->
-
-      <div class="services-section">
+      <div id="services" class="services-section">
         <!-- <h2><span class="creative">Services</span></h2> -->
         <div class="service-container">
           <div class="service-intro">
@@ -164,7 +156,7 @@
               transform your ideas into compelling visual stories, I invite you
               to get in touch.
             </p>
-            <h3>We craft Human-Centric Designs</h3>
+            <h3>I can craft Human-Centric Designs</h3>
             <button class="service-cta">Get in Contact</button>
           </div>
           <div class="services-container">
@@ -172,8 +164,9 @@
               <div class="service-content">
                 <h3>UX/UI Design</h3>
                 <p>
-                  Welcome to my creative design portfolio, where innovation
-                  meets imagination! Welcome to my creative design portfolio,
+                  From conceptualization to final execution, I breathe life into
+                  ideas, ensuring every project is both visually captivating and
+                  functional.
                 </p>
               </div>
               <div class="service-icon">
@@ -190,6 +183,48 @@
             </div>
 
             <div class="service-wrapper">
+              <div class="service-content">
+                <h3>Webflow Development</h3>
+                <p>
+                  Leveraging the power of Webflow, I craft responsive,
+                  high-performing websites that offer seamless user experiences.
+                </p>
+              </div>
+              <div class="service-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M4.00021 18.9223L2.65056 18.377C2.13849 18.1701 1.89109 17.5873 2.09798 17.0752L4.00021 12.3671V18.9223ZM8.85987 21H7.00021C6.44792 21 6.00021 20.5523 6.00021 20V13.9221L8.85987 21ZM6.02202 5.96771L15.2939 2.22164C15.8059 2.01475 16.3888 2.26215 16.5956 2.77422L22.2147 16.682C22.4216 17.194 22.1742 17.7769 21.6622 17.9838L12.3903 21.7298C11.8783 21.9367 11.2954 21.6893 11.0885 21.1773L5.46944 7.2695C5.26255 6.75743 5.50995 6.1746 6.02202 5.96771ZM9.00021 9.00004C9.55249 9.00004 10.0002 8.55233 10.0002 8.00004C10.0002 7.44776 9.55249 7.00004 9.00021 7.00004C8.44792 7.00004 8.00021 7.44776 8.00021 8.00004C8.00021 8.55233 8.44792 9.00004 9.00021 9.00004Z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="service-wrapper">
+              <div class="service-content">
+                <h3>3D Integration</h3>
+                <p>
+                  Bringing an extra dimension to web design with interactive 3D
+                  elements, creating immersive experiences.
+                </p>
+              </div>
+              <div class="service-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M4.00021 18.9223L2.65056 18.377C2.13849 18.1701 1.89109 17.5873 2.09798 17.0752L4.00021 12.3671V18.9223ZM8.85987 21H7.00021C6.44792 21 6.00021 20.5523 6.00021 20V13.9221L8.85987 21ZM6.02202 5.96771L15.2939 2.22164C15.8059 2.01475 16.3888 2.26215 16.5956 2.77422L22.2147 16.682C22.4216 17.194 22.1742 17.7769 21.6622 17.9838L12.3903 21.7298C11.8783 21.9367 11.2954 21.6893 11.0885 21.1773L5.46944 7.2695C5.26255 6.75743 5.50995 6.1746 6.02202 5.96771ZM9.00021 9.00004C9.55249 9.00004 10.0002 8.55233 10.0002 8.00004C10.0002 7.44776 9.55249 7.00004 9.00021 7.00004C8.44792 7.00004 8.00021 7.44776 8.00021 8.00004C8.00021 8.55233 8.44792 9.00004 9.00021 9.00004Z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- <div class="service-wrapper">
               <div class="service-content">
                 <h3>Development</h3>
                 <p>
@@ -208,135 +243,101 @@
                   ></path>
                 </svg>
               </div>
-            </div>
-
-            <div class="service-wrapper">
-              <div class="service-content">
-                <h3>UX/UI Design</h3>
-                <p>
-                  Welcome to my creative design portfolio, where innovation
-                  meets imagination! Welcome to my creative design portfolio,
-                </p>
-              </div>
-              <div class="service-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M4.00021 18.9223L2.65056 18.377C2.13849 18.1701 1.89109 17.5873 2.09798 17.0752L4.00021 12.3671V18.9223ZM8.85987 21H7.00021C6.44792 21 6.00021 20.5523 6.00021 20V13.9221L8.85987 21ZM6.02202 5.96771L15.2939 2.22164C15.8059 2.01475 16.3888 2.26215 16.5956 2.77422L22.2147 16.682C22.4216 17.194 22.1742 17.7769 21.6622 17.9838L12.3903 21.7298C11.8783 21.9367 11.2954 21.6893 11.0885 21.1773L5.46944 7.2695C5.26255 6.75743 5.50995 6.1746 6.02202 5.96771ZM9.00021 9.00004C9.55249 9.00004 10.0002 8.55233 10.0002 8.00004C10.0002 7.44776 9.55249 7.00004 9.00021 7.00004C8.44792 7.00004 8.00021 7.44776 8.00021 8.00004C8.00021 8.55233 8.44792 9.00004 9.00021 9.00004Z"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-
-            <div class="service-wrapper">
-              <div class="service-content">
-                <h3>Development</h3>
-                <p>
-                  Welcome to my creative design portfolio, where innovation
-                  meets imagination! Welcome to my creative design portfolio,
-                </p>
-              </div>
-              <div class="service-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M4.00021 18.9223L2.65056 18.377C2.13849 18.1701 1.89109 17.5873 2.09798 17.0752L4.00021 12.3671V18.9223ZM8.85987 21H7.00021C6.44792 21 6.00021 20.5523 6.00021 20V13.9221L8.85987 21ZM6.02202 5.96771L15.2939 2.22164C15.8059 2.01475 16.3888 2.26215 16.5956 2.77422L22.2147 16.682C22.4216 17.194 22.1742 17.7769 21.6622 17.9838L12.3903 21.7298C11.8783 21.9367 11.2954 21.6893 11.0885 21.1773L5.46944 7.2695C5.26255 6.75743 5.50995 6.1746 6.02202 5.96771ZM9.00021 9.00004C9.55249 9.00004 10.0002 8.55233 10.0002 8.00004C10.0002 7.44776 9.55249 7.00004 9.00021 7.00004C8.44792 7.00004 8.00021 7.44776 8.00021 8.00004C8.00021 8.55233 8.44792 9.00004 9.00021 9.00004Z"
-                  ></path>
-                </svg>
-              </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
 
-      <div class="main">
-        <div class="features-section">
-          <div class="features-wrapper">
-            <div class="features-wrapper-inner">
-              <div class="title-heading-wrapper">
-                <h2 class="title-heading" letters-slide-up text-split>
-                  Trust in what better future can be
-                </h2>
-                <p letters-slide-up text-split>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse tincidunt sagittis eros. Quisque quis euismod
-                  lorem. Etiam sodales ac felis id interdum.
-                </p>
+      <div id="gallery" class="gallery-section">
+        <div class="gallery-content">
+          <h1>Toolkit</h1>
+          <p>
+            Welcome to my creative design portfolio, where innovation meets
+            imagination! Welcome to my creative design portfolio,
+          </p>
+        </div>
+      </div>
+
+      <div id="testimonials" class="features-section">
+        <div class="features-wrapper">
+          <div class="features-wrapper-inner">
+            <div class="title-heading-wrapper">
+              <h2 class="title-heading" letters-slide-up text-split>
+                Trust in what better future can be
+              </h2>
+              <p letters-slide-up text-split>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse tincidunt sagittis eros. Quisque quis euismod lorem.
+                Etiam sodales ac felis id interdum.
+              </p>
+            </div>
+            <div class="features-card-wrapper">
+              <div class="feature-card _3">
+                <div class="features-card-icon_wrapper">
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M28.9687 4.19629e-07V15.6862L43.0312 7.84311L48 16.157L33.9376 24L48 31.8431L43.0312 40.157L28.9687 32.3138V48H19.0311V32.3139L4.96882 40.157L2.36931e-06 31.8431L14.0624 24L0 16.157L4.96881 7.84311L19.0311 15.6861V0L28.9687 4.19629e-07Z"
+                      fill="#FFE780"
+                    />
+                  </svg>
+                </div>
+                <div class="card-content-wrapper">
+                  <h3 class="features-card-title">New Feature</h3>
+                  <div class="features-card-des">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit.Suspendisse tincidunt eros.
+                  </div>
+                </div>
               </div>
-              <div class="features-card-wrapper">
-                <div class="feature-card _3">
-                  <div class="features-card-icon_wrapper">
-                    <svg
-                      width="48"
-                      height="48"
-                      viewBox="0 0 48 48"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M28.9687 4.19629e-07V15.6862L43.0312 7.84311L48 16.157L33.9376 24L48 31.8431L43.0312 40.157L28.9687 32.3138V48H19.0311V32.3139L4.96882 40.157L2.36931e-06 31.8431L14.0624 24L0 16.157L4.96881 7.84311L19.0311 15.6861V0L28.9687 4.19629e-07Z"
-                        fill="#FFE780"
-                      />
-                    </svg>
-                  </div>
-                  <div class="card-content-wrapper">
-                    <h3 class="features-card-title">New Feature</h3>
-                    <div class="features-card-des">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit.Suspendisse tincidunt eros.
-                    </div>
+              <div class="feature-card _2">
+                <div class="features-card-icon_wrapper">
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M28.9687 4.19629e-07V15.6862L43.0312 7.84311L48 16.157L33.9376 24L48 31.8431L43.0312 40.157L28.9687 32.3138V48H19.0311V32.3139L4.96882 40.157L2.36931e-06 31.8431L14.0624 24L0 16.157L4.96881 7.84311L19.0311 15.6861V0L28.9687 4.19629e-07Z"
+                      fill="#FFE780"
+                    />
+                  </svg>
+                </div>
+                <div class="card-content-wrapper">
+                  <h3 class="features-card-title">New Feature</h3>
+                  <div class="features-card-des">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit.Suspendisse tincidunt eros.
                   </div>
                 </div>
-                <div class="feature-card _2">
-                  <div class="features-card-icon_wrapper">
-                    <svg
-                      width="48"
-                      height="48"
-                      viewBox="0 0 48 48"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M28.9687 4.19629e-07V15.6862L43.0312 7.84311L48 16.157L33.9376 24L48 31.8431L43.0312 40.157L28.9687 32.3138V48H19.0311V32.3139L4.96882 40.157L2.36931e-06 31.8431L14.0624 24L0 16.157L4.96881 7.84311L19.0311 15.6861V0L28.9687 4.19629e-07Z"
-                        fill="#FFE780"
-                      />
-                    </svg>
-                  </div>
-                  <div class="card-content-wrapper">
-                    <h3 class="features-card-title">New Feature</h3>
-                    <div class="features-card-des">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit.Suspendisse tincidunt eros.
-                    </div>
-                  </div>
+              </div>
+              <div class="feature-card">
+                <div class="features-card-icon_wrapper">
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M28.9687 4.19629e-07V15.6862L43.0312 7.84311L48 16.157L33.9376 24L48 31.8431L43.0312 40.157L28.9687 32.3138V48H19.0311V32.3139L4.96882 40.157L2.36931e-06 31.8431L14.0624 24L0 16.157L4.96881 7.84311L19.0311 15.6861V0L28.9687 4.19629e-07Z"
+                      fill="#FFE780"
+                    />
+                  </svg>
                 </div>
-                <div class="feature-card">
-                  <div class="features-card-icon_wrapper">
-                    <svg
-                      width="48"
-                      height="48"
-                      viewBox="0 0 48 48"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M28.9687 4.19629e-07V15.6862L43.0312 7.84311L48 16.157L33.9376 24L48 31.8431L43.0312 40.157L28.9687 32.3138V48H19.0311V32.3139L4.96882 40.157L2.36931e-06 31.8431L14.0624 24L0 16.157L4.96881 7.84311L19.0311 15.6861V0L28.9687 4.19629e-07Z"
-                        fill="#FFE780"
-                      />
-                    </svg>
-                  </div>
-                  <div class="card-content-wrapper">
-                    <h3 class="features-card-title">New Feature</h3>
-                    <div class="features-card-des">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit.Suspendisse tincidunt eros.
-                    </div>
+                <div class="card-content-wrapper">
+                  <h3 class="features-card-title">New Feature</h3>
+                  <div class="features-card-des">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit.Suspendisse tincidunt eros.
                   </div>
                 </div>
               </div>
@@ -349,10 +350,13 @@
         <div class="about_wrapper">
           <div class="about_content">
             <p id="text" letters-slide-up text-split>
-              Welcome to my creative design portfolio, where innovation meets
-              imagination! As a passionate creative designer, I thrive on
-              pushing boundaries and crafting visual experiences that leave a
-              lasting impression.
+              Design isn't just what I do—it's who I am. With a keen eye for
+              detail and a drive for perfection, I specialize in creating
+              stunning, user-friendly websites. My journey began as
+              <span class="creative">Interface Designer</span>, and since then,
+              I’ve honed my skills in design and
+              <span class="creative">Webflow development</span>, continuously
+              pushing the boundaries of what’s possible.
             </p>
           </div>
         </div>
@@ -362,7 +366,7 @@
         <div class="spacer"></div>
         <div class="is-footer">
           <div class="footer-wrapper">
-            <div class="footer-content">
+            <div id="contact" class="footer-content" data-lenis-prevent>
               <h2 data-animate="font-weight">
                 Get in
                 <span class="creative"
@@ -370,8 +374,10 @@
                 >
               </h2>
               <p>
-                I believe that design has the power to inspire, inform, and
-                influence. I believe that design has the power to inspire
+                Let’s create something amazing together. Whether you have a
+                project in mind or just want to say hello, feel free to reach
+                out. I’m always excited to connect with fellow creatives and
+                potential collaborators.
               </p>
             </div>
           </div>
@@ -385,5 +391,6 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js"></script>
   </body>
 </html>

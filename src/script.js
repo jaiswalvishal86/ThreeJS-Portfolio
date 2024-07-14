@@ -6,6 +6,7 @@ import fragmentQuad from "./shaders/fragmentQuad.glsl";
 import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { createProjects } from "./projects";
+import { createMatter } from "./matter";
 
 const loaderElement = document.querySelector(".loader-overlay");
 
@@ -55,7 +56,7 @@ $("[letters-slide-up]").each(function (index) {
   createScrollTrigger($(this), tl);
 });
 
-const lenis = new Lenis({ lerp: 1, duration: 1.5 });
+const lenis = new Lenis({ lerp: 0.9, duration: 1.5 });
 
 function raf(time) {
   lenis.raf(time);
@@ -63,6 +64,20 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
+
+function smoothScroll(event) {
+  event.preventDefault();
+  const targetId = event.currentTarget.getAttribute("href").substring(1);
+  const targetElement = document.getElementById(targetId);
+  if (targetElement) {
+    lenis.scrollTo(targetElement);
+  }
+}
+
+// Attach click event listener to anchor links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", smoothScroll);
+});
 
 //Testimonial Animation
 
@@ -79,13 +94,13 @@ document.addEventListener("DOMContentLoaded", function () {
       pin: ".features-wrapper",
     },
   });
-  testimonialTl.from(".feature-card", {
+  testimonialTl.from(".feature-card._2, .feature-card._3", {
     // opacity: 0,
     yPercent: 160,
     // xPercent: 35,
     scale: 1.5,
     duration: 1,
-    stagger: { each: 0.8, from: "end" },
+    stagger: { each: 0.75, from: "end" },
   });
 
   let percentages = {
@@ -115,13 +130,16 @@ document.addEventListener("DOMContentLoaded", function () {
       xPercent: -50,
       ease: "power4.easeIn",
       duration: 1,
+      overwrite: false,
       scrollTrigger: {
         trigger: "#projects",
         scrub: true,
         start: "top top",
         end: "bottom+=50px bottom",
+        invalidateOnRefresh: true,
       },
     });
+    createMatter();
   });
 
   window.addEventListener("resize", setLimit);
@@ -132,8 +150,8 @@ media.add("(min-width: 992px)", () => {
     '[data-animate="font-weight"]'
   );
   const MAX_DISTANCE = 400;
-  const MAX_FONT_WEIGHT = 700;
-  const MIN_FONT_WEIGHT = 400;
+  const MAX_FONT_WEIGHT = 750;
+  const MIN_FONT_WEIGHT = 500;
 
   const BLUR_MAX_DISTANCE = 400;
   const BLUR_MAX_FONT_WEIGHT = 4;
@@ -250,7 +268,7 @@ const loadingManager = new THREE.LoadingManager(
         .from(
           cameraGroup.position,
           {
-            z: 1.5,
+            z: 3.5,
             ease: "expo.inOut",
             duration: 2,
           },
@@ -372,11 +390,23 @@ const imageTexture = loader.load("../assets/flowers.jpg");
 /**
  * Materials
  */
+const cubeMaterial = new THREE.MeshPhysicalMaterial({
+  metalness: 0,
+  roughness: 0.5,
+  transmission: 1,
+  thickness: 1,
+  clearcoat: 1,
+  clearcoatRoughness: 0.5,
+  normalScale: 1,
+  clearcoatNormalScale: 0.3,
+  ior: 1.5,
+  reflectivity: 0.8,
+});
 
 const treeShaderMaterial = new THREE.ShaderMaterial({
   vertexShader: vertex,
   fragmentShader: fragmentQuad,
-  transparent: true,
+  transparent: false,
   uniforms: {
     uFrequency: {
       value: new THREE.Vector2(5, 5),
@@ -394,11 +424,20 @@ const treeShaderMaterial = new THREE.ShaderMaterial({
 
 //Geometry
 const treePlaneGeometry = new THREE.PlaneGeometry(6, 6, 500, 500);
+const cubeGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
 
 //Meshes
 const mesh1 = new THREE.Mesh(treePlaneGeometry, treeShaderMaterial);
+const mesh2 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+
+// mesh1.position.z = 1;
+mesh2.position.z = 2;
 
 scene.add(mesh1);
+
+const light = new THREE.DirectionalLight(0xfff0dd, 1);
+light.position.set(0, 5, 10);
+scene.add(light);
 
 /**
  * Sizes
@@ -479,6 +518,9 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime();
   const deltaTime = elapsedTime - previousTime;
   previousTime = elapsedTime;
+
+  mesh2.rotation.x += 0.005;
+  mesh2.rotation.y += 0.01;
 
   //Update materials
   treeShaderMaterial.uniforms.uTime.value = elapsedTime;
