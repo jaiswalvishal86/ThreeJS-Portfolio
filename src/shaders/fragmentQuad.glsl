@@ -5,6 +5,8 @@ uniform vec2 uMouse;
 varying vec2 vUv;
 
 
+#include './noise.glsl';
+
 
 float random(vec2 st){
     return fract(sin(dot(st.xy, vec2(12.9898, 78.233)))*43758.5453123);
@@ -21,6 +23,8 @@ void main()
 {
      vec4 image = texture2D(uTexture, vUv);
      vec4 grain = texture2D(uGrain, vUv);
+
+     float noise = snoise(gl_FragCoord.xy);
 
      float dist = length(vUv - vec2(0.5));
     //  if(dist > 0.5) discard;
@@ -51,7 +55,7 @@ void main()
      gl_FragColor = image;
      gl_FragColor = grain;
 
-     vec2 uv_display = vUv + uv_out * 0.05 + uv_in * sin(uTime) + (grain.rg - vec2(0.5)) * -0.1;
+     vec2 uv_display = vUv + uv_out * 0.05 + uv_in * sin(uTime) + 0.05 * uMouse + (grain.rg - vec2(0.5)) * -0.1;
 
      vec4 uvTexture = texture2D(uTexture, uv_display);
 

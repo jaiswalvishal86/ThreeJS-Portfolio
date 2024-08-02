@@ -431,6 +431,7 @@ const mesh1 = new THREE.Mesh(treePlaneGeometry, treeShaderMaterial);
 const mesh2 = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
 // mesh1.position.z = 1;
+mesh2.position.y = -2;
 mesh2.position.z = 2;
 
 scene.add(mesh1);
