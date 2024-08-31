@@ -1247,9 +1247,6 @@ img {
 }
 
 @media only screen and (max-width: 599px) and (min-width: 280px) {
-  .webgl {
-    min-height: 800px;
-  }
   #magneticCircle {
     display: none;
   }

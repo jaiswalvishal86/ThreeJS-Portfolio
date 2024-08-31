@@ -449,25 +449,19 @@ const sizes = {
 };
 
 window.addEventListener("resize", () => {
-  if (
-    canvas.width != canvas.clientWidth ||
-    canvas.height != canvas.clientHeight
-  ) {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-    renderer.setViewport(0, 0, canvas.width, canvas.height);
+  if (window.innerWidth !== sizes.width) {
+    // Update sizes
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Update camera
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
   }
-  // Update sizes
-  sizes.width = window.innerWidth;
-  sizes.height = window.innerHeight;
-
-  // Update camera
-  camera.aspect = sizes.width / sizes.height;
-  camera.updateProjectionMatrix();
-
-  // Update renderer
-  renderer.setSize(sizes.width, sizes.height);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
 /**
