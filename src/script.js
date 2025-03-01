@@ -6,7 +6,6 @@ import fragmentQuad from "./shaders/fragmentQuad.glsl";
 import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { createProjects } from "./projects";
-import { createMatter } from "./matter";
 
 const loaderElement = document.querySelector(".loader-overlay");
 
@@ -65,6 +64,8 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
+lenis.stop();
+
 function smoothScroll(event) {
   event.preventDefault();
   const targetId = event.currentTarget.getAttribute("href").substring(1);
@@ -83,25 +84,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
 document.addEventListener("DOMContentLoaded", function () {
   createProjects();
-
-  let testimonialTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".features-section",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: true,
-      toggleActions: "restart none reverse",
-      pin: ".features-wrapper",
-    },
-  });
-  testimonialTl.from(".feature-card._2, .feature-card._3", {
-    // opacity: 0,
-    yPercent: 160,
-    // xPercent: 35,
-    scale: 1.5,
-    duration: 1,
-    stagger: { each: 0.75, from: "end" },
-  });
 
   let percentages = {
     small: 700,
@@ -139,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
         invalidateOnRefresh: true,
       },
     });
-    createMatter();
   });
 
   window.addEventListener("resize", setLimit);
@@ -150,57 +131,84 @@ media.add("(min-width: 992px)", () => {
     '[data-animate="font-weight"]'
   );
   const MAX_DISTANCE = 400;
-  const MAX_FONT_WEIGHT = 750;
-  const MIN_FONT_WEIGHT = 500;
+  const MAX_FONT_WEIGHT = 800;
+  const MIN_FONT_WEIGHT = 400;
 
   const BLUR_MAX_DISTANCE = 400;
   const BLUR_MAX_FONT_WEIGHT = 4;
   const BLUR_MIN_FONT_WEIGHT = 0;
 
+  let debounceTimeout;
+
   document.addEventListener("mousemove", (event) => {
-    const mouseX = event.pageX;
-    const mouseY = event.pageY;
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+      const mouseX = event.pageX;
+      const mouseY = event.pageY;
 
-    fontWeightItems.forEach((item) => {
-      item.querySelectorAll(".char").forEach((char) => {
-        const itemRect = char.getBoundingClientRect();
-        const itemCenterX = itemRect.left + itemRect.width / 2 + window.scrollX;
+      fontWeightItems.forEach((item) => {
+        item.querySelectorAll(".char").forEach((char) => {
+          const itemRect = char.getBoundingClientRect();
+          const itemCenterX =
+            itemRect.left + itemRect.width / 2 + window.scrollX;
+          const itemCenterY =
+            itemRect.top + itemRect.height / 2 + window.scrollY;
 
-        const itemCenterY = itemRect.top + itemRect.height / 2 + window.scrollY;
+          const distance = Math.sqrt(
+            Math.pow(mouseX - itemCenterX, 2) +
+              Math.pow(mouseY - itemCenterY, 2)
+          );
 
-        const distance = Math.sqrt(
-          Math.pow(mouseX - itemCenterX, 2) + Math.pow(mouseY - itemCenterY, 2)
-        );
+          let fontWeight =
+            distance < MAX_DISTANCE
+              ? gsap.utils.mapRange(
+                  0,
+                  MAX_DISTANCE,
+                  MIN_FONT_WEIGHT,
+                  MAX_FONT_WEIGHT,
+                  Math.max(0, MAX_DISTANCE - distance)
+                )
+              : MIN_FONT_WEIGHT;
 
-        let fontWeight =
-          distance < MAX_DISTANCE
-            ? gsap.utils.mapRange(
-                0,
-                MAX_DISTANCE,
-                MIN_FONT_WEIGHT,
-                MAX_FONT_WEIGHT,
-                Math.max(0, MAX_DISTANCE - distance)
-              )
-            : MIN_FONT_WEIGHT;
+          let blurFontWeight =
+            distance < BLUR_MAX_DISTANCE
+              ? gsap.utils.mapRange(
+                  0,
+                  BLUR_MAX_DISTANCE,
+                  BLUR_MIN_FONT_WEIGHT,
+                  BLUR_MAX_FONT_WEIGHT,
+                  Math.max(0, BLUR_MAX_DISTANCE - distance)
+                )
+              : BLUR_MIN_FONT_WEIGHT;
 
-        let blurFontWeight =
-          distance < BLUR_MAX_DISTANCE
-            ? gsap.utils.mapRange(
-                0,
-                BLUR_MAX_DISTANCE,
-                BLUR_MIN_FONT_WEIGHT,
-                BLUR_MAX_FONT_WEIGHT,
-                Math.max(0, BLUR_MAX_DISTANCE - distance)
-              )
-            : BLUR_MIN_FONT_WEIGHT;
-
-        gsap.to(char, {
-          fontWeight,
-          // filter: `blur(${blurFontWeight}px)`,
-          duration: 0.8,
+          gsap.to(char, {
+            fontWeight,
+            // filter: `blur(${blurFontWeight}px)`,
+            duration: 0.8,
+            overwrite: "auto", // Ensure smooth transitions
+          });
         });
       });
-    });
+    }, 0); // Adjust the debounce delay as needed
+  });
+});
+
+const cards = document.querySelectorAll(".card");
+
+cards.forEach((card, index) => {
+  if (index === cards.length) return;
+  gsap.to(card, {
+    scale: 0.75,
+    rotateY: -25,
+    skewY: -10,
+    // yPercent: -50,
+    opacity: 0,
+    scrollTrigger: {
+      trigger: card,
+      start: "top 15%",
+      end: "bottom top",
+      scrub: 1,
+    },
   });
 });
 
@@ -247,6 +255,7 @@ const loadingManager = new THREE.LoadingManager(
               yoyo: true,
             },
             onComplete: () => {
+              lenis.start();
               gsap.to(splitHeroHeading.chars, {
                 yPercent: -100,
                 stagger: { from: "random", amount: 0.4, ease: "power4.easeIn" },
