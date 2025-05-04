@@ -81,6 +81,8 @@ const createProjects = () => {
     video.style.height = "50cqw";
     video.autoplay = true;
     video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
 
     const videoSource = document.createElement("source");
     videoSource.type = "video/mp4";
