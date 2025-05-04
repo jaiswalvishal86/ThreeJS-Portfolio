@@ -15,46 +15,69 @@
   <body>
     <canvas class="webgl" id="webgl"></canvas>
     <header>
-      <a class="brand" href="/">Vishal</a>
-      <a
-        data-cursor-stick
-        data-cursor-text="Menu"
-        class="menu"
-        href="#contact"
-        onclick="lenis.scrollTo('#contact')"
-      >
-        <div class="hamburger">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <a aria-label="Go to Homepage" class="brand" href="/">Vishal J.</a>
+      <div class="right-header">
+        <a aria-label="Go to mail" href="mailto: jaiswalvishal86@gmail.com">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="currentColor"
+          >
             <path
-              d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z"
-              fill="currentColor"
+              d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"
             ></path>
           </svg>
-        </div>
-        Contact</a
-      >
+        </a>
+        <a
+          aria-label="go to Twitter profile"
+          href="https://x.com/vishals_design"
+          target="_blank"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="currentColor"
+          >
+            <path
+              d="M17.6874 3.0625L12.6907 8.77425L8.37045 3.0625H2.11328L9.58961 12.8387L2.50378 20.9375H5.53795L11.0068 14.6886L15.7863 20.9375H21.8885L14.095 10.6342L20.7198 3.0625H17.6874ZM16.6232 19.1225L5.65436 4.78217H7.45745L18.3034 19.1225H16.6232Z"
+            ></path>
+          </svg>
+        </a>
+        <a
+          data-cursor-stick
+          data-cursor-text="Menu"
+          class="menu"
+          href="#contact"
+          onclick="lenis.scrollTo('#contact')"
+          aria-label="Contact us"
+        >
+          Contact</a
+        >
+      </div>
     </header>
     <div class="loader-overlay">
       <div class="loading-wrapper">
-        <p class="counter" id="counter-num">LOADING</p>
+        <div class="counter" id="counter-num">LOADING</div>
       </div>
-      <!-- <p id="loaderText">Loading</p> -->
-      <!-- <div class="loading-bar"></div> -->
     </div>
 
-    <div class="horizontal_nav">
+    <nav class="horizontal_nav">
       <a href="#projects"><p>Works</p></a>
       <a href="#services"><p>Services</p></a>
-      <a href="#testimonials"><p>Testimonials</p></a>
-    </div>
+      <a href="#testimonial"><p>Testimonials</p></a>
+    </nav>
 
     <div class="section_wrapper">
       <div class="hero_container">
         <section class="section is-hero">
           <div class="mail_wrapper">
-            <div id="hero-sub--text" class="year_text">@2025</div>
+            <!-- <div id="hero-sub--text" class="year_text">@2025</div> -->
             <div id="hero-sub--text" class="mail">
-              jaiswalvishal86@gmail.com
+              Building websites with a focus on design, motion, and detail.
             </div>
           </div>
           <div class="hero_wrapper">
@@ -76,7 +99,7 @@
           <div class="services_wrapper">
             <p id="hero-sub--text" class="service_text">Creative Design</p>
             <p id="hero-sub--text" class="service_text">Webflow Development</p>
-            <p id="hero-sub--text" class="service_text">*3D Integration</p>
+            <p id="hero-sub--text" class="service_text">3D Development</p>
           </div>
           <!-- <div class="scroll_wrapper">Scroll</div> -->
         </section>
@@ -87,25 +110,31 @@
           <h2>My <span class="creative">Works</span></h2>
           <div class="work-card--wrapper">
             <div class="sustain">
-              <a href="./pages/case1.html">
+              <a
+                href="https://threejs-physics-nine.vercel.app/"
+                target="_blank"
+              >
                 <h5>01.</h5>
-                <h2 class="work-heading">Sustainability.</h2>
-                <p>
-                  I believe that design has the power to inspire, inform, and
-                  influence.
-                </p>
+                <h2 class="work-heading">3D Physics.</h2>
+                <p>Experimental</p>
                 <div class="sustain-img--wrapper">
-                  <img src="/assets/white.jpeg" alt="abstract" />
+                  <img src="/assets/physics.png" alt="abstract" />
                 </div>
               </a>
             </div>
             <div class="ephemeral">
-              <a href="./pages/case2.html">
-                <h2 id="ephemeral-text" class="work-heading">
-                  Ephemeral Cover.
-                </h2>
+              <a href="https://www.vibex.space/" target="_blank">
+                <h2 id="ephemeral-text" class="work-heading">Vibe-X Sound.</h2>
                 <div class="ephemeral-img--wrapper">
-                  <img src="/assets/terrain.jpeg" alt="abstract" />
+                  <img
+                    class="ephemeral-img"
+                    src="/assets/img3.webp"
+                    alt="abstract"
+                  />
+                  <video width="300" height="224" autoplay="true" loop>
+                    <source src="/assets/vibex.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
                 <p id="ephemeral-para">
                   I believe that design has the power to inspire, inform, and
@@ -137,7 +166,7 @@
         </div>
       </div>
 
-      <div id="projects">
+      <div id="projects" class="projects_wrap">
         <div class="projects_sticky">
           <div class="slider_container">
             <h2 class="project_heading">Projects</h2>
@@ -170,15 +199,7 @@
                 </p>
               </div>
               <div class="service-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M4.00021 18.9223L2.65056 18.377C2.13849 18.1701 1.89109 17.5873 2.09798 17.0752L4.00021 12.3671V18.9223ZM8.85987 21H7.00021C6.44792 21 6.00021 20.5523 6.00021 20V13.9221L8.85987 21ZM6.02202 5.96771L15.2939 2.22164C15.8059 2.01475 16.3888 2.26215 16.5956 2.77422L22.2147 16.682C22.4216 17.194 22.1742 17.7769 21.6622 17.9838L12.3903 21.7298C11.8783 21.9367 11.2954 21.6893 11.0885 21.1773L5.46944 7.2695C5.26255 6.75743 5.50995 6.1746 6.02202 5.96771ZM9.00021 9.00004C9.55249 9.00004 10.0002 8.55233 10.0002 8.00004C10.0002 7.44776 9.55249 7.00004 9.00021 7.00004C8.44792 7.00004 8.00021 7.44776 8.00021 8.00004C8.00021 8.55233 8.44792 9.00004 9.00021 9.00004Z"
-                  ></path>
-                </svg>
+                <img alt="design icon" src="assets/design.png" />
               </div>
             </div>
 
@@ -191,99 +212,57 @@
                 </p>
               </div>
               <div class="service-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M4.00021 18.9223L2.65056 18.377C2.13849 18.1701 1.89109 17.5873 2.09798 17.0752L4.00021 12.3671V18.9223ZM8.85987 21H7.00021C6.44792 21 6.00021 20.5523 6.00021 20V13.9221L8.85987 21ZM6.02202 5.96771L15.2939 2.22164C15.8059 2.01475 16.3888 2.26215 16.5956 2.77422L22.2147 16.682C22.4216 17.194 22.1742 17.7769 21.6622 17.9838L12.3903 21.7298C11.8783 21.9367 11.2954 21.6893 11.0885 21.1773L5.46944 7.2695C5.26255 6.75743 5.50995 6.1746 6.02202 5.96771ZM9.00021 9.00004C9.55249 9.00004 10.0002 8.55233 10.0002 8.00004C10.0002 7.44776 9.55249 7.00004 9.00021 7.00004C8.44792 7.00004 8.00021 7.44776 8.00021 8.00004C8.00021 8.55233 8.44792 9.00004 9.00021 9.00004Z"
-                  ></path>
-                </svg>
+                <img alt="webflow icon" src="assets/webflow.png" />
               </div>
             </div>
 
             <div class="service-wrapper">
               <div class="service-content">
-                <h3>3D Integration</h3>
+                <h3>3D Development</h3>
                 <p>
                   Bringing an extra dimension to web design with interactive 3D
                   elements, creating immersive experiences.
                 </p>
               </div>
               <div class="service-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M4.00021 18.9223L2.65056 18.377C2.13849 18.1701 1.89109 17.5873 2.09798 17.0752L4.00021 12.3671V18.9223ZM8.85987 21H7.00021C6.44792 21 6.00021 20.5523 6.00021 20V13.9221L8.85987 21ZM6.02202 5.96771L15.2939 2.22164C15.8059 2.01475 16.3888 2.26215 16.5956 2.77422L22.2147 16.682C22.4216 17.194 22.1742 17.7769 21.6622 17.9838L12.3903 21.7298C11.8783 21.9367 11.2954 21.6893 11.0885 21.1773L5.46944 7.2695C5.26255 6.75743 5.50995 6.1746 6.02202 5.96771ZM9.00021 9.00004C9.55249 9.00004 10.0002 8.55233 10.0002 8.00004C10.0002 7.44776 9.55249 7.00004 9.00021 7.00004C8.44792 7.00004 8.00021 7.44776 8.00021 8.00004C8.00021 8.55233 8.44792 9.00004 9.00021 9.00004Z"
-                  ></path>
-                </svg>
+                <img alt="3d icon" src="assets/3d.png" />
               </div>
             </div>
-
-            <!-- <div class="service-wrapper">
-              <div class="service-content">
-                <h3>Development</h3>
-                <p>
-                  Welcome to my creative design portfolio, where innovation
-                  meets imagination! Welcome to my creative design portfolio,
-                </p>
-              </div>
-              <div class="service-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M4.00021 18.9223L2.65056 18.377C2.13849 18.1701 1.89109 17.5873 2.09798 17.0752L4.00021 12.3671V18.9223ZM8.85987 21H7.00021C6.44792 21 6.00021 20.5523 6.00021 20V13.9221L8.85987 21ZM6.02202 5.96771L15.2939 2.22164C15.8059 2.01475 16.3888 2.26215 16.5956 2.77422L22.2147 16.682C22.4216 17.194 22.1742 17.7769 21.6622 17.9838L12.3903 21.7298C11.8783 21.9367 11.2954 21.6893 11.0885 21.1773L5.46944 7.2695C5.26255 6.75743 5.50995 6.1746 6.02202 5.96771ZM9.00021 9.00004C9.55249 9.00004 10.0002 8.55233 10.0002 8.00004C10.0002 7.44776 9.55249 7.00004 9.00021 7.00004C8.44792 7.00004 8.00021 7.44776 8.00021 8.00004C8.00021 8.55233 8.44792 9.00004 9.00021 9.00004Z"
-                  ></path>
-                </svg>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
 
-      <div id="gallery" class="gallery-section">
-        <!-- <div class="title-heading-wrapper">
-          <h2 class="title-heading">Trust in what better future can be</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            tincidunt sagittis eros. Quisque quis euismod lorem. Etiam sodales
-            ac felis id interdum.
-          </p>
-        </div> -->
+      <div id="testimonial" class="testimonial-section">
+        <!-- <h2><span class="creative">Testimonials</span></h2> -->
         <div class="card">
           <div class="card-description">
-            Lorem ipsum dolor sit amet cons tetur adipiscing elit. Susdisse
-            tinci dunt eros. Lorem ipsum dolor sit amet, consectetur adipi scing
-            elit. Suspen disse tincidunt eros.
+            I had the pleasure of collaborating with Vishal on a recent project.
+            Vishal is a JS wizard who can turn things into magic. He’s quick to
+            respond and resolves issues efficiently, making him a reliable and
+            skilled collaborator. I highly recommend him and look forward to
+            working together on future projects!
           </div>
-          <h3 class="title">New Feature 1</h3>
+          <h3 class="title">- Kai Ting</h3>
         </div>
         <div class="card">
           <div class="card-description">
-            Lorem ipsum dolor sit amet cons tetur adipiscing elit. Susdisse
-            tinci dunt eros. Lorem ipsum dolor sit amet, consectetur adipi scing
-            elit. Suspen disse tincidunt eros.
+            Vishal is a true pro! He brought both a strong eye for design and
+            deep technical fluency with Webflow’s CMS, interactions, and
+            responsive frameworks.
           </div>
-          <h3 class="title">New Feature 2</h3>
+          <h3 class="title">- Mark Golub</h3>
         </div>
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-description">
             Lorem ipsum dolor sit amet cons tetur adipiscing elit. Susdisse
             tinci dunt eros. Lorem ipsum dolor sit amet, consectetur adipi scing
             elit. Suspen disse tincidunt eros.
           </div>
           <h3 class="title">New Feature 3</h3>
-        </div>
+        </div> -->
       </div>
 
-      <!-- <section id="about-section" class="section is-about">
+      <section id="about-section" class="section is-about">
         <div class="about_wrapper">
           <div class="about_content">
             <p id="text">
@@ -297,7 +276,7 @@
             </p>
           </div>
         </div>
-      </section> -->
+      </section>
 
       <div class="footer-section">
         <!-- <div class="spacer"></div> -->
@@ -339,6 +318,5 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js"></script> -->
   </body>
 </html>

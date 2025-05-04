@@ -108,17 +108,34 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   media.add("(min-width: 600px)", () => {
-    gsap.to(".projects_slider", {
-      xPercent: -50,
-      ease: "power4.easeIn",
-      duration: 1,
-      overwrite: false,
-      scrollTrigger: {
-        trigger: "#projects",
-        scrub: true,
-        start: "top top",
-        end: "bottom+=50px bottom",
-        invalidateOnRefresh: true,
+    // gsap.to(".projects_slider", {
+    //   xPercent: -50,
+    //   ease: "power4.easeIn",
+    //   duration: 1,
+    //   overwrite: false,
+    //   scrollTrigger: {
+    //     trigger: "#projects",
+    //     scrub: true,
+    //     start: "top top",
+    //     end: "bottom+=50px bottom",
+    //     invalidateOnRefresh: true,
+    //   },
+    // });
+
+    const projectSlider = document.querySelector(".projects_slider");
+
+    ScrollTrigger.create({
+      trigger: ".projects_wrap",
+      start: "top top",
+      end: "bottom bottom",
+      // pin: true,
+      // pinSpacing: false,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const maxTranslate = projectSlider.offsetWidth - window.innerWidth;
+        const translateX = -progress * maxTranslate;
+
+        gsap.set(projectSlider, { x: translateX });
       },
     });
   });
@@ -199,8 +216,7 @@ cards.forEach((card, index) => {
   if (index === cards.length) return;
   gsap.to(card, {
     scale: 0.75,
-    rotateY: -25,
-    skewY: -10,
+
     // yPercent: -50,
     opacity: 0,
     scrollTrigger: {
