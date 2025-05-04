@@ -1149,10 +1149,10 @@ img {
     padding-right: 2rem;
   }
   .hero_wrapper h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
     line-height: 1.2;
     font-weight: 500;
-    letter-spacing: -2px;
+    letter-spacing: -0.05em;
   }
 
   .heading_line-1 {
@@ -1196,6 +1196,11 @@ img {
   }
 
   .testimonial-section {
+    background-color: #fafafa;
+    backdrop-filter: blur(0px);
+  }
+
+  .footer-section {
     background-color: #fafafa;
     backdrop-filter: blur(0px);
   }
