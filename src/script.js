@@ -55,7 +55,7 @@ $("[letters-slide-up]").each(function (index) {
   createScrollTrigger($(this), tl);
 });
 
-const lenis = new Lenis({ lerp: 0.9, duration: 1.5 });
+const lenis = new Lenis({ lerp: 0.75, duration: 1.5 });
 
 function raf(time) {
   lenis.raf(time);
@@ -228,22 +228,27 @@ cards.forEach((card, index) => {
   });
 });
 
+const splitCount = new SplitType("#counter-num", {
+  types: "chars",
+});
+
 const loadingManager = new THREE.LoadingManager(
   () => {
-    gsap.delayedCall(0.2, () => {
+    gsap.delayedCall(0.25, () => {
       timeline
-        .from("#counter-num", {
+        .set(splitCount.chars, { visibility: "visible" })
+        .from(splitCount.chars, {
           yPercent: 100,
-          autoAlpha: true,
-          // stagger: 0.05,
+          stagger: 0.02,
           ease: "power4.inOut",
-          duration: 0.5,
+          duration: 0.35,
         })
         .to(
-          "#counter-num",
+          splitCount.chars,
           {
             yPercent: -100,
-            duration: 0.5,
+            duration: 0.35,
+            stagger: 0.015,
             ease: "power4.inOut",
           },
           "<+1.5"

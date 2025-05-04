@@ -118,6 +118,7 @@ header a {
 }
 
 #counter-num {
+  text-transform: uppercase;
   visibility: hidden;
 }
 
@@ -242,7 +243,7 @@ header a {
 }
 
 .section .mail_wrapper {
-  width: 22%;
+  width: 28%;
   position: absolute;
   top: 42%;
   left: 10%;
@@ -275,7 +276,7 @@ header a {
 }
 
 .hero_wrapper h1 {
-  font-size: 9vw;
+  font-size: 8vw;
   font-weight: 500;
   letter-spacing: -10px;
   line-height: 1;
@@ -287,7 +288,7 @@ header a {
 
 .heading_line-1 {
   position: relative;
-  left: -30%;
+  left: -20%;
   overflow: hidden;
 }
 
@@ -880,10 +881,10 @@ img {
   text-align: center;
 }
 .footer-wrapper p {
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 300;
   letter-spacing: -0.03em;
-  line-height: 1.5em;
+  line-height: 1.6;
   text-align: center;
   max-width: 40rem;
   margin-bottom: 1rem;
@@ -895,6 +896,20 @@ img {
   flex-direction: column;
   align-items: center;
   z-index: 1;
+}
+
+.contact-cta {
+  padding: 1rem 2rem;
+  border: 1px solid #6f6f6f;
+  border-radius: 2rem;
+
+  transition: all 0.25s ease-out;
+}
+
+.contact-cta:hover {
+  background-color: #000000;
+  color: #fff;
+  box-shadow: 2px 5px 12px #c3c3c3;
 }
 
 main {
@@ -974,8 +989,8 @@ img {
     font-size: 1.6rem;
   }
   .hero_wrapper h1 {
-    font-size: 6.5rem;
-    line-height: 1.2;
+    font-size: 4.5rem;
+    letter-spacing: -0.05em;
   }
 
   .heading_line-1 {
@@ -987,14 +1002,13 @@ img {
   }
 
   .hero_wrapper p {
-    margin-top: 1rem;
-    font-size: 1.3rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
     max-width: 75%;
   }
   .section .mail_wrapper {
     top: 20%;
     width: 60%;
-    font-size: 1.6rem;
   }
 
   .section.is-about {
@@ -1002,7 +1016,7 @@ img {
   }
 
   .services_wrapper .service_text {
-    font-size: 1.3em;
+    font-size: 1rem;
     line-height: 1.4;
   }
 
