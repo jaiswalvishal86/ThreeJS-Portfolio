@@ -5,23 +5,28 @@ import vertex from "./shaders/test/vertex.glsl";
 import fragmentQuad from "./shaders/fragmentQuad.glsl";
 import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { createProjects } from "./projects";
 
-const loaderElement = document.querySelector(".loader-overlay");
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
+const loaderElement = document.querySelector(".loader-overlay");
 const media = gsap.matchMedia();
 
 const timeline = gsap.timeline();
-const splitHeroHeading = new SplitType("#hero-heading", {
-  types: "chars lines",
+const splitHeroHeading = SplitText.create("#hero-heading", {
+  type: "words, chars",
+  charsClass: "char",
 });
 
-const splitHeroPara = new SplitType("#hero-para");
-const splitSubHeading = new SplitType("#hero-sub--text");
+const splitHeroPara = SplitText.create("#hero-para", { mask: "lines" });
+const splitSubHeading = SplitText.create("#hero-sub--text", {
+  type: "words",
+  mask: "words",
+  smartWrap: true,
+});
 
-gsap.registerPlugin(ScrollTrigger);
-
-let typeSplit = new SplitType("[text-split]", {
+let typeSplit = SplitText.create("[text-split]", {
   types: "lines, words",
   tagName: "span",
 });
@@ -108,20 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   media.add("(min-width: 600px)", () => {
-    // gsap.to(".projects_slider", {
-    //   xPercent: -50,
-    //   ease: "power4.easeIn",
-    //   duration: 1,
-    //   overwrite: false,
-    //   scrollTrigger: {
-    //     trigger: "#projects",
-    //     scrub: true,
-    //     start: "top top",
-    //     end: "bottom+=50px bottom",
-    //     invalidateOnRefresh: true,
-    //   },
-    // });
-
     const projectSlider = document.querySelector(".projects_slider");
 
     ScrollTrigger.create({
@@ -228,8 +219,9 @@ cards.forEach((card, index) => {
   });
 });
 
-const splitCount = new SplitType("#counter-num", {
+const splitCount = SplitText.create("#counter-num", {
   types: "chars",
+  mask: "chars",
 });
 
 const loadingManager = new THREE.LoadingManager(
@@ -415,7 +407,7 @@ const scene = new THREE.Scene();
  * Texture Loader
  */
 const loader = new THREE.TextureLoader(loadingManager);
-const imageTexture = loader.load("../assets/flowers.jpg");
+const imageTexture = loader.load("../assets/flowers.webp");
 
 /**
  * Materials
@@ -567,7 +559,7 @@ const tick = () => {
 
   // Call tick again on the next frame
 
-  window.requestAnimationFrame(tick);
+  // window.requestAnimationFrame(tick);
 };
 
 tick();

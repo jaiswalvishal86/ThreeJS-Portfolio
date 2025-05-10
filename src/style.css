@@ -101,25 +101,16 @@ header a {
 }
 
 .loading-wrapper {
-  position: relative;
-  overflow: hidden;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-.loader-overlay p {
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  font-weight: 300;
-  color: #1c1c1c;
-  /* transform: translateY(-100%); */
-}
-
-#counter-num {
+.loader-overlay .counter {
   text-transform: uppercase;
   visibility: hidden;
+  /* transform: translateY(-100%); */
 }
 
 .creative a {
@@ -127,27 +118,41 @@ header a {
   text-decoration: none;
 }
 
-.horizontal_nav {
+.nav_wrap {
   position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  font-size: 0.85rem;
+  left: 50%;
+  bottom: 2.5%;
+  transform: translateX(-50%);
+  max-width: 24rem;
+  font-size: 0.8rem;
   font-weight: 300;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  left: 50%;
-  bottom: 2.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 3;
+}
+
+.horizontal_nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   margin: 0rem auto;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1rem;
   border: 1px solid #eee;
   border-radius: 2rem;
-  max-width: 24rem;
-  transform: translateX(-50%);
   background-color: #fafafaaa;
   backdrop-filter: blur(2px);
-  z-index: 3;
+}
+
+.book-cta {
+  padding: 0.75rem 1rem;
+  border-radius: 2rem;
+  color: white;
+  background-color: #000;
 }
 
 .menu {
@@ -252,6 +257,10 @@ header a {
   justify-content: space-between;
 }
 
+.mail {
+  font-size: 0.85rem;
+}
+
 .section .services_wrapper {
   position: absolute;
   right: 8%;
@@ -299,11 +308,6 @@ header a {
 }
 
 .heading_line-3 {
-  overflow: hidden;
-}
-
-.line {
-  position: relative;
   overflow: hidden;
 }
 
@@ -421,6 +425,11 @@ h2 {
   mix-blend-mode: difference;
 }
 
+.sustain h3 {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
 .sustain p {
   font-weight: 300;
   font-size: 14px;
@@ -520,13 +529,13 @@ video {
 }
 
 .para-img-1 {
-  background-image: url(/assets/img7.jpg);
+  background-image: url(/assets/img7.webp);
   background-size: cover;
   background-position: 0% 30%;
 }
 
 .para-img-2 {
-  background-image: url(/assets/img8.jpg);
+  background-image: url(/assets/img8.webp);
   background-size: cover;
   background-position: center;
 }
@@ -1252,7 +1261,7 @@ img {
     width: 100%;
   }
 
-  .sustain h5 {
+  .sustain h3 {
     font-size: 1.2rem;
   }
 

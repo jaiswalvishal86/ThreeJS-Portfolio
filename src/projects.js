@@ -1,5 +1,6 @@
 const projects = [
   {
+    key: 1,
     name: "Lazysis Chinese",
     type: "Webflow Development",
     pos: "start",
@@ -8,26 +9,29 @@ const projects = [
     link: "https://www.lazysisterchinese.com/",
   },
   {
+    key: 2,
     name: "i-watch landing page",
     type: "3D Development",
     pos: "mid",
-    image: "assets/i-watch.jpeg",
+    image: "assets/i-watch.webp",
     video: "assets/i-watch.mp4",
     link: "https://i-watch-ultra.netlify.app/",
   },
   {
+    key: 3,
     name: "Deck Doctors",
     type: "Webflow Development",
     pos: "end",
-    image: "assets/minimal.jpeg",
+    image: "assets/minimal.webp",
     video: "assets/deckdocs.mp4",
     link: "https://www.deckdocs.com/",
   },
   {
+    key: 4,
     name: "Snagged",
     type: "Webflow Development",
     pos: "mid",
-    image: "assets/minimal_gradient.jpeg",
+    image: "assets/minimal_gradient.webp",
     video: "assets/snagged.mp4",
     link: "https://www.snagged.com/",
   },
@@ -71,10 +75,13 @@ const createProjects = () => {
 
     imageContainer.href = project.link;
     imageContainer.target = "_blank";
+    imageContainer.ariaLabel = `Go to project ${project.key}`;
 
     let image = document.createElement("img");
     image.classList.add("project__image");
     image.src = project.image;
+    image.loading = "lazy";
+    image.alt = `project image ${project.key}`;
 
     let video = document.createElement("video");
     video.style.width = "75cqw";

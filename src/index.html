@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="Front-end developer portfolio showcasing modern, responsive websites built with Javascript, Webflow, three.js and cutting-edge UI practices. Explore projects, case-study, and creative digital experiences.">
+    <meta name="keywords" content="Webflow Developer, Front-end Developer, JavaScript Developer, Designer">
+    <meta name="author" content="Vishal Jaiswal">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="assets/vishal.png" />
     <title>Portfolio - Vishal Jaiswal</title>
@@ -65,11 +68,15 @@
       </div>
     </div>
 
-    <nav class="horizontal_nav">
-      <a href="#projects"><p>Works</p></a>
-      <a href="#services"><p>Services</p></a>
-      <a href="#testimonial"><p>Testimonials</p></a>
-    </nav>
+    <div class="nav_wrap">
+      <nav class="horizontal_nav">
+        <a href="#projects"><p>Works</p></a>
+        <a href="#services"><p>Services</p></a>
+        <a href="#testimonial"><p>Testimonials</p></a>
+      </nav>
+    
+      <a class="book-cta" href="#" data-cal-link="vishal-jaiswal/15min" data-cal-namespace="15min" data-cal-config='{"layout":"column_view"}'>Book</a>
+    </div>
 
     <div class="section_wrapper">
       <div class="hero_container">
@@ -116,11 +123,11 @@
                 href="https://threejs-physics-nine.vercel.app/"
                 target="_blank"
               >
-                <h5>01.</h5>
+                <h3>01.</h3>
                 <h2 class="work-heading">3D Physics.</h2>
                 <p>Experimental</p>
                 <div class="sustain-img--wrapper">
-                  <img src="/assets/physics.png" alt="abstract" />
+                  <img src="/assets/physics.webp" alt="abstract" />
                 </div>
               </a>
             </div>
@@ -212,7 +219,7 @@
                 </p>
               </div>
               <div class="service-icon">
-                <img alt="design icon" src="assets/design.png" />
+                <img alt="design icon" loading="lazy" src="assets/design.png" />
               </div>
             </div>
 
@@ -225,7 +232,7 @@
                 </p>
               </div>
               <div class="service-icon">
-                <img alt="webflow icon" src="assets/webflow.png" />
+                <img alt="webflow icon" loading="lazy" src="assets/webflow.png" />
               </div>
             </div>
 
@@ -238,7 +245,7 @@
                 </p>
               </div>
               <div class="service-icon">
-                <img alt="3d icon" src="assets/3d.png" />
+                <img alt="3d icon" loading="lazy" src="assets/3d.png" />
               </div>
             </div>
           </div>
@@ -314,11 +321,24 @@
       </div>
     </div>
     <script type="module" src="./script.js"></script>
-    <script src="https://unpkg.com/split-type"></script>
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+    <!-- Cal element-click embed code begins -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "15min", {origin:"https://cal.com"});
+
+  
+  // Important: Please add the following attributes to the element that should trigger the calendar to open upon clicking.
+  // `data-cal-link="vishal-jaiswal/15min"`
+  // data-cal-namespace="15min"
+  // `data-cal-config='{"layout":"month_view"}'`
+
+  Cal.ns["15min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#000000"}},"hideEventTypeDetails":true,"layout":"month_view"});
+  </script>
+  <!-- Cal element-click embed code ends -->
   </body>
 </html>
