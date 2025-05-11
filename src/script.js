@@ -139,8 +139,8 @@ media.add("(min-width: 992px)", () => {
     '[data-animate="font-weight"]'
   );
   const MAX_DISTANCE = 400;
-  const MAX_FONT_WEIGHT = 800;
-  const MIN_FONT_WEIGHT = 400;
+  const MAX_FONT_WEIGHT = 900;
+  const MIN_FONT_WEIGHT = 500;
 
   const BLUR_MAX_DISTANCE = 400;
   const BLUR_MAX_FONT_WEIGHT = 4;
@@ -302,11 +302,11 @@ const loadingManager = new THREE.LoadingManager(
           {
             yPercent: 0,
             ease: "sine.out",
-            stagger: { from: "center", amount: 0.5, ease: "power4.out" },
+            stagger: { amount: 0.5, ease: "power4.out" },
             onComplete: () => {
               gsap.to(splitHeroPara.words, {
                 yPercent: -200,
-                stagger: { from: "center", amount: 0.4, ease: "power4.easeIn" },
+                stagger: { amount: 0.4, ease: "power4.easeIn" },
                 scrollTrigger: {
                   trigger: ".hero_container",
                   start: "top, top",
@@ -328,11 +328,11 @@ const loadingManager = new THREE.LoadingManager(
           {
             yPercent: 0,
             ease: "sine.out",
-            stagger: { from: "center", amount: 0.5, ease: "power4.out" },
+            stagger: { amount: 0.5, ease: "power4.out" },
             onComplete: () => {
               gsap.to(splitSubHeading.words, {
                 yPercent: -200,
-                stagger: { from: "center", amount: 0.4, ease: "power4.easeIn" },
+                stagger: { amount: 0.4, ease: "power4.easeIn" },
                 scrollTrigger: {
                   trigger: ".hero_container",
                   start: "top, top",

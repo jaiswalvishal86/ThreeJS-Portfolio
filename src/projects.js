@@ -35,34 +35,14 @@ const projects = [
     video: "assets/snagged.mp4",
     link: "https://www.snagged.com/",
   },
-  // {
-  //   name: "PROJECT 5",
-  //   type: "WEB DESIGN",
-  //   pos: "end",
-  //   image:
-  //     "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&q=80&w=2487&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  // },
-  // {
-  //   name: "PROJECT 6",
-  //   type: "GRAPHIC DESIGN",
-  //   pos: "mid",
-  //   image:
-  //     "https://images.unsplash.com/photo-1561998338-13ad7883b20f?auto=format&fit=crop&q=80&w=2487&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  // },
-  // {
-  //   name: "PROJECT 7",
-  //   type: "WEB DESIGN",
-  //   pos: "start",
-  //   image:
-  //     "https://images.unsplash.com/photo-1454117096348-e4abbeba002c?auto=format&fit=crop&q=80&w=2602&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  // },
-  // {
-  //   name: "PROJECT 8",
-  //   type: "TYPE DESIGN",
-  //   pos: "end",
-  //   image:
-  //     "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&q=80&w=2574&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  // },
+  {
+    key: 5,
+    name: "Avalon",
+    type: "Webflow Development",
+    pos: "end",
+    image: "assets/avalon.webp",
+    link: "https://www.drpatflynn.com/",
+  },
 ];
 
 const createProjects = () => {

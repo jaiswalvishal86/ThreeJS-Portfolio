@@ -2,9 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Front-end developer portfolio showcasing modern, responsive websites built with Javascript, Webflow, three.js and cutting-edge UI practices. Explore projects, case-study, and creative digital experiences.">
-    <meta name="keywords" content="Webflow Developer, Front-end Developer, JavaScript Developer, Designer">
-    <meta name="author" content="Vishal Jaiswal">
+    <meta
+      name="description"
+      content="Front-end developer portfolio showcasing modern, responsive websites built with Javascript, Webflow, three.js and cutting-edge UI practices. Explore projects, case-study, and creative digital experiences."
+    />
+    <meta
+      name="keywords"
+      content="Webflow Developer, Front-end Developer, JavaScript Developer, Designer"
+    />
+    <meta name="author" content="Vishal Jaiswal" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="assets/vishal.png" />
     <title>Portfolio - Vishal Jaiswal</title>
@@ -74,8 +80,50 @@
         <a href="#services"><p>Services</p></a>
         <a href="#testimonial"><p>Testimonials</p></a>
       </nav>
-    
-      <a class="book-cta" href="#" data-cal-link="vishal-jaiswal/15min" data-cal-namespace="15min" data-cal-config='{"layout":"column_view"}'>Book</a>
+
+      <div class="book-wrap">
+        <button
+          class="book-cta"
+          data-cal-link="vishal-jaiswal/15min"
+          data-cal-namespace="15min"
+          data-cal-config='{"layout":"column_view"}'
+        >
+          Book
+          <div class="bubble">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="rgba(255,255,255,1)"
+            >
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+              ></path>
+            </svg>
+          </div>
+        </button>
+      </div>
+      <svg
+        class="gooey-svg"
+        width="0"
+        height="0"
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+      >
+        <defs>
+          <filter id="gooey">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
+              result="gooey"
+            />
+            <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
     </div>
 
     <div class="section_wrapper">
@@ -206,7 +254,7 @@
               to get in touch.
             </p>
             <h3>I can craft Human-Centric Designs</h3>
-            <button class="service-cta">Get in Contact</button>
+            <a class="contact-cta" href="#contact">Get in Contact</a>
           </div>
           <div class="services-container">
             <div class="service-wrapper">
@@ -232,7 +280,11 @@
                 </p>
               </div>
               <div class="service-icon">
-                <img alt="webflow icon" loading="lazy" src="assets/webflow.png" />
+                <img
+                  alt="webflow icon"
+                  loading="lazy"
+                  src="assets/webflow.png"
+                />
               </div>
             </div>
 
@@ -257,7 +309,7 @@
         <div class="card">
           <div class="card-description">
             I had the pleasure of collaborating with Vishal on a recent project.
-            Vishal is a JS wizard who can turn things into magic. He’s quick to
+            Vishal is a JS wizard who can turn things into magic. He's quick to
             respond and resolves issues efficiently, making him a reliable and
             skilled collaborator. I highly recommend him and look forward to
             working together on future projects!
@@ -267,7 +319,7 @@
         <div class="card">
           <div class="card-description">
             Vishal is a true pro! He brought both a strong eye for design and
-            deep technical fluency with Webflow’s CMS, interactions, and
+            deep technical fluency with Webflow's CMS, interactions, and
             responsive frameworks.
           </div>
           <h3 class="title">- Mark Golub</h3>
@@ -290,32 +342,38 @@
               detail and a drive for perfection, I specialize in creating
               stunning, user-friendly websites. My journey began as
               <span class="creative">Interface Designer</span>, and since then,
-              I’ve honed my skills in design and
+              I've honed my skills in design and
               <span class="creative">Webflow development</span>, continuously
-              pushing the boundaries of what’s possible.
+              pushing the boundaries of what's possible.
             </p>
           </div>
         </div>
       </section>
 
       <div class="footer-section">
-        <!-- <div class="spacer"></div> -->
         <div class="is-footer">
           <div class="footer-wrapper">
             <div id="contact" class="footer-content">
               <h2 data-animate="font-weight">
                 Get in
-                <span class="creative"
-                  ><a aria-label="contact" href="mailto:jaiswalvishal86@gmail.com">Contact</a></span
-                >
+                <span class="creative">
+                  <a
+                    aria-label="contact"
+                    href="mailto:jaiswalvishal86@gmail.com"
+                    >Contact</a
+                  >
+                </span>
               </h2>
               <p>
-                Let’s create something amazing together. Whether you have a
+                Let's create something amazing together. Whether you have a
                 project in mind or just want to say hello, feel free to reach
-                out. I’m always excited to connect with fellow creatives and
+                out. I'm always excited to connect with fellow creatives and
                 potential collaborators.
               </p>
-              <a class="contact-cta" href="mailto:jaiswalvishal86@gmail.com">Drop me a line</a>
+              <a class="contact-cta" href="mailto:jaiswalvishal86@gmail.com"
+                >Drop me a line</a
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -327,18 +385,47 @@
       crossorigin="anonymous"
     ></script>
     <!-- Cal element-click embed code begins -->
-<script type="text/javascript">
-  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-Cal("init", "15min", {origin:"https://cal.com"});
+    <script type="text/javascript">
+      (function (C, A, L) {
+        let p = function (a, ar) {
+          a.q.push(ar);
+        };
+        let d = C.document;
+        C.Cal =
+          C.Cal ||
+          function () {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = cal.q || [];
+              d.head.appendChild(d.createElement("script")).src = A;
+              cal.loaded = true;
+            }
+            if (ar[0] === L) {
+              const api = function () {
+                p(api, arguments);
+              };
+              const namespace = ar[1];
+              api.q = api.q || [];
+              if (typeof namespace === "string") {
+                cal.ns[namespace] = cal.ns[namespace] || api;
+                p(cal.ns[namespace], ar);
+                p(cal, ["initNamespace", namespace]);
+              } else p(cal, ar);
+              return;
+            }
+            p(cal, ar);
+          };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "15min", { origin: "https://cal.com" });
 
-  
-  // Important: Please add the following attributes to the element that should trigger the calendar to open upon clicking.
-  // `data-cal-link="vishal-jaiswal/15min"`
-  // data-cal-namespace="15min"
-  // `data-cal-config='{"layout":"month_view"}'`
-
-  Cal.ns["15min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#000000"}},"hideEventTypeDetails":true,"layout":"month_view"});
-  </script>
-  <!-- Cal element-click embed code ends -->
+      Cal.ns["15min"]("ui", {
+        cssVarsPerTheme: { light: { "cal-brand": "#000000" } },
+        hideEventTypeDetails: true,
+        layout: "month_view",
+      });
+    </script>
+    <!-- Cal element-click embed code ends -->
   </body>
 </html>
