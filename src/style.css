@@ -51,6 +51,13 @@ body {
   letter-spacing: -0.03em;
 }
 
+.webflow-badge {
+  position: fixed;
+  bottom: 50%;
+  right: 0;
+  z-index: 3;
+}
+
 header {
   position: fixed;
   z-index: 10;
