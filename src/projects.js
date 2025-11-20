@@ -1,15 +1,24 @@
 const projects = [
   {
     key: 1,
-    name: "Lazysis Chinese",
+    name: "Resulute AI",
     type: "Webflow Development",
     pos: "start",
+    image: "assets/eternal.avif",
+    video: "assets/resolute_ai.mp4",
+    link: "https://www.theresolute.ai/",
+  },
+  {
+    key: 2,
+    name: "Lazysis Chinese",
+    type: "Webflow Development",
+    pos: "end",
     image: "assets/lazysis_bg.avif",
     video: "assets/lazysis.mp4",
     link: "https://www.lazysisterchinese.com/",
   },
   {
-    key: 2,
+    key: 3,
     name: "i-watch landing page",
     type: "3D Development",
     pos: "mid",
@@ -18,7 +27,7 @@ const projects = [
     link: "https://i-watch-ultra.netlify.app/",
   },
   {
-    key: 3,
+    key: 4,
     name: "Deck Doctors",
     type: "Webflow Development",
     pos: "end",
@@ -27,7 +36,7 @@ const projects = [
     link: "https://www.deckdocs.com/",
   },
   {
-    key: 4,
+    key: 5,
     name: "Snagged",
     type: "Webflow Development",
     pos: "mid",
@@ -36,7 +45,7 @@ const projects = [
     link: "https://www.snagged.com/",
   },
   {
-    key: 5,
+    key: 6,
     name: "Avalon",
     type: "Webflow Development",
     pos: "end",
