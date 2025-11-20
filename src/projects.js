@@ -1,7 +1,7 @@
 const projects = [
   {
     key: 1,
-    name: "Resulute AI",
+    name: "Resolute AI",
     type: "Webflow Development",
     pos: "start",
     image: "assets/eternal.avif",
